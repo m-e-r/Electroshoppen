@@ -6,10 +6,14 @@
 package elecetroshoppenprojekt;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 
 /**
@@ -18,18 +22,28 @@ import javafx.scene.control.Label;
  */
 public class FXMLDocumentController implements Initializable {
     
-    @FXML
     private Label label;
-    
+    private static final ObservableList<String> productsC = FXCollections.observableArrayList();
+    private ArrayList<String> list;
     @FXML
+    private ChoiceBox<String> productCatatogies;
+
+    public FXMLDocumentController() {
+    }
+    
     private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
+        
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+	productsC.add("1");
+	productsC.add("1");
+	productsC.add("1");
+	productsC.add("1");
+	productsC.add("1");
+	productCatatogies.setItems(productsC);
+	
     }    
     
 }
