@@ -3,13 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package elecetroshoppenprojekt;
+package GUI;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import DBManager.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -32,6 +37,21 @@ public class ElecetroshoppenProjekt extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+	
+	
+	//Code to run query for database, should probably be chance, because the while loop should be
+	//different for each function in the program. The execute should maybe be in the webshop package
+//	DBConnection dbc = new DBConnection();
+//	ResultSet select = dbc.runQuery("SELECT * FROM Component");
+//	try {
+//	    while (select.next()){
+//		System.out.println(select.next());
+//		
+//	    }
+//	} catch (SQLException ex) {
+//	    Logger.getLogger(ElecetroshoppenProjekt.class.getName()).log(Level.SEVERE, null, ex);
+//	}
+	
     }
     
 }
