@@ -33,6 +33,10 @@ public class DBConnection {
 	}
 
     }
+    
+    public Connection getCon(){
+	return con;
+    }
 
     public static ResultSet runQuery(String query) {
 	//RUN AN EXAMPLE QUERY

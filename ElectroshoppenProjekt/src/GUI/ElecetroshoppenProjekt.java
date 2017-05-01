@@ -36,8 +36,10 @@ public class ElecetroshoppenProjekt extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        launch(args);
+        //launch(args);
 	
+	DBConnection dbc = new DBConnection();
+	System.out.println(dbc.toString());
 	
 	//Code to run query for database, should probably be chance, because the while loop should be
 	//different for each function in the program. The execute should maybe be in the webshop package
