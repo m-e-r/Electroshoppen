@@ -11,4 +11,16 @@ package Authentication;
  */
 public class Create extends Authentication{
     
+    public Create(String userName, String password) {
+        super(userName, password);
+    }
+    
+    private boolean userExists() {
+        return true; 
+    }
+    
+    public boolean createUser() {
+        return true;
+    }
+    
 }

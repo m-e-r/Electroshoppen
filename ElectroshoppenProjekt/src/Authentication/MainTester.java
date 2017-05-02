@@ -9,10 +9,15 @@ package Authentication;
  *
  * @author Kasper
  */
-public class Login extends Authentication{
+public class MainTester {
     
-    public Login(String userName, String password) {
-        super(userName, password);
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Authentication test = new Create("Kasper", "HejESa");
+        
+        
     }
     
 }
