@@ -20,9 +20,10 @@ public class Token {
     private Date date; //used to generate the millisecs
     
     public Token(String tok) {
+        this.date = new Date();
         this.tok = tok;
         this.creation = this.date.getTime();
-        this.goTime = 10000; //abitrary amount..
+        this.goTime = 5000; //abitrary amount..
     }
     
     /**
@@ -32,6 +33,8 @@ public class Token {
      * @return 
      */
     public String getToken() {
+        this.date = new Date();
+
         if ((this.creation + this.goTime) > this.date.getTime()) {
             this.creation = this.date.getTime();
             return this.tok;

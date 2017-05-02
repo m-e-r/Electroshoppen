@@ -14,13 +14,18 @@ public class Create extends Authentication{
     public Create(String userName, String password) {
         super(userName, password);
     }
-    
-    private boolean userExists() {
-        return true; 
-    }
-    
+
+    /**
+     * Query NEEDED!!
+     * @return 
+     */
     public boolean createUser() {
-        return true;
+        if (super.userExists()) {
+            return false;
+            
+        } else {
+            return true;
+        }
     }
     
 }

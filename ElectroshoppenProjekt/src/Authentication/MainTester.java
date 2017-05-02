@@ -5,6 +5,9 @@
  */
 package Authentication;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Kasper
@@ -15,7 +18,22 @@ public class MainTester {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Authentication test = new Create("Kasper", "HejESa");
+        Login test2 = new Login("hej", "hejsa");
+        
+        Token token = test2.doLogin();
+        String tok = token.getToken();
+        System.out.println(tok);
+        
+        try {
+            Thread.sleep(6000);
+            
+        } catch (InterruptedException ex) {
+            Logger.getLogger(MainTester.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        String tok2 = token.getToken();
+        System.out.println(tok2);
+        
         
         
     }
