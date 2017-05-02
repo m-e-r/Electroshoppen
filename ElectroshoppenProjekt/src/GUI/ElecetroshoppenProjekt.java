@@ -40,6 +40,7 @@ public class ElecetroshoppenProjekt extends Application {
 	
 	DBConnection dbc = new DBConnection();
 	System.out.println(dbc.toString());
+	System.out.println(dbc.getClass());
 	
 	//Code to run query for database, should probably be chance, because the while loop should be
 	//different for each function in the program. The execute should maybe be in the webshop package
