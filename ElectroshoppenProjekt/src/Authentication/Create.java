@@ -19,13 +19,15 @@ public class Create extends Authentication{
     private String phoneNumber;
     private String eMail;
     private Adress adress;
+    private String cvr;
     
     
-    public Create(String userName, String phoneNumber, String eMail, Adress adress, String password) {
+    public Create(String userName, String phoneNumber, String eMail, Adress adress, String password, String cvr) {
         super(userName, password);
         this.phoneNumber = phoneNumber;
         this.eMail = eMail;
         this.adress = adress;
+        this.cvr = cvr;
     }
 
     /**
@@ -38,7 +40,7 @@ public class Create extends Authentication{
 	String typeLower = type.toLowerCase();
         if (typeLower.equals("customer")) {
             this.profile = new CustomerProfile(super.userName, this.phoneNumber, 
-                    this.eMail, this.adress, super.password);
+                    this.eMail, this.adress, super.password, this.cvr);
             
         } else if(typeLower.equals("employee")) {
             this.profile = new EmployeeProfile(super.userName, this.phoneNumber, 
