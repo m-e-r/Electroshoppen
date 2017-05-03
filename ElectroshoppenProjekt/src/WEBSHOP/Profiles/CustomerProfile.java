@@ -14,19 +14,9 @@ import Authentication.Token;
  */
 public class CustomerProfile extends Profile {
     
-    private String customerId;
-    
     public CustomerProfile(String name, String phoneNumber, String eMail, Adress adress, 
-	    Token token, String customerId) {
-	super(name, phoneNumber, eMail, adress, token);
-	this.customerId = customerId;
-    }
-
-    /**
-     * @return the customerId
-     */
-    public String getCustomerId() {
-	return customerId;
+	    Token token, String customerId, int id) {
+	super(name, phoneNumber, eMail, adress, token, id);
     }
 
     @Override

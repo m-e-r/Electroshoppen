@@ -7,6 +7,10 @@ package WEBSHOP.Profiles;
 
 import WEBSHOP.Adress;
 import Authentication.Token;
+import java.io.*;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,19 +18,9 @@ import Authentication.Token;
  */
 public class EmployeeProfile extends Profile {
     
-    private String employeeId;
-    
     public EmployeeProfile(String name, String phoneNumber, String eMail, Adress adress, 
-	    Token token, String employeeId) {
-	super(name, phoneNumber, eMail, adress, token);
-	this.employeeId = employeeId;
-    }
-
-    /**
-     * @return the employeeId
-     */
-    public String getEmployeeId() {
-	return employeeId;
+	    Token token, String employeeId, int id) {
+	super(name, phoneNumber, eMail, adress, token, id);
     }
     
     public Profile viewProfile(String id){
@@ -35,7 +29,18 @@ public class EmployeeProfile extends Profile {
 
     @Override
     public void saveProfil() {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	File file = new File("Employee_Profiles.txt");
+	PrintWriter output = null;
+	System.out.println(file.getAbsolutePath());
+	try  {
+	    output = new PrintWriter(file);
+	    output.print(this.toString());
+	} catch (IOException ex) {
+	    Logger.getLogger(EmployeeProfile.class.getName()).log(Level.SEVERE, null, ex);
+	}
+	output.close();
+	
+	
     }
     
 }

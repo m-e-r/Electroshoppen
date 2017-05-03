@@ -12,15 +12,17 @@ import Authentication.Token;
  */
 public abstract class Profile {
     private String name, phoneNumber, eMail;
+    private int id;
     private Adress adress;
     private Token token;
     
-    public Profile(String name, String phoneNumber, String eMail, Adress adress, Token token){
+    public Profile(String name, String phoneNumber, String eMail, Adress adress, Token token, int id){
 	this.name = name;
 	this.phoneNumber = phoneNumber;
 	this.eMail = eMail;
 	this.adress = adress;
 	this.token = token;
+	this.id = id;
     }
     
     public abstract void saveProfil();
@@ -65,6 +67,12 @@ public abstract class Profile {
      */
     public Token getToken() {
 	return token;
+    }
+    
+    @Override
+    public String toString(){
+	return this.name + "\t" + this.eMail + "\t" + this.phoneNumber + "\t" 
+		+ this.adress.toString() + "\t" + this.token.getToken() + "\t" + this.id;
     }
     
     

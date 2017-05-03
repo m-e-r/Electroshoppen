@@ -1,0 +1,10 @@
+File file = new File("Employee_Profiles.txt"); //Put .txt file outside src folder.
+	PrintWriter output = null;
+	System.out.println(file.getAbsolutePath());
+	try {
+	    output = new PrintWriter(file);
+	    output.println(this.toString()); //write here what should be inserted
+	} catch (IOException ex) {
+	    Logger.getLogger(EmployeeProfile.class.getName()).log(Level.SEVERE, null, ex);
+	}
+	output.close();
