@@ -38,6 +38,7 @@ public class Create extends Authentication{
         
         //Create new Profile instance based on given type
 	String typeLower = type.toLowerCase();
+	
         if (typeLower.equals("customer")) {
             this.profile = new CustomerProfile(super.userName, this.phoneNumber, 
                     this.eMail, this.adress, super.password, this.cvr);

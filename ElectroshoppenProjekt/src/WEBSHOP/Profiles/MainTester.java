@@ -38,8 +38,8 @@ public class MainTester {
 	System.out.print("password: ");
 	String password = console.nextLine();
 	Adress ad = new Adress(zip, city, streetname, houseNumber, floor, doornumber);
-	Create c = new Create(name, phoneNumber, email, ad, password);
-	c.createUser("employee");
+	Create c = new Create(name, phoneNumber, email, ad, password, "1929292");
+	System.out.println(c.createUser("cuStoMer"));
 	
     }
 }

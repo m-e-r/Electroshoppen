@@ -22,15 +22,13 @@ import java.util.logging.Logger;
  */
 public class CustomerProfile extends Profile {
     
-    private String cvr = null;
+    private String cvr;
     
     public CustomerProfile(String name, String phoneNumber, String eMail, Adress adress, 
 	    String passWord, String cvr) {
 	super(name, phoneNumber, eMail, adress, passWord);
 	
-	if (!cvr.equals("")){
-	    this.cvr = cvr;
-	}
+	this.cvr = cvr;
     }
 
     @Override
@@ -58,7 +56,7 @@ public class CustomerProfile extends Profile {
 		+ "INSERT INTO public.customer(\n"
 		+ "	full_name, password, email, phoneNumber, cvr)\n"
 		+ "	VALUES ('" + this.getName() + "', '" + this.getPassword() + "', '" 
-		+ this.geteMail() + "', " + this.getPhoneNumber() + ", '" + Integer.parseInt(cvr) +");";
+		+ this.geteMail() + "', " + this.getPhoneNumber() + ", '" + this.cvr +"');";
 
 	DBConnection dbc = new DBConnection();
 	dbc.runQueryUpdate(query);
