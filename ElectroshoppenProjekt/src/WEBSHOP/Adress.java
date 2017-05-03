@@ -21,6 +21,12 @@ public class Adress {
 	this.streetNumber = streetNumber;
 	this.zipCode = zipCode;
     }
+    
+    @Override
+    public String toString(){
+	return this.streetName + " " + this.streetNumber + ", " + this.floor 
+		+ " " + this.door + ", " + this.zipCode + " " + this.city;
+    }
 
     /**
      * @return the zipCode

@@ -14,23 +14,18 @@ import Authentication.Token;
  */
 public class CustomerProfile extends Profile {
     
-    private String customerId;
-    
-    public CustomerProfile(String name, String phoneNumber, String eMail, Adress adress, 
-	    Token token, String customerId) {
+    public CustomerProfile(String name, int phoneNumber, String eMail, Adress adress, 
+	    String token, int id) {
 	super(name, phoneNumber, eMail, adress, token);
-	this.customerId = customerId;
-    }
-
-    /**
-     * @return the customerId
-     */
-    public String getCustomerId() {
-	return customerId;
     }
 
     @Override
-    public void saveProfil() {
+    public void saveProfileToText() {
+	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void saveProfileToDB() {
 	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
