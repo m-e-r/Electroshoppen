@@ -13,6 +13,7 @@ public class OrderLine {
     
     private int productAmount;
     private double amountPrice;
+    //private Product product;
     
     public OrderLine(int productAmount, double amountPrice) {
         
