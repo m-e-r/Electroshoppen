@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * For testing authentication only, should be removed.
  * @author Kasper
  */
 public class MainTester {
