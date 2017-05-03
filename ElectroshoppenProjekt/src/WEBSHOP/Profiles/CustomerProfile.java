@@ -5,14 +5,35 @@
  */
 package WEBSHOP.Profiles;
 
+import WEBSHOP.Adress;
+import Authentication.Token;
+
 /**
  *
  * @author Jacob
  */
 public class CustomerProfile extends Profile {
     
-    public CustomerProfile(String name, String phoneNumber, String eMail, Adress adress) {
-	super(name, phoneNumber, eMail, adress);
+    private String customerId;
+    
+    public CustomerProfile(String name, String phoneNumber, String eMail, Adress adress, 
+	    Token token, String customerId) {
+	super(name, phoneNumber, eMail, adress, token);
+	this.customerId = customerId;
     }
+
+    /**
+     * @return the customerId
+     */
+    public String getCustomerId() {
+	return customerId;
+    }
+
+    @Override
+    public void saveProfil() {
+	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
     
 }

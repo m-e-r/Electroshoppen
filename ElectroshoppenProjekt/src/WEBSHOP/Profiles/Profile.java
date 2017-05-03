@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package WEBSHOP.Profiles;
+import WEBSHOP.Adress;
 import Authentication.Token;
 /**
  *
@@ -13,7 +14,6 @@ public abstract class Profile {
     private String name, phoneNumber, eMail;
     private Adress adress;
     private Token token;
-    private Token tokenk;
     
     public Profile(String name, String phoneNumber, String eMail, Adress adress, Token token){
 	this.name = name;
@@ -22,6 +22,8 @@ public abstract class Profile {
 	this.adress = adress;
 	this.token = token;
     }
+    
+    public abstract void saveProfil();
 
     /**
      * @return the name
@@ -56,6 +58,13 @@ public abstract class Profile {
      */
     public void setAdress(Adress adress) {
 	this.adress = adress;
+    }
+
+    /**
+     * @return the token
+     */
+    public Token getToken() {
+	return token;
     }
     
     
