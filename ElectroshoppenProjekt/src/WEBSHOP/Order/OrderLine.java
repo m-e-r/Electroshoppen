@@ -41,6 +41,6 @@ public class OrderLine {
      * @return the amountPrice
      */
     public double getAmountPrice() {
-        return amountPrice*productAmount;
+        return product.getPiecePrice()*productAmount;
     }
 }
