@@ -10,5 +10,5 @@ package WEBSHOP;
  * @author Jacob
  */
 public class CostumerProfile {
-    private String name;
+    
 }
