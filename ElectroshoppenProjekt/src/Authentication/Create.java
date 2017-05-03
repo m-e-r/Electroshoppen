@@ -49,12 +49,12 @@ public class Create extends Authentication{
         
         //Ask the instance to save itself to the database    
         }
-        if (super.userExists()) {
-            return "Profile already exists";    
+        if (!super.userExists()) {
+            this.profile.saveProfileToDB();
+            return "Should be saved";  
             
         } else {
-            this.profile.saveProfileToDB();
-            return "Should be saved";
+            return "Profile already exists";
         }
     }
     

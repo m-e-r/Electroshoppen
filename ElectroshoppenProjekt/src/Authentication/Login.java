@@ -24,12 +24,12 @@ public class Login extends Authentication{
      * @return 
      */
     public Token doLogin() {
-        if (!super.userExists()) {
-            return null;
-            
-        } else {
+        if (super.userExists()) {
             this.token = new Token(super.userName.toUpperCase());
             return this.token;
+            
+        } else {
+            return null;
         }
     }
     
