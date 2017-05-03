@@ -11,5 +11,5 @@ package WEBSHOP.Order;
  */
 public class Payment {
     
-
+    
 }

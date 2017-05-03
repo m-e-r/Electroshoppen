@@ -14,13 +14,13 @@ import java.util.Date;
 public class Order {
 
     private int orderNumber;
-    private boolean status;
+    private String status;
     private double totalPrice;
     private Date date;
     private OrderLine orderLine;
     
 
-    public Order(int orderNumber, boolean status, double totalPrice, Date date, OrderLine OrderLine) {
+    public Order(int orderNumber, String status, double totalPrice, Date date, OrderLine OrderLine) {
         
         this.orderNumber = orderNumber;
         this.status = status;
@@ -39,7 +39,7 @@ public class Order {
     /**
      * @return the status
      */
-    public boolean isStatus() {
+    public String getStatus() {
         return status;
     }
 
@@ -68,6 +68,13 @@ public class Order {
     public String toString() {
         
         return "Order: \t" + getOrderNumber() + "\t" + getDate() + "\t" + getTotalPrice();
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(String status) {
+        this.status = "Not paid";
     }
 
 }
