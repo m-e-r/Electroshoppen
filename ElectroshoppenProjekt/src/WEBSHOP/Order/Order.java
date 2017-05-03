@@ -11,4 +11,5 @@ package WEBSHOP.Order;
  */
 public class Order {
     
+    String n;
 }
