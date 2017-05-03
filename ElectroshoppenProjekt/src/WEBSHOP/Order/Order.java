@@ -5,7 +5,9 @@
  */
 package WEBSHOP.Order;
 
+import java.util.ArrayList;
 import java.util.Date;
+
 
 /**
  *
@@ -17,7 +19,7 @@ public class Order {
     private String status;
     private double totalPrice;
     private Date date;
-    private OrderLine orderLine;
+    private ArrayList<OrderLine> orderlines;
     
 
     public Order(int orderNumber, String status, double totalPrice, Date date, OrderLine OrderLine) {
@@ -26,7 +28,8 @@ public class Order {
         this.status = status;
         this.totalPrice = totalPrice;
         this.date = date;
-        this.orderLine = OrderLine;
+        this.orderlines = new ArrayList();
+        orderlines.add(OrderLine);
     }
 
     /**
@@ -47,6 +50,12 @@ public class Order {
      * @return the totalPrice
      */
     public double getTotalPrice() {
+        
+        for(OrderLine orderline: orderlines) {
+            
+            this.totalPrice += orderline.getAmountPrice();
+        }
+        
         return totalPrice;
     }
 
@@ -57,12 +66,6 @@ public class Order {
         return date;
     }
 
-    /**
-     * @return the orderLine
-     */
-    public OrderLine getOrderLine() {
-        return orderLine;
-    }
     
     @Override 
     public String toString() {
@@ -76,5 +79,10 @@ public class Order {
     public void setStatus(String status) {
         this.status = "Not paid";
     }
-
+    
+    public void addOrderline(OrderLine orderline) {
+        
+        this.orderlines.add(orderline);
+        
+    }
 }

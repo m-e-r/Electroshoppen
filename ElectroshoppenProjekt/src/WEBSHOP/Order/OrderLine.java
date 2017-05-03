@@ -5,6 +5,8 @@
  */
 package WEBSHOP.Order;
 
+import ProductStuff.Product;
+
 /**
  *
  * @author Bruger
@@ -13,12 +15,13 @@ public class OrderLine {
     
     private int productAmount;
     private double amountPrice;
-    //private Product product;
+    private Product product;
     
-    public OrderLine(int productAmount, double amountPrice) {
+    public OrderLine(int productAmount, double amountPrice, Product product) {
         
         this.productAmount = productAmount;
         this.amountPrice = amountPrice;
+        this.product = product;
     }
     
     @Override
@@ -38,6 +41,6 @@ public class OrderLine {
      * @return the amountPrice
      */
     public double getAmountPrice() {
-        return amountPrice;
+        return amountPrice*productAmount;
     }
 }
