@@ -11,21 +11,24 @@ import Authentication.Token;
  * @author Jacob
  */
 public abstract class Profile {
-    private String name, phoneNumber, eMail;
-    private int id;
+    private String name, eMail;
+    protected int phoneNumber;
     private Adress adress;
-    private Token token;
+    private String password;
     
-    public Profile(String name, String phoneNumber, String eMail, Adress adress, Token token, int id){
+    /*
+    TODO: Ændre phonenumber så det bare er en string. 
+    */
+    public Profile(String name, int phoneNumber, String eMail, Adress adress, String password){
 	this.name = name;
 	this.phoneNumber = phoneNumber;
 	this.eMail = eMail;
 	this.adress = adress;
-	this.token = token;
-	this.id = id;
+	this.password = password;
     }
     
-    public abstract void saveProfil();
+    public abstract void saveProfileToText();
+    public abstract void saveProfileToDB();
 
     /**
      * @return the name
@@ -37,7 +40,7 @@ public abstract class Profile {
     /**
      * @return the phoneNumber
      */
-    public String getPhoneNumber() {
+    public int getPhoneNumber() {
 	return phoneNumber;
     }
 
@@ -65,14 +68,14 @@ public abstract class Profile {
     /**
      * @return the token
      */
-    public Token getToken() {
-	return token;
+    public String getPassword() {
+	return password;
     }
     
     @Override
     public String toString(){
 	return this.name + "\t" + this.eMail + "\t" + this.phoneNumber + "\t" 
-		+ this.adress.toString() + "\t" + this.token.getToken() + "\t" + this.id;
+		+ this.adress.toString() + "\t" + this.password;
     }
     
     

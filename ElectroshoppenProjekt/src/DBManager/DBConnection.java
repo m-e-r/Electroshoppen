@@ -18,7 +18,7 @@ public class DBConnection {
     private static Connection con = null;
     
     public DBConnection() {
-	String url = "jdbc:postgresql://localhost:5432/EksamensProjektF17";
+	String url = "jdbc:postgresql://localhost:5432/SemesterProjectDB";
 	String user = "postgres";
 	String password = "sejfyr42";
 	
@@ -38,8 +38,7 @@ public class DBConnection {
 	return con;
     }
 
-    public static ResultSet runQuery(String query) {
-	//RUN AN EXAMPLE QUERY
+    public static ResultSet runQueryExcecute(String query) {
 	try {
 	    Statement st = con.createStatement();
 	    return st.executeQuery(query);
@@ -47,5 +46,15 @@ public class DBConnection {
 	    e.printStackTrace();
 	}
 	return null;
+    }
+    
+    public static int runQueryUpdate(String query){
+	try {
+	    Statement st = con.createStatement();
+	    return st.executeUpdate(query);
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	}
+	return -1;
     }
 }
