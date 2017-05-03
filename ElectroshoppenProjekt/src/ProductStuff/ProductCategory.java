@@ -9,6 +9,17 @@ package ProductStuff;
  *
  * @author Kasper
  */
-public class ProductCategory {
+public enum ProductCategory {
+    CAT1("Category1"), CAT2("Category2"), CAT3("Category3");
     
+    private final String text;
+    
+    private ProductCategory(String text) {
+        this.text = text;
+    }
+    
+    @Override
+    public String toString() {
+        return this.text;
+    }
 }
