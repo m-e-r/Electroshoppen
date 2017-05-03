@@ -15,7 +15,7 @@ import Authentication.Token;
 public class CustomerProfile extends Profile {
     
     public CustomerProfile(String name, String phoneNumber, String eMail, Adress adress, 
-	    Token token, String customerId, int id) {
+	    Token token, int id) {
 	super(name, phoneNumber, eMail, adress, token, id);
     }
 
