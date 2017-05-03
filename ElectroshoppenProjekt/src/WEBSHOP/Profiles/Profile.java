@@ -12,14 +12,14 @@ import Authentication.Token;
  */
 public abstract class Profile {
     private String name, eMail;
-    protected int phoneNumber;
+    protected String phoneNumber;
     private Adress adress;
     private String password;
     
     /*
     TODO: Ændre phonenumber så det bare er en string. 
     */
-    public Profile(String name, int phoneNumber, String eMail, Adress adress, String password){
+    public Profile(String name, String phoneNumber, String eMail, Adress adress, String password){
 	this.name = name;
 	this.phoneNumber = phoneNumber;
 	this.eMail = eMail;
@@ -40,7 +40,7 @@ public abstract class Profile {
     /**
      * @return the phoneNumber
      */
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
 	return phoneNumber;
     }
 

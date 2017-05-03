@@ -35,11 +35,12 @@ public class Create extends Authentication{
     public String createUser(String type) {
         
         //Create new Profile instance based on given type
-        if (type.equals("customer")) {
+	String typeLower = type.toLowerCase();
+        if (typeLower.equals("customer")) {
             this.profile = new CustomerProfile(super.userName, this.phoneNumber, 
                     this.eMail, this.adress, super.password);
             
-        } else if(type.equals("employee")) {
+        } else if(typeLower.equals("employee")) {
             this.profile = new EmployeeProfile(super.userName, this.phoneNumber, 
                     this.eMail, this.adress, super.password);    
             
@@ -52,7 +53,7 @@ public class Create extends Authentication{
             return "Profile already exists";    
             
         } else {
-            this.profile.saveProfil();
+            this.profile.saveProfileToDB();
             return "Should be saved";
         }
     }

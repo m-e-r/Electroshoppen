@@ -22,7 +22,7 @@ public class MainTester {
 	System.out.print("Email: ");
 	String email = console.nextLine();
 	System.out.print("Phonenumber: ");
-	String number = console.nextLine();
+	String phoneNumber = console.nextLine();
 	System.out.print("Streetname (no housenumber) : ");
 	String streetname = console.nextLine();
 	System.out.print("House number: ");
@@ -37,12 +37,9 @@ public class MainTester {
 	String zip = console.nextLine();
 	System.out.print("password: ");
 	String password = console.nextLine();
-	Create c = new Create(email, password);
-	
-	
 	Adress ad = new Adress(zip, city, streetname, houseNumber, floor, doornumber);
-	Profile pf = new EmployeeProfile(name, Integer.parseInt(number), email, ad, c.password);
-	pf.saveProfileToDB();
+	Create c = new Create(name, phoneNumber, email, ad, password);
+	c.createUser("employee");
 	
     }
 }

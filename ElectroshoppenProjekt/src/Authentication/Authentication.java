@@ -62,7 +62,7 @@ public abstract class Authentication {
      * @return 
      */
     protected final boolean userExists() {
-        return true;
+        return false;
     }
        
 }

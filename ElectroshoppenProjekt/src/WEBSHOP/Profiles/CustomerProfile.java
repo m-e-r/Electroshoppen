@@ -14,9 +14,9 @@ import Authentication.Token;
  */
 public class CustomerProfile extends Profile {
     
-    public CustomerProfile(String name, int phoneNumber, String eMail, Adress adress, 
-	    String token, int id) {
-	super(name, phoneNumber, eMail, adress, token);
+    public CustomerProfile(String name, String phoneNumber, String eMail, Adress adress, 
+	    String passWord) {
+	super(name, phoneNumber, eMail, adress, passWord);
     }
 
     @Override

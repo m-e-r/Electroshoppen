@@ -19,9 +19,9 @@ import DBManager.*;
  */
 public class EmployeeProfile extends Profile {
 
-    public EmployeeProfile(String name, int phoneNumber, String eMail, Adress adress,
-	    String token) {
-	super(name, phoneNumber, eMail, adress, token);
+    public EmployeeProfile(String name, String phoneNumber, String eMail, Adress adress,
+	    String passWord) {
+	super(name, phoneNumber, eMail, adress, passWord);
     }
 
     public void viewProfile(String id) {
