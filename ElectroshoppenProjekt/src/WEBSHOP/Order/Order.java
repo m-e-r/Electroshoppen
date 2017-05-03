@@ -5,11 +5,69 @@
  */
 package WEBSHOP.Order;
 
+import java.util.Date;
+
 /**
  *
  * @author Bruger
  */
 public class Order {
+
+    private int orderNumber;
+    private boolean status;
+    private double totalPrice;
+    private Date date;
+    private OrderLine orderLine;
     
-    String n;
+
+    public Order(int orderNumber, boolean status, double totalPrice, Date date, OrderLine OrderLine) {
+        
+        this.orderNumber = orderNumber;
+        this.status = status;
+        this.totalPrice = totalPrice;
+        this.date = date;
+        this.orderLine = OrderLine;
+    }
+
+    /**
+     * @return the orderNumber
+     */
+    public int getOrderNumber() {
+        return orderNumber;
+    }
+
+    /**
+     * @return the status
+     */
+    public boolean isStatus() {
+        return status;
+    }
+
+    /**
+     * @return the totalPrice
+     */
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    /**
+     * @return the date
+     */
+    public Date getDate() {
+        return date;
+    }
+
+    /**
+     * @return the orderLine
+     */
+    public OrderLine getOrderLine() {
+        return orderLine;
+    }
+    
+    @Override 
+    public String toString() {
+        
+        return "Order: \t" + getOrderNumber() + "\t" + getDate() + "\t" + getTotalPrice();
+    }
+
 }

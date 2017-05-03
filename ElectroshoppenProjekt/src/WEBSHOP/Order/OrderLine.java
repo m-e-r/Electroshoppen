@@ -11,4 +11,32 @@ package WEBSHOP.Order;
  */
 public class OrderLine {
     
+    private int productAmount;
+    private double amountPrice;
+    
+    public OrderLine(int productAmount, double amountPrice) {
+        
+        this.productAmount = productAmount;
+        this.amountPrice = amountPrice;
+    }
+    
+    @Override
+    public String toString() {
+        
+        return "Orderline: \t" + getProductAmount() + "\t" + getAmountPrice();
+    }
+
+    /**
+     * @return the productAmount
+     */
+    public int getProductAmount() {
+        return productAmount;
+    }
+
+    /**
+     * @return the amountPrice
+     */
+    public double getAmountPrice() {
+        return amountPrice;
+    }
 }
