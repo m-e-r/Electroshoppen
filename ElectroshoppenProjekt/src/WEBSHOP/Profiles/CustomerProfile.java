@@ -7,6 +7,14 @@ package WEBSHOP.Profiles;
 
 import WEBSHOP.Adress;
 import Authentication.Token;
+import DBManager.DBConnection;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,19 +22,46 @@ import Authentication.Token;
  */
 public class CustomerProfile extends Profile {
     
+    private String cvr = null;
+    
     public CustomerProfile(String name, String phoneNumber, String eMail, Adress adress, 
-	    String passWord) {
+	    String passWord, String cvr) {
 	super(name, phoneNumber, eMail, adress, passWord);
+	
+	if (!cvr.equals("")){
+	    this.cvr = cvr;
+	}
     }
 
     @Override
     public void saveProfileToText() {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	File file = new File("Customer_Profiles.txt"); //Put .txt file outside src folder.
+	System.out.println(file.getAbsolutePath());
+	try (FileWriter fileW = new FileWriter(file, true);
+		BufferedWriter bufferedW = new BufferedWriter(fileW);
+		PrintWriter output = new PrintWriter(bufferedW)) {
+	    output.println(this.toString() + "\n"); //write here what should be inserted
+	} catch (IOException ex) {
+	    Logger.getLogger(EmployeeProfile.class.getName()).log(Level.SEVERE, null, ex);
+	}
     }
 
     @Override
     public void saveProfileToDB() {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	Adress adress = this.getAdress();
+	String query = "INSERT INTO public.adress(\n"
+		+ "	phonenumber, street_name, city, postal, floor, door, street_number)\n"
+		+ "	VALUES (" + this.getPhoneNumber() + ", '" + adress.getStreetName() + "', '" + adress.getCity() + "', '"
+		+ adress.getZipCode() + "', '" + adress.getFloor() + "', '" + adress.getDoor() + "', '"
+		+ adress.getStreetNumber() + "');\n"
+		+ "\n" 
+		+ "INSERT INTO public.customer(\n"
+		+ "	full_name, password, email, phoneNumber, cvr)\n"
+		+ "	VALUES ('" + this.getName() + "', '" + this.getPassword() + "', '" 
+		+ this.geteMail() + "', " + this.getPhoneNumber() + ", '" + Integer.parseInt(cvr) +");";
+
+	DBConnection dbc = new DBConnection();
+	dbc.runQueryUpdate(query);
     }
     
     

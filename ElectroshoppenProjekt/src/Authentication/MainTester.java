@@ -18,7 +18,7 @@ public class MainTester {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Login test2 = new Login("hej", "hejsa");
+        Login test2 = new Login("user", "pass");
         
         Token token = test2.doLogin();
         String tok = token.getToken();

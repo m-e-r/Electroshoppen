@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package WEBSHOP.Order;
-
 import java.util.ArrayList;
 import java.util.Date;
 
