@@ -3,19 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package WEBSHOP;
+package WEBSHOP.Profiles;
 
 /**
  *
  * @author Jacob
  */
 public class Adress {
-    private String zipCode;
-    private String city;
-    private String streetName;
-    private String streetNumber;
-    private String floor;
-    private String door;
+    private String zipCode, city, streetName, streetNumber, floor, door;
     
     public Adress(String zipCode, String city, String streetName, String streetNumber,
 	    String floor, String door){

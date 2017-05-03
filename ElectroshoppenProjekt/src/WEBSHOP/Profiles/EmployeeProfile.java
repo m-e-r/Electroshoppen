@@ -9,6 +9,10 @@ package WEBSHOP.Profiles;
  *
  * @author Jacob
  */
-public class EmployeeProfile {
+public class EmployeeProfile extends Profile {
+    
+    public EmployeeProfile(String name, String phoneNumber, String eMail, Adress adress) {
+	super(name, phoneNumber, eMail, adress);
+    }
     
 }
