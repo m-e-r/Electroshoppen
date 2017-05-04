@@ -46,20 +46,22 @@ public class CustomerProfile extends Profile {
 
     @Override
     public void saveProfileToDB() {
+	
 	Adress adress = this.getAdress();
 	String query = "INSERT INTO public.adress(\n"
-		+ "	phonenumber, street_name, city, postal, floor, door, street_number)\n"
-		+ "	VALUES (" + this.getPhoneNumber() + ", '" + adress.getStreetName() + "', '" + adress.getCity() + "', '"
+		+ "	phone_number, street_name, city, postal, floor, door, street_number)\n"
+		+ "	VALUES ('" + this.getPhoneNumber() + "', '" + adress.getStreetName() + "', '" + adress.getCity() + "', '"
 		+ adress.getZipCode() + "', '" + adress.getFloor() + "', '" + adress.getDoor() + "', '"
 		+ adress.getStreetNumber() + "');\n"
 		+ "\n" 
 		+ "INSERT INTO public.customer(\n"
 		+ "	full_name, password, email, phoneNumber, cvr)\n"
 		+ "	VALUES ('" + this.getName() + "', '" + this.getPassword() + "', '" 
-		+ this.geteMail() + "', " + this.getPhoneNumber() + ", '" + this.cvr +"');";
+		+ this.geteMail() + "', '" + this.getPhoneNumber() + "', '" + this.cvr +"');";
 
 	DBConnection dbc = new DBConnection();
 	dbc.runQueryUpdate(query);
+	
     }
     
     

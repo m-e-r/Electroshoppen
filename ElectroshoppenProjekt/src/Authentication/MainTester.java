@@ -18,22 +18,9 @@ public class MainTester {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Login test2 = new Login("user", "pass");
         
-        Token token = test2.doLogin();
-        String tok = token.getToken();
-        System.out.println(tok);
         
-        try {
-            Thread.sleep(6000);
-            
-        } catch (InterruptedException ex) {
-            Logger.getLogger(MainTester.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        String tok2 = token.getToken();
-        System.out.println(tok2);
-        
+       
         
         
     }

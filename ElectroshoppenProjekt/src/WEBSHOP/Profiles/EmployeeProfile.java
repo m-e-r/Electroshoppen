@@ -51,15 +51,15 @@ public class EmployeeProfile extends Profile {
     public void saveProfileToDB() {
 	Adress adress = this.getAdress();
 	String query = "INSERT INTO public.adress(\n"
-		+ "	phonenumber, street_name, city, postal, floor, door, street_number)\n"
-		+ "	VALUES (" + this.getPhoneNumber() + ", '" + adress.getStreetName() + "', '" + adress.getCity() + "', '"
+		+ "	phone_number, street_name, city, postal, floor, door, street_number)\n"
+		+ "	VALUES ('" + this.getPhoneNumber() + "', '" + adress.getStreetName() + "', '" + adress.getCity() + "', '"
 		+ adress.getZipCode() + "', '" + adress.getFloor() + "', '" + adress.getDoor() + "', '"
 		+ adress.getStreetNumber() + "');\n"
 		+ "\n" 
 		+ "INSERT INTO public.employee(\n"
 		+ "	full_name, email, phone_number, password)\n"
-		+ "	VALUES ('" + this.getName() + "', '" + this.geteMail() + "', " 
-		+ this.getPhoneNumber() + ", '" + this.getPassword() + "');";
+		+ "	VALUES ('" + this.getName() + "', '" + this.geteMail() + "', '" 
+		+ this.getPhoneNumber() + "', '" + this.getPassword() + "');";
 
 	DBConnection dbc = new DBConnection();
 	dbc.runQueryUpdate(query);

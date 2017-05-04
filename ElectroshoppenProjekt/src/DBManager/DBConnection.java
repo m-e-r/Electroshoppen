@@ -31,14 +31,13 @@ public class DBConnection {
 	    lgr.log(Level.WARNING, ex.getMessage(), ex);
 
 	}
-
     }
     
     public Connection getCon(){
 	return con;
     }
 
-    public static ResultSet runQueryExcecute(String query) {
+    public ResultSet runQueryExcecute(String query) {
 	try {
 	    Statement st = con.createStatement();
 	    return st.executeQuery(query);
@@ -48,7 +47,7 @@ public class DBConnection {
 	return null;
     }
     
-    public static int runQueryUpdate(String query){
+    public int runQueryUpdate(String query){
 	try {
 	    Statement st = con.createStatement();
 	    return st.executeUpdate(query);

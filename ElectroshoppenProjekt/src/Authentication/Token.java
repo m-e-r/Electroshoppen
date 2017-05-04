@@ -35,12 +35,47 @@ public class Token {
     public String getToken() {
         this.date = new Date();
 
-        if ((this.creation + this.goTime) > this.date.getTime()) {
-            this.creation = this.date.getTime();
-            return this.tok;
+        if ((this.getCreation() + this.getGoTime()) > this.getDate().getTime()) {
+	    this.setCreation(this.getDate().getTime());
+            return this.getTok();
             
         } else {
             return "Expired";
         }
+    }
+
+    /**
+     * @return the tok
+     */
+    public String getTok() {
+	return tok;
+    }
+
+    /**
+     * @return the creation
+     */
+    public long getCreation() {
+	return creation;
+    }
+
+    /**
+     * @param creation the creation to set
+     */
+    public void setCreation(long creation) {
+	this.creation = creation;
+    }
+
+    /**
+     * @return the goTime
+     */
+    public long getGoTime() {
+	return goTime;
+    }
+
+    /**
+     * @return the date
+     */
+    public Date getDate() {
+	return date;
     }
 }

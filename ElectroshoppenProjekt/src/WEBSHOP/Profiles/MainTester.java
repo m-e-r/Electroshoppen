@@ -39,7 +39,7 @@ public class MainTester {
 	String password = console.nextLine();
 	Adress ad = new Adress(zip, city, streetname, houseNumber, floor, doornumber);
 	Create c = new Create(name, phoneNumber, email, ad, password, "1929292");
-	System.out.println(c.createUser("cuStoMer"));
+	System.out.println(c.createUser("employee"));
 	
     }
 }
