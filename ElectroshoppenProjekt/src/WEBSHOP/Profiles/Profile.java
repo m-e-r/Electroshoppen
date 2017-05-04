@@ -4,30 +4,39 @@
  * and open the template in the editor.
  */
 package WEBSHOP.Profiles;
+
 import WEBSHOP.Adress;
 import Authentication.Token;
+
 /**
  *
  * @author Jacob
  */
 public abstract class Profile {
+
     private String name, eMail;
     protected String phoneNumber;
     private Adress adress;
     private String password;
-    
-    /*
-    TODO: Ændre phonenumber så det bare er en string. 
-    */
-    public Profile(String name, String phoneNumber, String eMail, Adress adress, String password){
+
+    /**
+     * Constructor for all kinds of profiles. Creates a profile.
+     * @param name Full name of profile user
+     * @param phoneNumber Phone number, max 8 character (danish phonenumber)
+     * @param eMail E-mail adress
+     * @param adress Full adress of user from Adress class in WEBSHOP package
+     * @param password Chosen password.
+     */
+    public Profile(String name, String phoneNumber, String eMail, Adress adress, String password) {
 	this.name = name;
 	this.phoneNumber = phoneNumber;
 	this.eMail = eMail;
 	this.adress = adress;
 	this.password = password;
     }
-    
+
     public abstract void saveProfileToText();
+
     public abstract void saveProfileToDB();
 
     /**
@@ -71,12 +80,11 @@ public abstract class Profile {
     public String getPassword() {
 	return password;
     }
-    
+
     @Override
-    public String toString(){
-	return this.name + "\t" + this.eMail + "\t" + this.phoneNumber + "\t" 
+    public String toString() {
+	return this.name + "\t" + this.eMail + "\t" + this.phoneNumber + "\t"
 		+ this.adress.toString() + "\t" + this.password;
     }
-    
-    
+
 }
