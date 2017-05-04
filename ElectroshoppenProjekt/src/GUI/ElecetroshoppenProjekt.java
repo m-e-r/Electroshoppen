@@ -31,17 +31,17 @@ public class ElecetroshoppenProjekt extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         //launch(args);
 	
-	DBConnection dbc = new DBConnection();
-	System.out.println(dbc.toString());
-	System.out.println(dbc.getClass());
-	
+//	DBConnection dbc = new DBConnection();
+//	System.out.println(dbc.toString());
+//	System.out.println(dbc.getClass());
+//	
 	//Code to run query for database, should probably be chance, because the while loop should be
 	//different for each function in the program. The execute should maybe be in the webshop package
 //	DBConnection dbc = new DBConnection();
