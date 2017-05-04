@@ -1,3 +1,4 @@
+//insert string into .txt
 File file = new File("Employee_Profiles.txt"); //Put .txt file outside src folder.
 	System.out.println(file.getAbsolutePath());
 	try (FileWriter fileW = new FileWriter(file, true);
@@ -7,3 +8,14 @@ File file = new File("Employee_Profiles.txt"); //Put .txt file outside src folde
 	} catch (IOException ex) {
 	    Logger.getLogger(EmployeeProfile.class.getName()).log(Level.SEVERE, null, ex);
 	}
+
+
+
+//Switching scenes
+AnchorPane root = new AnchorPane();
+            try {
+                root = FXMLLoader.load(getClass().getResource("FXML2.fxml"));
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            rootPane.getChildren().setAll(root);

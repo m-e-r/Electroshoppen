@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -12,9 +13,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 /**
  *
@@ -22,27 +28,12 @@ import javafx.scene.control.Label;
  */
 public class FXMLDocumentController implements Initializable {
     
-    private Label label;
-    private static final ObservableList<String> productsC = FXCollections.observableArrayList();
-    private ArrayList<String> list;
     @FXML
-    private ChoiceBox<String> productCatatogies;
-
-    public FXMLDocumentController() {
-    }
-    
-    private void handleButtonAction(ActionEvent event) {
-        
-    }
+    private Button sceneBtn;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-	productsC.add("1");
-	productsC.add("1");
-	productsC.add("1");
-	productsC.add("1");
-	productsC.add("1");
-	productCatatogies.setItems(productsC);
+	
 	
     }    
     
