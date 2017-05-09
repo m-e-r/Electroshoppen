@@ -5,9 +5,14 @@
  */
 package GUI;
 
+import Authentication.Login;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -15,7 +20,15 @@ import javafx.fxml.Initializable;
  * @author MER
  */
 public class LoginFXMLController implements Initializable {
-
+    
+    Login login;
+    @FXML
+    private TextField userField;
+    @FXML
+    private TextField passField;
+    @FXML
+    private Button loginBTN;
+    
     /**
      * Initializes the controller class.
      */
@@ -23,5 +36,11 @@ public class LoginFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void login(ActionEvent event) {
+        this.login = new Login(this.userField.getText(), this.passField.getText());
+        this.login.doLogin();
+    }
     
 }

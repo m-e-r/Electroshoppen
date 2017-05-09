@@ -21,7 +21,8 @@ import java.util.logging.Logger;
  * @author Kasper
  */
 public abstract class Authentication {
-
+    Login login;
+    Create create;
     protected String userName;
     public String password;
     protected DBConnection dbCon; //communication with the database
