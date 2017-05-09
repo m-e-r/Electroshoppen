@@ -24,7 +24,7 @@ public class ElecetroshoppenProjekt extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("mainGUI.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("mainFXML.fxml"));
         
         Scene scene = new Scene(root);
         
@@ -36,7 +36,7 @@ public class ElecetroshoppenProjekt extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //launch(args);
+    launch(args);
 	
 //	DBConnection dbc = new DBConnection();
 //	System.out.println(dbc.toString());

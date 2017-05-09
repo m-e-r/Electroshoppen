@@ -32,6 +32,7 @@ public class mainFXMLController implements Initializable {
     private AnchorPane mainPane;
     
     
+    @FXML
     public void goToLogin(ActionEvent e) {
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("loginFXML.fxml"));
