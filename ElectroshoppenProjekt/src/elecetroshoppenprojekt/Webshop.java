@@ -5,10 +5,29 @@
  */
 package elecetroshoppenprojekt;
 
+import Authentication.Authentication;
+import Authentication.Login;
+
 /**
  *
  * @author Kasper
  */
-public class Webshop {
-    
+public class Webshop implements Authenticateable {
+    private Authentication authenticate;
+
+    @Override
+    public void newLogin(String userName, String password) {
+        this.authenticate = new Login(userName, password);
+    }
+
+    @Override
+    public void doLogin() {
+        if (!this.authenticate.getClass().equals(Login.class)) {
+            System.out.println("Local variabel 'authenticate' must be initialized as Login type");
+            
+        } else {
+            ((Login) this.authenticate).doLogin();
+        }
+        
+    }
 }

@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Authentication;
+package elecetroshoppenprojekt;
 
 /**
  *
- * @author MER
+ * @author Kasper
  */
-public interface iCreate {
-    String createUser(String type);
+public interface Authenticateable {
+    void newLogin(String userName, String password);
     
+    void doLogin();
 }

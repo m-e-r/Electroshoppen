@@ -14,7 +14,7 @@ import WEBSHOP.Profiles.Profile;
  *
  * @author Kasper
  */
-public class Create extends Authentication implements iCreate {
+public class Create extends Authentication{
     private Profile profile;
     private String phoneNumber;
     private String eMail;
@@ -34,7 +34,6 @@ public class Create extends Authentication implements iCreate {
      * 
      * @return 
      */
-    @Override
     public String createUser(String type) {
         
         //Create new Profile instance based on given type

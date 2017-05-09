@@ -21,8 +21,6 @@ import java.util.logging.Logger;
  * @author Kasper
  */
 public abstract class Authentication {
-    Login login;
-    Create create;
     protected String userName;
     protected String password;
     protected MessageDigest digest; //for encrypting the password

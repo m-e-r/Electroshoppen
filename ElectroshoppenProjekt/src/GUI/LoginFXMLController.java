@@ -13,6 +13,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import elecetroshoppenprojekt.Authenticateable;
+import elecetroshoppenprojekt.Webshop;
 
 /**
  * FXML Controller class
@@ -21,7 +23,8 @@ import javafx.scene.control.TextField;
  */
 public class LoginFXMLController implements Initializable {
     
-    Login login;
+    private Authenticateable authenticate;
+    
     @FXML
     private TextField userField;
     @FXML
@@ -34,13 +37,14 @@ public class LoginFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        this.authenticate = new Webshop();
     }    
 
     @FXML
     private void login(ActionEvent event) {
-        this.login = new Login(this.userField.getText(), this.passField.getText());
-        this.login.doLogin();
+        
+        this.authenticate.newLogin(this.userField.getText(), this.passField.getText());
+        this.authenticate.doLogin();
     }
     
 }
