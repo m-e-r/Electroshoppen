@@ -38,13 +38,13 @@ public class MainTester {
 	System.out.print("password: ");
 	String password = console.nextLine();
 	Adress ad = new Adress(zip, city, streetname, houseNumber, floor, doornumber);
-<<<<<<< HEAD
-	Create c = new Create(name, phoneNumber, email, ad, password, "1929292");
-	System.out.println(c.createUser("employee"));
-=======
-	Create c = new Create(name, phoneNumber, email, ad, password, "");
-	c.createUser("employee");
->>>>>>> 3df293079d2ca3b57d6d4004ee63452113fd3de1
+//<<<<<<< HEAD
+//	Create c = new Create(name, phoneNumber, email, ad, password, "1929292");
+//	System.out.println(c.createUser("employee"));
+//=======
+//	Create c = new Create(name, phoneNumber, email, ad, password, "");
+//	c.createUser("employee");
+////>>>>>>> 3df293079d2ca3b57d6d4004ee63452113fd3de1
 	
     }
 }
