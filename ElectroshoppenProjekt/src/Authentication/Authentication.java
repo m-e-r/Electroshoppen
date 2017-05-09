@@ -23,8 +23,7 @@ import java.util.logging.Logger;
 public abstract class Authentication {
 
     protected String userName;
-    public String password;
-    protected DBConnection dbCon; //communication with the database
+    protected String password;
     protected MessageDigest digest; //for encrypting the password
 
     public Authentication(String userName, String password) {
@@ -70,12 +69,12 @@ public abstract class Authentication {
      * @return
      */
     protected final boolean userExists() {
-	DBConnection dbc = new DBConnection();
+	//DBConnection dbc = new DBConnection();
 	String query = "SELECT * FROM customer FULL JOIN employee on customer.phone_number = employee.phone_number\n"
 		+ "WHERE (employee.phone_number = '" + this.userName + "' OR customer.phone_number = '" + this.userName + "')\n"
 		+ "AND (employee.password = '" + this.password + "'\n"
 		+ "OR customer.password = '" + this.password + "')";
-	ResultSet user = dbc.runQueryExcecute(query);
+	ResultSet user = DBManager.DBConnection.runQueryExcecute(query); 
 	try {
 	    if (!user.next()) {
 		System.out.println("User does not exist.");
