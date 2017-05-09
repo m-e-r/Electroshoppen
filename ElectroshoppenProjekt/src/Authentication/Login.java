@@ -11,7 +11,7 @@ import DBManager.*;
  *
  * @author Kasper
  */
-public class Login extends Authentication {
+public class Login extends Authentication implements iLogin {
 
     private Token token;
 
@@ -40,5 +40,4 @@ public class Login extends Authentication {
 
 	}
     }
-
 }
