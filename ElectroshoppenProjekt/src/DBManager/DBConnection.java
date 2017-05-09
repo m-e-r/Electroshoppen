@@ -37,7 +37,7 @@ public class DBConnection {
 	return con;
     }
 
-    public ResultSet runQueryExcecute(String query) {
+    public static ResultSet runQueryExcecute(String query) {
 	try {
 	    Statement st = con.createStatement();
 	    return st.executeQuery(query);
