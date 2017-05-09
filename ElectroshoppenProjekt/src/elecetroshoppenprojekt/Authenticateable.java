@@ -12,5 +12,5 @@ package elecetroshoppenprojekt;
 public interface Authenticateable {
     void newLogin(String userName, String password);
     
-    void doLogin();
+    boolean doLogin();
 }

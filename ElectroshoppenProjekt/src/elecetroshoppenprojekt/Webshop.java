@@ -21,12 +21,13 @@ public class Webshop implements Authenticateable {
     }
 
     @Override
-    public void doLogin() {
+    public boolean doLogin() {
         if (!this.authenticate.getClass().equals(Login.class)) {
             System.out.println("Local variabel 'authenticate' must be initialized as Login type");
+            return false;
             
         } else {
-            ((Login) this.authenticate).doLogin();
+            return ((Login) this.authenticate).doLogin();
         }
         
     }

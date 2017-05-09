@@ -21,13 +21,12 @@ public class Login extends Authentication {
     }
 
     /**
-     * Creates and returns a Token object used to validate a succesfull login
-     * for a profile. If userName and password can't be validated this method
-     * returns null.
-     *
+     * If the user exists, the method creates and saves a Token to the databse
+     * confirming a succesfull login and returns true.
+     * Else it returns false.
      * @return
      */
-    public void doLogin() {
+    public boolean doLogin() {
 	if (super.userExists()) {
 	    this.token = new Token(super.userName.toUpperCase());
 	    DBConnection dbc = new DBConnection();
@@ -37,7 +36,10 @@ public class Login extends Authentication {
 		    + Integer.parseInt(super.userName) + ");";
 	    
 	    dbc.runQueryUpdate(query);
-
-	}
+            return true;
+            
+	} else {
+            return false;
+        }
     }
 }
