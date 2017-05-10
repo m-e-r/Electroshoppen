@@ -50,7 +50,7 @@
                   <Font size="10.0" />
                </font>
             </PasswordField>
-            <Label fx:id="errorLabel1" textFill="RED" GridPane.columnIndex="3" GridPane.columnSpan="2">
+            <Label fx:id="errorLabel1" textFill="RED" GridPane.columnIndex="2" GridPane.columnSpan="2">
                <font>
                   <Font size="16.0" />
                </font>

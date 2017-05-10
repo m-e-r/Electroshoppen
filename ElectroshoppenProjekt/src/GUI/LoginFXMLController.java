@@ -62,12 +62,12 @@ public class LoginFXMLController implements Initializable {
     @FXML
     private void login(ActionEvent event) {
         
-//        this.authenticate.newLogin(this.userField.getText(), this.passField.getText());
-//        
-//        if (!this.authenticate.doLogin()) {
-//            this.errorLabel1.setText("Brugeren findes ikke i systemet");
-//            
-//        } else {
+        this.authenticate.newLogin(this.userField.getText(), this.passField.getText());
+        
+        if (!this.authenticate.doLogin()) {
+            this.errorLabel1.setText("Brugernavn eller adgangskode forkert");
+            
+        } else {
           AnchorPane pane;
             try {
                 pane = FXMLLoader.load(getClass().getResource("productFXML.fxml"));
@@ -78,7 +78,7 @@ public class LoginFXMLController implements Initializable {
                 Logger.getLogger(ToolBarFXMLController.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-        //}
+        }
         
 //        this.userField.clear();
 //        this.passField.clear();
