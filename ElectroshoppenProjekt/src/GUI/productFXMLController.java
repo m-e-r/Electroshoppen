@@ -15,21 +15,28 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ToolBar;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 
 /**
  * FXML Controller class
  *
  * @author MER
  */
-public class mainFXMLController implements Initializable {
+public class productFXMLController implements Initializable {
 
     @FXML
-    private Button loginBTN;
+    protected Button loginBTN;
     @FXML
-    private Button registerBTN;
+    protected Button registerBTN;
     @FXML
-    private AnchorPane mainPane;
+    protected AnchorPane mainPane;
+    @FXML
+    protected ToolBar toolbar;
+    @FXML
+    private GridPane category;
+    
     
     
     @FXML
@@ -37,8 +44,9 @@ public class mainFXMLController implements Initializable {
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("loginFXML.fxml"));
             mainPane.getChildren().setAll(pane);
+            
         } catch (IOException ex) {
-            Logger.getLogger(mainFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(productFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -48,7 +56,6 @@ public class mainFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }    
     
 }

@@ -24,7 +24,7 @@ public class ElecetroshoppenProjekt extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("mainFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ToolBarFXML.fxml"));
         
         Scene scene = new Scene(root);
         
