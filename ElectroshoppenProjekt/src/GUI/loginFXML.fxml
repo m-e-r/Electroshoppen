@@ -31,16 +31,16 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Username:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Label text="Brugernavn" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <TextField fx:id="userField" alignment="CENTER" prefHeight="27.0" prefWidth="111.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Label text="Password:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
-            <Button fx:id="loginBTN" mnemonicParsing="false" onAction="#login" text="Login" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP" />
-            <Label layoutX="20.0" text="Don't have a profile?" textFill="#006dff" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+            <Label text="Kodeord" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+            <Button fx:id="loginBTN" mnemonicParsing="false" onAction="#login" text="Log ind" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP" />
+            <Label layoutX="20.0" text="Har du ikke en profil?" textFill="#006dff" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                <padding>
                   <Insets left="5.0" />
                </padding>
             </Label>
-            <Label text="Forgot your password?" textFill="#006dff" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.valignment="TOP">
+            <Label text="Glemt dit kodeord?" textFill="#006dff" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.valignment="TOP">
                <padding>
                   <Insets left="5.0" />
                </padding>
