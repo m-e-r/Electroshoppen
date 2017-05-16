@@ -9,7 +9,7 @@ package elecetroshoppenprojekt;
  *
  * @author Kasper
  */
-public interface Authenticateable {
+public interface iWebshop {
     void newLogin(String userName, String password);
     
     boolean doLogin();

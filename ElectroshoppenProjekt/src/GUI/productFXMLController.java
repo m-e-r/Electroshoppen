@@ -5,57 +5,45 @@
  */
 package GUI;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ToolBar;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
 
 /**
  * FXML Controller class
  *
  * @author MER
  */
-public class productFXMLController implements Initializable {
+public class ProductFXMLController implements Initializable {
 
     @FXML
-    protected Button loginBTN;
+    private ImageView productIV;
     @FXML
-    protected Button registerBTN;
+    private TextArea productTA;
     @FXML
-    protected AnchorPane mainPane;
+    private Button addBTN;
     @FXML
-    protected ToolBar toolbar;
-    @FXML
-    private GridPane category;
-    
-    
-    
-    @FXML
-    public void goToLogin(ActionEvent e) {
-        try {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("loginFXML.fxml"));
-            mainPane.getChildren().setAll(pane);
-            
-        } catch (IOException ex) {
-            Logger.getLogger(productFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    
+    private Button gobackBTN;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        this.gobackBTN.setStyle("-fx-background-image: url(arrow.PNG");
     }    
+
+    @FXML
+    private void addToBasket(ActionEvent event) {
+    }
+
+    @FXML
+    private void goToProducts(ActionEvent event) {
+    }
     
 }
