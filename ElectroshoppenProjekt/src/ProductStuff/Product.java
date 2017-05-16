@@ -31,7 +31,7 @@ public class Product {
     
     
     //Getters
-    public long getProdcutNumber() {
+    public long getProductNumber() {
         return this.productNumber;
     }
     

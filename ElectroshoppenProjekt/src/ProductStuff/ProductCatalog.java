@@ -49,10 +49,10 @@ public class ProductCatalog {
                 String description = rs.getString("description");
                 String productCategory = rs.getString("category");
                 
-                if(Arrays.asList(ProductCategory.values()).contains(productCategory)){
+                if(Arrays.asList(ProductCategory.values()).contains(ProductCategory.valueOf(productCategory))){
                     this.products.put(productNum, new Product(productName, productNum, price, description, ProductCategory.valueOf(productCategory))); //Adds it to the TreeMap
                 }else {
-                    System.err.println("'"+productCategory+"" + "is not found in the database");
+                    System.err.println("'"+productCategory+"" + " is not found in the database");
                 }
                 
             }
