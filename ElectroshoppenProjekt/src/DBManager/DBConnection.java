@@ -20,7 +20,7 @@ public class DBConnection {
     public DBConnection() {
 	String url = "jdbc:postgresql://localhost:5432/SemesterProjectDB";
 	String user = "postgres";
-	String password = "sejfyr42";
+	String password = "bonansa";
 	
 	//CONNECTING
 	try {
@@ -37,7 +37,7 @@ public class DBConnection {
 	return con;
     }
 
-    public static ResultSet runQueryExcecute(String query) {
+    public ResultSet runQueryExcecute(String query) {
 	try {
 	    Statement st = con.createStatement();
 	    return st.executeQuery(query);

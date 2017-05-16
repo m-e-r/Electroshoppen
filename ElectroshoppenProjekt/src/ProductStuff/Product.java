@@ -13,16 +13,19 @@ public class Product {
     private String productName;
     private long productNumber;
     private double piecePrice;
+    private String description;
     private ProductCategory prdCat;
+    
     
   
     
     public Product(String productName, long productNumber, 
-            double piecePrice, ProductCategory prdCat) {
+            double piecePrice, String description, ProductCategory prdCat) {
         
         this.productName = productName;
         this.productNumber = productNumber;
         this.piecePrice = piecePrice;
+        this.description = description;
         this.prdCat = prdCat;
     }
     
@@ -38,6 +41,10 @@ public class Product {
         
     public String getProductName() {
         return this.productName;
+    }
+    
+    public String getDescription() {
+        return this.description;
     }
     
     public ProductCategory getProductCategory() {
