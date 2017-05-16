@@ -12,7 +12,7 @@ import Authentication.Login;
  *
  * @author Kasper
  */
-public class Webshop implements Authenticateable {
+public class Webshop implements iWebshop {
     private Authentication authenticate;
 
     @Override

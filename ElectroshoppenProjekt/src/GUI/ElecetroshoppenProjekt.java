@@ -10,11 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import DBManager.*;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -24,7 +19,7 @@ public class ElecetroshoppenProjekt extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("ToolBarFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("fxmlDocument.fxml"));
         
         Scene scene = new Scene(root);
         
@@ -36,7 +31,7 @@ public class ElecetroshoppenProjekt extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-    launch(args);
+        launch(args);
 	
 //	DBConnection dbc = new DBConnection();
 //	System.out.println(dbc.toString());
