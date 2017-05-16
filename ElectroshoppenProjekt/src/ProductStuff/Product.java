@@ -15,6 +15,8 @@ public class Product {
     private double piecePrice;
     private ProductCategory prdCat;
     
+  
+    
     public Product(String productName, long productNumber, 
             double piecePrice, ProductCategory prdCat) {
         
