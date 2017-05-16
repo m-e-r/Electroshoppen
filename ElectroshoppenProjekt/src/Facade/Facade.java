@@ -4,13 +4,15 @@
  * and open the template in the editor.
  */
 package Facade;
-import authentication.*;
-import dbmanager.*;
-import productStuff.*;
-import webshop.*;
-import webshop.order.*;
-import webshop.profiles.*;
 import elecetroshoppenprojekt.*;
+import ProductStuff.Product;
+import ProductStuff.ProductCategory;
+import Authentication.*;
+import DBManager.*;
+import ProductStuff.*;
+import WEBSHOP.*;
+import WEBSHOP.Order.*;
+import WEBSHOP.Profiles.*;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -20,7 +22,7 @@ import java.util.Date;
  *
  * @author rune_
  */
-public class Facade {
+public class Facade implements iFacade{
     private Authentication authentication;
     private Token token;
     private DBConnection dbConnection;
@@ -39,80 +41,71 @@ public class Facade {
     private Webshop webshop;
 
 
-    public boolean userExists(){
-	authentication.userExists();
-	return authentication;
-    }
+    @Override
     public String getToken(){
-	token.getToken();
-	return token;
-    }
-    public long getProductNumber(){
-	product.getProductNumber();
-	return product;
-    }
-    public double getPiecePrice() {
-        product.getPiecePrice();
-	return product;
-    }
-        
-    public String getProductName() {
-        product.getProductName();
-	return product;
-    }
-    
-    public ProductCategory getProductCategory(){
-        product.getProductCategory();
-	return product;
-    }
-    public Product searchProduct(){
-	productCatalog.searchProduct();
-	return productCatalog;
-    }
-    public ArrayList<Product> getProductsFromCat(ProductCategory prdCat){
-	productCatalog.getProductsFromCat();
-	return productCatalog;
+	return token.getToken();
     }
     @Override
-    public String toString(){
-	adress.toString();
-	return adress;
+    public long getProductNumber(){
+	return product.getProductNumber();
     }
+    @Override
+    public double getPiecePrice() {
+        return product.getPiecePrice();
+    }
+        
+    @Override
+    public String getProductName() {
+        return product.getProductName();
+    }
+    
+    @Override
+    public ProductCategory getProductCategory(){
+        return product.getProductCategory();
+    }
+    @Override
+    public Product searchProduct(long prdNum){
+	return productCatalog.searchProduct(prdNum);
+    }
+    @Override
+    public ArrayList<Product> getProductsFromCat(ProductCategory prdCat){
+	return productCatalog.getProductsFromCat(prdCat);
+    }
+    @Override
     public int getOrderNumber(){
-	order.getOrderNumber();
-	return order;
+	return order.getOrderNumber();
     }
+    @Override
     public String getStatus(){
-	order.getStatus();
-	return order;
+	return order.getStatus();
     }
+    @Override
     public double getTotalPrice(){
-	order.getTotalPrice();
-	return order;
+	return order.getTotalPrice();
     }
+    @Override
     public Date getDate(){
-	order.getDate();
-	return order;
+	return order.getDate();
     }
+    @Override
     public int getProductAmount(){
-	orderLine.getProductAmount();
-	return orderLine;
+	return orderLine.getProductAmount();
     }
+    @Override
     public double getAmountPrice(){
-	orderLine.getAmountPrice();
-	return orderLine;
+	return orderLine.getAmountPrice();
     }
+    @Override
     public void saveProfileToText(){
 	profile.saveProfileToText();
     }
+    @Override
     public void saveProfileToDB(){
 	profile.saveProfileToDB();
     }
-    public void viewProfile(String id){
-	employeeProfile.viewProfile();
-    }
+    
+    @Override
     public boolean doLogin(){
-	authenticateable.doLogin();
-	return authenticateable;
+	return authenticateable.doLogin();
     }
 }

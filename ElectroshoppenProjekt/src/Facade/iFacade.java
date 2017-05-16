@@ -5,10 +5,45 @@
  */
 package Facade;
 
+import ProductStuff.Product;
+import ProductStuff.ProductCategory;
+import java.util.ArrayList;
+import java.util.Date;
+
 /**
  *
  * @author rune_
  */
-public class iFacade {
+public interface iFacade {
+    String getToken();
     
+    long getProductNumber();
+    
+    double getPiecePrice();
+    
+    String getProductName();
+    
+    ProductCategory getProductCategory();
+    
+    Product searchProduct(long prdNum);
+    
+    ArrayList<Product> getProductsFromCat(ProductCategory prdCat);   
+    
+    int getOrderNumber();
+    
+    String getStatus();
+    
+    double getTotalPrice();
+    
+    Date getDate();
+    
+    int getProductAmount();
+    
+    double getAmountPrice();
+    
+    void saveProfileToText();
+    
+    void saveProfileToDB();
+    
+    boolean doLogin();
 }

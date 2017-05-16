@@ -28,6 +28,7 @@ public class Login extends Authentication {
      */
     public boolean doLogin() {
 	if (super.userExists()) {
+
 	    this.token = new Token(super.userName.toUpperCase());
 	    DBConnection dbc = new DBConnection();
 	    String query = "INSERT INTO public.token(\n"
@@ -42,4 +43,5 @@ public class Login extends Authentication {
             return false;
         }
     }
+
 }
