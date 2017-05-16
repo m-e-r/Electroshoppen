@@ -37,7 +37,6 @@ public class Facade implements iFacade{
     private EmployeeProfile employeeProfile;
     private OrderHistory orderHistory;
     private Profile profile;
-    private Authenticateable authenticateable;
     private Webshop webshop;
 
 
@@ -102,10 +101,5 @@ public class Facade implements iFacade{
     @Override
     public void saveProfileToDB(){
 	profile.saveProfileToDB();
-    }
-    
-    @Override
-    public boolean doLogin(){
-	return authenticateable.doLogin();
     }
 }

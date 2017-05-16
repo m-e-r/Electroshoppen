@@ -44,6 +44,4 @@ public interface iFacade {
     void saveProfileToText();
     
     void saveProfileToDB();
-    
-    boolean doLogin();
 }
