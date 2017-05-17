@@ -27,6 +27,8 @@ public interface iFacade {
     
     Product searchProduct(long prdNum);
     
+    ArrayList<Product> searchProductsFromText(String s);
+    
     ArrayList<Product> getProductsFromCat(ProductCategory prdCat);   
     
     int getOrderNumber();

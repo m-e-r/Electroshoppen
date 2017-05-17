@@ -67,6 +67,12 @@ public class Facade implements iFacade{
 	return productCatalog.searchProduct(prdNum);
     }
     @Override
+    public ArrayList<Product> searchProductsFromText (String in) {
+        return productCatalog.searchProductsFromText(in);
+    }
+    
+    
+    @Override
     public ArrayList<Product> getProductsFromCat(ProductCategory prdCat){
 	return productCatalog.getProductsFromCat(prdCat);
     }

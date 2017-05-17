@@ -5,14 +5,15 @@
  */
 package GUI;
 
+import Facade.Facade;
+import Facade.iFacade;
 import com.jfoenix.controls.JFXToggleButton;
-import elecetroshoppenprojekt.Webshop;
-import elecetroshoppenprojekt.iWebshop;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -34,8 +35,9 @@ import javafx.scene.layout.GridPane;
  */
 public class FxmlDocumentController implements Initializable {
     
-    iWebshop webshop;
-    
+    iFacade facade;
+    ObservableList<?> products;
+    ObservableList<?> categories;
     
     @FXML
     private AnchorPane mainPane;
@@ -86,34 +88,50 @@ public class FxmlDocumentController implements Initializable {
     @FXML
     private TextField logPassTF;
     @FXML
-    private Button goToProductsBTN;
-    @FXML
     private JFXToggleButton toggleCustomer;
+    @FXML
+    private Button productBTN;
+    @FXML
+    private Label productLabel;
+    @FXML
+    private GridPane pGrid;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.webshop = new Webshop();
+        this.facade = new Facade();
+        
     }    
-
+    
+//    private void updateProducts () {
+//        for (int i = 0; i < this.products; i++) {
+//            this.productLabel.setText(this.products.get(i).getName());
+//            this.pGrid.add(this.productLabel, 0, 1);
+//            this.productGrid.add(this.pGrid, i, i);
+//        }
+//    }
+    
     @FXML
     private void searchProducts(ActionEvent event) {
-        this.searchTF.getText();
+        this.products = (ObservableList<?>) facade.searchProductsFromText(this.searchTF.getText());
+//        for (int i = 0; i < this.products; i++) {
+//            this.products.get(i).
+//        }
     }
 
     @FXML
     private void login(Event event) {
         
-        this.webshop.newLogin(this.logPhoneTF.getText(), this.logPassTF.getText());
-        
-        if (this.webshop.doLogin()) {
-            this.tabPane.getSelectionModel().select(0);
-        } else {
-            Label label = new Label("Det indtastede telefonnr. eller kode er forkert. Venligst prøv igen");
-            this.loginGrid.add(label, 4, 2);
-        }
+//        this.webshop.newLogin(this.logPhoneTF.getText(), this.logPassTF.getText());
+//        
+//        if (this.webshop.doLogin()) {
+//            this.tabPane.getSelectionModel().select(0);
+//        } else {
+//            Label label = new Label("Det indtastede telefonnr. eller kode er forkert. Venligst prøv igen");
+//            this.loginGrid.add(label, 4, 2);
+//        }
     }
 
     @FXML

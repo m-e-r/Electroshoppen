@@ -68,7 +68,7 @@ public class ProductCatalog {
      * @param in Takes the search text as an input in the form of a String
      * @return returns a list of products matching the search text
      */
-    public ArrayList<Product> SearchProduct(String in){
+    public ArrayList<Product> searchProductsFromText(String in){
         this.searchProducts = new ArrayList();
 
             for(Product p : products.values()){

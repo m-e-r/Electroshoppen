@@ -32,7 +32,7 @@ public class ProductMainTester {
         do {
             System.out.println("Type a search word!");
             searchWord = sc.next();
-            products = prdCat.SearchProduct(searchWord); 
+            products = prdCat.searchProductsFromText(searchWord); 
             
             if (products.isEmpty()) {
                 System.out.println("\nNo results found. Type 0 to exit.");

@@ -46,8 +46,6 @@ public class ProductListController implements Initializable {
         
         this.products = FXCollections.observableArrayList();
         this.categories = FXCollections.observableArrayList();
-             
-        
     }    
     
     /**
@@ -56,9 +54,4 @@ public class ProductListController implements Initializable {
     public void setTextField() {
         searchTextfield.setText(facade.searchProduct(0).getProductName());
     }
-
-    
-    
-    
-    
 }
