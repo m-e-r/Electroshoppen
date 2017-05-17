@@ -55,7 +55,7 @@ public class CustomerProfile extends Profile {
 		+ adress.getStreetNumber() + "');\n"
 		+ "\n" 
 		+ "INSERT INTO public.customer(\n"
-		+ "	full_name, password, email, phoneNumber, cvr)\n"
+		+ "	full_name, password, email, phone_number, cvr)\n"
 		+ "	VALUES ('" + this.getName() + "', '" + this.getPassword() + "', '" 
 		+ this.geteMail() + "', '" + this.getPhoneNumber() + "', '" + this.cvr +"');";
 
