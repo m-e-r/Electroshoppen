@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import Authentication.Authenticateable;
+import Authentication.Login;
 import Facade.Facade;
 import Facade.iFacade;
 import com.jfoenix.controls.JFXToggleButton;
@@ -34,11 +36,11 @@ import javafx.scene.layout.GridPane;
  * @author MER
  */
 public class FxmlDocumentController implements Initializable {
-    
+    Authenticateable authen;
     iFacade facade;
     ObservableList<?> products;
     ObservableList<?> categories;
-    
+    ObservableList<?> loginNodes;
     @FXML
     private AnchorPane mainPane;
     @FXML
@@ -123,15 +125,16 @@ public class FxmlDocumentController implements Initializable {
 
     @FXML
     private void login(Event event) {
+        //this.loginNodes = this.loginGrid.getChildren();
+        this.authen = new Login(this.logPhoneTF.getText(), this.logPassTF.getText());
         
-//        this.webshop.newLogin(this.logPhoneTF.getText(), this.logPassTF.getText());
-//        
-//        if (this.webshop.doLogin()) {
-//            this.tabPane.getSelectionModel().select(0);
-//        } else {
-//            Label label = new Label("Det indtastede telefonnr. eller kode er forkert. Venligst prøv igen");
-//            this.loginGrid.add(label, 4, 2);
-//        }
+        if (this.authen.doLogin()) {
+            this.tabPane.getSelectionModel().select(0);
+        } else {
+            Label label = new Label("Det indtastede telefonnr. eller kode er forkert. Venligst prøv igen");
+            this.loginGrid.add(label, 2, 4);
+        }
+        
     }
 
     @FXML
