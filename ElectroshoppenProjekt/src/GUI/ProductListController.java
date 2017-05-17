@@ -5,9 +5,8 @@
  */
 package GUI;
 
-import ProductStuff.Product;
-import ProductStuff.ProductCatalog;
-import ProductStuff.ProductCategory;
+import Facade.Facade;
+import Facade.iFacade;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -26,13 +25,15 @@ import javafx.scene.control.TextField;
  * @author Tobias Dahl
  */
 public class ProductListController implements Initializable {
-    ObservableList<Product> products;
-    ObservableList<ProductCategory> categories;
+    ObservableList<?> products;
+    ObservableList<?> categories;
+    
+    private iFacade facade;
     
     @FXML
-    private ListView<Product> productList;
+    private ListView<?> productList;
     @FXML
-    private ListView<ProductCategory> categoryList;
+    private ListView<?> categoryList;
     @FXML
     private TextField searchTextfield;
    
@@ -41,21 +42,20 @@ public class ProductListController implements Initializable {
      */
     
     public void initialize(URL url, ResourceBundle rb) {
-        ProductCatalog productCat = new ProductCatalog();
-        
+        this.facade = new Facade();        
         
         this.products = FXCollections.observableArrayList();
         this.categories = FXCollections.observableArrayList();
-        
-        this.productList = new ListView<Product>();
-        this.productList.setItems(products);
-       
-        this.categoryList = new ListView<ProductCategory>();
-        this.categoryList.setItems(categories);
-        
-        
+             
         
     }    
+    
+    /**
+     * Eksempel på brug af interfacet uden at kende til Product klassen.
+     */
+    public void setTextField() {
+        searchTextfield.setText(facade.searchProduct(0).getProductName());
+    }
 
     
     
