@@ -54,8 +54,6 @@ public class Login extends Authentication {
 	if (super.userExists()) {
 	    this.token = new Token(super.userName.toUpperCase());
 	    DBConnection dbc = new DBConnection();
-	    String tokenTok = token.getTok();
-
 	    String query = "DELETE FROM token WHERE tok = '" + token.getTok() + "';";
 	    dbc.runQueryUpdate(query);
 	    return true;
