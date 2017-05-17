@@ -61,4 +61,26 @@ public class Login extends Authentication {
 	    return false;
 	}
     }
+    
+    /**
+     * Do not use this method.
+     * Meant for Create class.
+     * @param none
+     * @return false
+     */
+    @Override
+    public boolean createUser(String none) {
+        return false;
+    }
+    
+    /**
+     * Do not use this method.
+     * Meant for Create class.
+     * @param none
+     * @return false
+     */
+    @Override
+    public boolean deleteUser(String none) {
+        return false;
+    }
 }

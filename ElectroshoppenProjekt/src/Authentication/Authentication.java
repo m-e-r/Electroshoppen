@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  *
  * @author Kasper
  */
-public abstract class Authentication {
+public abstract class Authentication implements Authenticateable {
     protected String userName;
     protected String password;
     protected MessageDigest digest; //for encrypting the password
