@@ -31,14 +31,30 @@ public class Login extends Authentication {
 	if (super.userExists()) {
 	    this.token = new Token(super.userName.toUpperCase());
 	    DBConnection dbc = new DBConnection();
-	    String query = "INSERT INTO public.token(\n"
-		    + "	tok, millisec, phone_number)\n"
-		    + "	VALUES ('" + token.getTok() + "', " + token.getCreation() + ", " 
-		    + Integer.parseInt(super.userName) + ");";
-	    
-	    dbc.runQueryUpdate(query);
+	    String tokenTok = token.getTok();
 
+	    String query = "do $$\n"
+		    + "BEGIN\n"
+		    + "IF EXISTS (SELECT * FROM token WHERE tok = '" + tokenTok + "') THEN \n"
+		    + "UPDATE token SET millisec = " + token.getCreation() + " WHERE tok = '" + tokenTok + "';\n"
+		    + "ELSE \n"
+		    + "INSERT INTO token (tok, millisec, phone_number) VALUES ('" + tokenTok + "', " 
+		    + token.getCreation() + ", " + Integer.parseInt(super.userName) + ");\n"
+		    + "END IF;\n"
+		    + "END \n"
+		    + "$$";
+	    dbc.runQueryUpdate(query);
 	}
     }
+    
+    public void doLogout(){
+	if (super.userExists()) {
+	    this.token = new Token(super.userName.toUpperCase());
+	    DBConnection dbc = new DBConnection();
+	    String tokenTok = token.getTok();
 
+	    String query = "DELETE FROM token WHERE tok = '" + token.getTok() + "';";
+	    dbc.runQueryUpdate(query);
+	}
+    }
 }

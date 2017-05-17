@@ -39,6 +39,7 @@ public abstract class Authentication {
 	this.userName = userName;
 	this.password = this.encryptPassword(password);
     }
+    
 
     /**
      * This method is called in the constructor thereby encrypting the password
