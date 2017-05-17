@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.TreeMap;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
@@ -24,7 +25,7 @@ public class ProductCatalog {
     private TreeMap<Long, Product> products; 
     private ArrayList<Product> categoryProducts;
     public ArrayList<Product> searchProducts;
-    
+
     
     public ProductCatalog() {
         this.products = new TreeMap();
@@ -40,7 +41,7 @@ public class ProductCatalog {
         DBConnection dbCon = new DBConnection(); //Creates an instance of the databasemanager
         String query = "SELECT * FROM products"; //The query, which the ResultSet will use
         ResultSet rs = dbCon.runQueryExcecute(query); //The ResultSet then uses the query to run
-
+        
         try{
             while(rs.next()){ //Iterates through the ResultSet and matches the variables below with the column attributes.
                 long productNum = rs.getInt("product_id");              
@@ -69,8 +70,7 @@ public class ProductCatalog {
      */
     public ArrayList<Product> SearchProduct(String in){
         this.searchProducts = new ArrayList();
-        
-            
+
             for(Product p : products.values()){
                 String searchPrice = String.valueOf(p.getPiecePrice()); //Price as String
                 
@@ -88,6 +88,7 @@ public class ProductCatalog {
                 }
                 
             }
+
        return this.searchProducts;
     }
     
