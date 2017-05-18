@@ -50,4 +50,9 @@ public class Product {
     public ProductCategory getProductCategory() {
         return this.prdCat;
     }
+    
+    @Override
+    public String toString() {
+        return this.productName + ";" + this.productNumber + ";" + this.piecePrice + ";" + this.description + ";" + this.prdCat;
+    }
 }

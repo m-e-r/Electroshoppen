@@ -38,6 +38,10 @@ public class Facade implements iFacade{
     private OrderHistory orderHistory;
     private Profile profile;
     private Webshop webshop;
+    
+    public Facade() {
+        this.productCatalog = new ProductCatalog();
+    }
 
 
     @Override

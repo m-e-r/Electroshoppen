@@ -5,7 +5,11 @@
  */
 package Authentication;
 
+
+import Facade.Facade;
+import Facade.iFacade;
 import WEBSHOP.Adress;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -18,19 +22,14 @@ public class MainTester {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-//	Adress a = new Adress("2", "3", "3", "3", "3", "3");
-//	Create c = new Create("test", "2468", "e@e.dk", a, "test", "");
-//	c.createUser("customer");
-	
-	
-	Create c = new Create("2468", "test");
-	c.deleteUser("customer");
-	
+        iFacade facade = new Facade();
+        ArrayList<?> products = new ArrayList();
         
+        products = facade.searchProductsFromText("o");
         
-       
-        
-        
+        for (int i = 0; i < products.size(); i++) {
+            System.out.println(products.get(i).toString());
+        }
     }
     
 }
