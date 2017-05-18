@@ -3,19 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ProductStuff;
-
+package WEBSHOP.Order;
 
 /**
  *
  * @author Kasper
  */
-public enum ProductCategory {
-    COMPUTER("Computer"), PHONE("Phone"), VACUUM("Vacuum");
+public enum Status {
+    STATUS1("Status1"), STATUS2("Status2"), STATUS3("Status3");
     
     private final String text;
     
-    private ProductCategory(String text) {
+    private Status(String text) {
         this.text = text;
     }
 

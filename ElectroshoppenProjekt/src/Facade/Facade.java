@@ -93,10 +93,6 @@ public class Facade implements iFacade{
 	return order.getTotalPrice();
     }
     @Override
-    public Date getDate(){
-	return order.getDate();
-    }
-    @Override
     public int getProductAmount(){
 	return orderLine.getProductAmount();
     }

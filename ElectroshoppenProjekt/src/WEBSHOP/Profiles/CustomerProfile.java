@@ -8,6 +8,9 @@ package WEBSHOP.Profiles;
 import WEBSHOP.Adress;
 import Authentication.Token;
 import DBManager.DBConnection;
+import WEBSHOP.Order.Order;
+import WEBSHOP.Order.OrderLine;
+import WEBSHOP.Order.Status;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -23,6 +26,8 @@ import java.util.logging.Logger;
 public class CustomerProfile extends Profile {
     
     private String cvr;
+    private Order currentOrder;
+    private OrderHistory orderHistory;
     
     public CustomerProfile(String name, String phoneNumber, String eMail, Adress adress, 
 	    String passWord, String cvr) {
@@ -64,6 +69,10 @@ public class CustomerProfile extends Profile {
 	
     }
     
-    
+    private void addToOrder(OrderLine orderLine) {
+        if (this.currentOrder == null) {
+            this.currentOrder = new Order(1, orderLine);
+        }
+    }
     
 }

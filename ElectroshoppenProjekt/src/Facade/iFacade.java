@@ -37,8 +37,6 @@ public interface iFacade {
     
     double getTotalPrice();
     
-    Date getDate();
-    
     int getProductAmount();
     
     double getAmountPrice();

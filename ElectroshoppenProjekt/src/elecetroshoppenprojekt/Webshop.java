@@ -5,10 +5,12 @@
  */
 package elecetroshoppenprojekt;
 
+import WEBSHOP.Profiles.CustomerProfile;
+
 /**
  *
  * @author Kasper
  */
 public class Webshop {
-    
+    private CustomerProfile customer;
 }

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package WEBSHOP.Order;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -15,20 +16,19 @@ import java.util.Date;
 public class Order {
 
     private int orderNumber;
-    private String status;
+    private Status status;
     private double totalPrice;
-    private Date date;
     private ArrayList<OrderLine> orderlines;
+    private LocalDateTime date;
     
 
-    public Order(int orderNumber, String status, double totalPrice, Date date, OrderLine OrderLine) {
+    public Order(int orderNumber, OrderLine OrderLine) {
         
         this.orderNumber = orderNumber;
-        this.status = status;
-        this.totalPrice = totalPrice;
-        this.date = date;
+        this.status = Status.STATUS1;        
         this.orderlines = new ArrayList();
         orderlines.add(OrderLine);
+        this.totalPrice = this.getTotalPrice();
     }
 
     /**
@@ -42,7 +42,7 @@ public class Order {
      * @return the status
      */
     public String getStatus() {
-        return status;
+        return status.toString();
     }
 
     /**
@@ -58,29 +58,23 @@ public class Order {
         return totalPrice;
     }
 
-    /**
-     * @return the date
-     */
-    public Date getDate() {
-        return date;
-    }
-
     
     @Override 
     public String toString() {
+        LocalDateTime time = LocalDateTime.now();
+        String printTime = "" + time.getYear() + time.getMonth() + time.getDayOfMonth();
         
-        return "Order: \t" + getOrderNumber() + "\t" + getDate() + "\t" + getTotalPrice();
+        return "Order: \t" + getOrderNumber() + "\t" + printTime + "\t" + getTotalPrice();
     }
 
     /**
      * @param status the status to set
      */
-    public void setStatus(String status) {
-        this.status = "Not paid";
+    public void setStatus(Status status) {
+        this.status = status;
     }
     
-    public void addOrderline(OrderLine orderline) {
-        
+    public void addOrderline(OrderLine orderline) {        
         this.orderlines.add(orderline);
         
     }
