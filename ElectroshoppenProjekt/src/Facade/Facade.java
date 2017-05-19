@@ -100,12 +100,4 @@ public class Facade implements iFacade{
     public double getAmountPrice(){
 	return orderLine.getAmountPrice();
     }
-    @Override
-    public void saveProfileToText(){
-	profile.saveProfileToText();
-    }
-    @Override
-    public void saveProfileToDB(){
-	profile.saveProfileToDB();
-    }
 }

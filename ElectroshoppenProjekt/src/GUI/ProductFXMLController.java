@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import Facade.Facade;
+import Facade.iFacade;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -20,7 +22,9 @@ import javafx.scene.image.ImageView;
  * @author MER
  */
 public class ProductFXMLController implements Initializable {
-
+    iFacade facade;
+    private long productId;
+    
     @FXML
     private ImageView productIV;
     @FXML
@@ -35,15 +39,27 @@ public class ProductFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.gobackBTN.setStyle("-fx-background-image: url(arrow.PNG");
-    }    
+        this.facade = new Facade();
 
+    }
+    
+    
+    
     @FXML
     private void addToBasket(ActionEvent event) {
     }
-
-    @FXML
-    private void goToProducts(ActionEvent event) {
+    
+    public void goBackToProducts (ActionEvent event) {
+        
     }
     
-}
+    public void setProductId(long id) {
+        this.productId = id;
+        String [] s = facade.searchProduct(productId).toString().split(";");
+        
+        for (int i = 0; i < s.length -1; i++) {
+            this.productTA.appendText(s[i]);
+        }
+    }
+    
+    }

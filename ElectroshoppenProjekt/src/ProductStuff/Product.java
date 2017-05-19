@@ -53,6 +53,6 @@ public class Product {
     
     @Override
     public String toString() {
-        return this.productName + ";" + this.productNumber + ";" + this.piecePrice + ";" + this.description + ";" + this.prdCat;
+        return this.productName + ";" + this.piecePrice + ";" + this.description + ";" + this.prdCat + ";" + this.productNumber;
     }
 }

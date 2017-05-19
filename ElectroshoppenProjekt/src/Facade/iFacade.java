@@ -40,8 +40,4 @@ public interface iFacade {
     int getProductAmount();
     
     double getAmountPrice();
-    
-    void saveProfileToText();
-    
-    void saveProfileToDB();
 }
