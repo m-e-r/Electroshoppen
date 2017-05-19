@@ -15,32 +15,54 @@ public class OrderLine {
     
     private int productAmount;
     private double amountPrice;
-    private Product product;
+    private String productName;
+    private long productNumber;
     
-    public OrderLine(int productAmount, double amountPrice, Product product) {
-        
-        this.productAmount = productAmount;
-        this.amountPrice = amountPrice;
-        this.product = product;
+    
+    
+    public OrderLine(Product product, int amount) {
+        this.productName = product.getProductName();
+        this.productNumber = product.getProductNumber();
+        this.productAmount += amount;
+        this.amountPrice = product.getPiecePrice();
     }
     
-    @Override
-    public String toString() {
-        
-        return "Orderline: \t" + getProductAmount() + "\t" + getAmountPrice();
-    }
+    
 
-    /**
-     * @return the productAmount
-     */
+    //Getters
     public int getProductAmount() {
         return productAmount;
     }
 
-    /**
-     * @return the amountPrice
-     */
-    public double getAmountPrice() {
-        return product.getPiecePrice()*productAmount;
+    public double getSubTotal() {
+        return this.amountPrice * this.productAmount;
+    }
+    
+    public long getProductNumber() {
+        return this.productNumber;
+    }
+    
+    
+    
+    //Setters and adders
+    public void setProductAmount(int amount) {
+        this.productAmount = amount;
+    }
+    
+    public void addProductAmount(int amount) {
+        this.productAmount += amount;
+    }
+    
+    public void removeProductAmount(int amount) {
+        this.productAmount -= amount;
+    }
+
+    
+    
+    
+    @Override
+    public String toString() {
+        
+        return "Orderline: \t" + getProductAmount() + "\t" + getSubTotal();
     }
 }

@@ -40,4 +40,5 @@ public interface iFacade {
     int getProductAmount();
     
     double getAmountPrice();
+    double getSubTotal();
 }

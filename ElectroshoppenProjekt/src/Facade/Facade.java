@@ -97,7 +97,7 @@ public class Facade implements iFacade{
 	return orderLine.getProductAmount();
     }
     @Override
-    public double getAmountPrice(){
-	return orderLine.getAmountPrice();
+    public double getSubTotal(){
+	return orderLine.getSubTotal();
     }
 }
