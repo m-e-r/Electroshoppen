@@ -6,7 +6,6 @@
 package elecetroshoppenprojekt;
 
 import ProductStuff.Product;
-import WEBSHOP.Order.Order;
 import WEBSHOP.Order.OrderLine;
 import WEBSHOP.Profiles.CustomerProfile;
 import java.util.HashSet;
@@ -19,7 +18,9 @@ import java.util.HashSet;
  */
 public class Webshop {
     private CustomerProfile customer;
+    private String customerUserName;
     private OrderLine orderLine;
+    
     
     Webshop() {
         this.customer = new CustomerProfile();
