@@ -8,6 +8,7 @@ package WEBSHOP.Profiles;
 import WEBSHOP.Adress;
 import Authentication.Token;
 import DBManager.DBConnection;
+import ProductStuff.Product;
 import WEBSHOP.Order.Order;
 import WEBSHOP.Order.OrderLine;
 import WEBSHOP.Order.Status;
@@ -16,6 +17,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,13 +29,18 @@ import java.util.logging.Logger;
 public class CustomerProfile extends Profile {
     
     private String cvr;
+    private Token token;
     private Order currentOrder;
     private OrderHistory orderHistory;
+    private HashSet<Product> viewedProducts;
+    
+    public CustomerProfile() {
+        this.viewedProducts = new HashSet();
+    }
     
     public CustomerProfile(String name, String phoneNumber, String eMail, Adress adress, 
 	    String passWord, String cvr) {
 	super(name, phoneNumber, eMail, adress, passWord);
-	
 	this.cvr = cvr;
     }
 
@@ -69,10 +77,25 @@ public class CustomerProfile extends Profile {
 	
     }
     
+    public Order getOrder() {
+        return this.currentOrder;
+    }
+    
+    public void createOrder(OrderLine orderLine) {
+        this.currentOrder = new Order(orderLine);
+    }
+    
     private void addToOrder(OrderLine orderLine) {
         if (this.currentOrder == null) {
-            this.currentOrder = new Order(1, orderLine);
+            this.currentOrder = new Order(orderLine);
+            
+        } else {
+            this.currentOrder.addOrderline(orderLine);
         }
+    }
+    
+    public void addToViewedProducts(Product product) {
+        this.viewedProducts.add(product);
     }
     
 }

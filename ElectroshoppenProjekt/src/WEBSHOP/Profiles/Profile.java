@@ -27,6 +27,11 @@ public abstract class Profile {
      * @param adress Full adress of user from Adress class in WEBSHOP package
      * @param password Chosen password.
      */
+    
+    public Profile() {
+        
+    }
+    
     public Profile(String name, String phoneNumber, String eMail, Adress adress, String password) {
 	this.name = name;
 	this.phoneNumber = phoneNumber;

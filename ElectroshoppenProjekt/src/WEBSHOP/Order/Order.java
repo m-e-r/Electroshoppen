@@ -22,37 +22,49 @@ public class Order {
     private LocalDateTime date;
     
 
-    public Order(int orderNumber, OrderLine OrderLine) {
-        
-        this.orderNumber = orderNumber;
+    public Order(OrderLine OrderLine) {
+
         this.status = Status.STATUS1;        
         this.orderlines = new ArrayList();
         orderlines.add(OrderLine);
         this.totalPrice = this.getTotalPrice();
     }
 
-    /**
-     * @return the orderNumber
-     */
+
     public int getOrderNumber() {
         return orderNumber;
     }
 
-    /**
-     * @return the status
-     */
+    
+    public boolean addToOrderLine(long productNumber, int amount) {
+        for (OrderLine o : this.orderlines) {
+            if (o.getProductNumber() == productNumber) {
+                o.addProductAmount(amount);
+                return true;
+            }
+        }       
+        return false;
+    }
+    
+    public boolean removeFromOrderLine(long productNumber, int amount){
+        for(OrderLine o: this.orderlines){
+            if(o.getProductNumber()==productNumber){
+                o.removeProductAmount(amount);
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public String getStatus() {
         return status.toString();
     }
 
-    /**
-     * @return the totalPrice
-     */
     public double getTotalPrice() {
         
         for(OrderLine orderline: orderlines) {
             
-            this.totalPrice += orderline.getAmountPrice();
+            this.totalPrice += orderline.getSubTotal();
         }
         
         return totalPrice;
@@ -63,6 +75,8 @@ public class Order {
     public String toString() {
         LocalDateTime time = LocalDateTime.now();
         String printTime = "" + time.getYear() + time.getMonth() + time.getDayOfMonth();
+        
+        this.orderNumber = 4; //Some sql to find the next ordernumber??
         
         return "Order: \t" + getOrderNumber() + "\t" + printTime + "\t" + getTotalPrice();
     }
@@ -75,7 +89,6 @@ public class Order {
     }
     
     public void addOrderline(OrderLine orderline) {        
-        this.orderlines.add(orderline);
-        
+        this.orderlines.add(orderline);        
     }
 }
