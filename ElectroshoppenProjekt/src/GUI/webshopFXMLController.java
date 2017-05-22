@@ -14,6 +14,7 @@ import WEBSHOP.Address;
 import com.jfoenix.controls.JFXToggleButton;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,6 +45,7 @@ import javafx.scene.layout.GridPane;
 public class webshopFXMLController implements Initializable {
     Authenticateable authen;
     iFacade facade;
+    
     
     ObservableList<?> products;
     ObservableList<?> categories;
@@ -121,12 +123,6 @@ public class webshopFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.facade = new Facade();
-//        this.toggleCustomer.setOnAction(new EventHandler<ActionEvent>() {
-//            @Override
-//            public void handle(ActionEvent event) {
-//                
-//            }
-//        });
         
     }    
     
@@ -142,7 +138,8 @@ public class webshopFXMLController implements Initializable {
         if (this.registerGrid.getChildren().contains(cvrTF)) {
             this.registerGrid.getChildren().remove(cvrTF);
         } else {
-            cvrTF = new TextField();
+            this.cvrTF = new TextField();
+            this.cvrTF.setPromptText("CVR Nummer");
             this.registerGrid.add(cvrTF, 3, 1);
         }
         
@@ -215,24 +212,40 @@ public class webshopFXMLController implements Initializable {
     @FXML
     private void register(ActionEvent event) {
         Address address;
-        this.authen.createUser("customer");
+        TextField[] tfs = new TextField[11];
         if (!this.registerGrid.getChildren().contains(cvrTF)) {
+            this.cvrTF = new TextField();
             this.registerGrid.add(cvrTF, 0, 0);
             this.cvrTF.clear();
             this.cvrTF.setStyle("-fx-background-color: transparent");
         }
         
-        String[] s = new String[this.registerGrid.getChildren().size() - 10];
-            for (int i = 9; i < this.registerGrid.getChildren().size() - 10; i++) {
-                TextField textfield = (TextField) this.registerGrid.getChildren().get(i);
-                s[i] = textfield.getText();
-            }
-        if (this.addressTF2.getText() == null) {
-            address = new Address(s[4], s[5], s[7], s[8]);
+        tfs[0] = this.fNameTF;
+        tfs[1] = this.lNameTF;
+        tfs[2] = this.mailTF;
+        tfs[3] = this.regPhoneTF;
+        tfs[4] = this.addressTF;
+        tfs[5] = this.numberTF;
+        tfs[6] = this.addressTF2;
+        tfs[7] = this.postnrTF;
+        tfs[8] = this.cityTF;
+        tfs[9] = this.regPassField;
+        tfs[10] = this.cvrTF;
+        
+//            for (int i = 12; i < this.registerGrid.getChildren().size() - 10; i++) {
+//                TextField textfield = (TextField) this.registerGrid.getChildren().get(i);
+//                s[i] = textfield.getText();
+//            }
+        if (this.addressTF2 == null) {
+            address = new Address(tfs[4].getText(), tfs[5].getText(), tfs[7].getText(),
+                    tfs[8].getText());
         } else {
-            address = new Address(s[4], s[5], s[6], s[7], s[8]);
+            address = new Address(tfs[4].getText(), tfs[5].getText(), tfs[6].getText(),
+                    tfs[7].getText(), tfs[8].getText());
         }
-        this.authen = new Create(s[0], s[1], s[2], s[3], address, s[9], s[10]);
+        this.authen = new Create(tfs[0].getText(), tfs[1].getText(), tfs[2].getText(),
+                tfs[3].getText(), address, tfs[9].getText(), tfs[10].getText());
+        this.authen.createUser("customer");
     }
     
     @FXML

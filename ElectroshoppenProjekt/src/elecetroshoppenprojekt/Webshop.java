@@ -5,7 +5,6 @@
  */
 package elecetroshoppenprojekt;
 
-import Authentication.Logable;
 import Authentication.Token;
 import ProductStuff.Product;
 import WEBSHOP.Order.OrderLine;
