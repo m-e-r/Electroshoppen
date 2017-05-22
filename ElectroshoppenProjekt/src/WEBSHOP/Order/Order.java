@@ -115,6 +115,7 @@ public class Order {
     }
 
     public double getTotalPrice() {
+        this.totalPrice = 0;
         
         for(OrderLine orderline: orderlines) {
             
@@ -131,9 +132,14 @@ public class Order {
     public String toString() {
         LocalDateTime time = LocalDateTime.now();
         String printTime = "" + time.getYear() + time.getMonth() + time.getDayOfMonth();
+        StringBuilder str = new StringBuilder();
         
         this.orderNumber = 4; //Some sql to find the next ordernumber??
-        
-        return "Order: \t" + getOrderNumber() + "\t" + printTime + "\t" + getTotalPrice();
+        for(OrderLine o: this.orderlines) {
+            str.append(o.toString());
+            str.append("\n");
+        }
+        return "Order:\t" + this.orderNumber + "\t" + printTime + "\t" + this.getTotalPrice() + "\t" + this.getStatus() + "\n\n" + str;
     }
+    
 }

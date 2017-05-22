@@ -43,6 +43,10 @@ public class OrderLine {
         return this.productNumber;
     }
     
+    public String getProductName() {
+        return this.productName;
+    }
+    
     
     
     //Setters, removers and adders
@@ -66,11 +70,9 @@ public class OrderLine {
     }
 
     
-    
-    
     @Override
     public String toString() {
         
-        return "Orderline: \t" + getProductAmount() + "\t" + getSubTotal();
+        return "Orderline: \t" + this.getProductName() + "\t" + this.getProductAmount() + "\t" + this.getSubTotal();
     }
 }
