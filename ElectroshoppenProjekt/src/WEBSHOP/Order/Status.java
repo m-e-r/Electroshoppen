@@ -10,7 +10,7 @@ package WEBSHOP.Order;
  * @author Kasper
  */
 public enum Status {
-    STATUS1("Status1"), STATUS2("Status2"), STATUS3("Status3");
+    STATUS1("I kurv"), STATUS2("Igangværende"), STATUS3("Betalt");
     
     private final String text;
     

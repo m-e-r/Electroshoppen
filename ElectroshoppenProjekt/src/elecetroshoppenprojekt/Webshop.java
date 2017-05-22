@@ -34,7 +34,9 @@ public class Webshop {
         this.customer.setToken(token);
     }
     
-    
+    public String pay() {
+       return this.customer.getOrder().pay();
+    }
     
     //MARK: Customer methods
     public void addToViewedProducts(Product p) {
@@ -62,6 +64,9 @@ public class Webshop {
         
         webshop.removeFromOrder(new Product("testProdukt2", 13, 800, "Dette er et test produkt nummer 2.", ProductCategory.COMPUTER), 1);
         System.out.println(webshop.customer.getOrder().toString());
+        
+        System.out.println(webshop.pay());
+        
     }
 }
 

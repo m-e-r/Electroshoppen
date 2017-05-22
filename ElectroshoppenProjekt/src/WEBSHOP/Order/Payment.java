@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package WEBSHOP.Order;
+import WEBSHOP.Order.Order;
 
 /**
  *
@@ -11,5 +12,8 @@ package WEBSHOP.Order;
  */
 public class Payment {
     
-    
+    public boolean Pay(double totalprice) {
+        
+        return true;
+    }
 }
