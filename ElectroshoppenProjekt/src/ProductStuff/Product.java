@@ -11,7 +11,7 @@ package ProductStuff;
  */
 public class Product {
     private String productName;
-    private long productNumber;
+    private long productNumber; //ID in db
     private double piecePrice;
     private String description;
     private ProductCategory prdCat;

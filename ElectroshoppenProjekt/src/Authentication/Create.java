@@ -26,14 +26,11 @@ public class Create extends Authentication {
     private String lastName;
     
 
+
     public Create(String firstName, String lastName, String eMail, String phoneNumber, Address adress, String password, String cvr) {
 	super(eMail, password);
         this.firstName = firstName;
         this.lastName = lastName;
-	this.phoneNumber = phoneNumber;
-	this.eMail = eMail;
-	this.adress = adress;
-	this.cvr = cvr;
     }
 
     public Create(String eMail, String password) {
