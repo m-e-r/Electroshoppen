@@ -5,7 +5,7 @@
  */
 package elecetroshoppenprojekt;
 
-import Authentication.Logable;
+
 import Authentication.Token;
 import ProductStuff.Product;
 import WEBSHOP.Order.OrderLine;
@@ -24,7 +24,7 @@ public class Webshop {
     private OrderLine orderLine;
     
     
-    Webshop() {
+    public Webshop() {
         this.customer = new CustomerProfile();
     }
     
@@ -40,36 +40,12 @@ public class Webshop {
         this.customer.addToViewedProducts(p);
     }
     
-    /**
-     * Adds product and amount to an orderline with a check to see if the product already exists in the orderline.
-     * @param p represents the product being added to the orderline
-     * @param amount represents the amount of products being added to the product line
-     */ 
     public void addToOrder(Product p, int amount) {
-        this.orderLine = new OrderLine(p, amount);
-        
-        //Check if customer has an Order
-        if (this.customer.getOrder() == null) {
-            this.customer.createOrder(this.orderLine);
-            
-            
-        //Check if the Order has an OrderLine with the product already
-        } else if (!this.customer.getOrder().addToOrderLine(p.getProductNumber(), amount)){
-           
-                         
-            this.customer.getOrder().addOrderline(this.orderLine);  
-        }
-        
-        
-        
-   
+        this.customer.getOrder().addOrderLine(p, amount);
     }
     
     public void deleteFromOrder(Product p, int amount) {
-        if(!this.customer.getOrder().removeFromOrderLine(p.getProductNumber(), amount)){
-            this.orderLine.removeProductAmount(amount);
-            
-        }
+        this.customer.getOrder().removeOrderLine(p, amount);
     }
     
 //    public HashSet<Product> getViewedProducts() {
