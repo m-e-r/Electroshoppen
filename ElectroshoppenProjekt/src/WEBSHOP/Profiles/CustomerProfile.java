@@ -98,4 +98,9 @@ public class CustomerProfile extends Profile {
         this.viewedProducts.add(product);
     }
     
+    
+    public void setToken(Token token) {
+        this.token = token;
+    }
+    
 }

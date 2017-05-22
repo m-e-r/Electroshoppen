@@ -11,4 +11,5 @@ package POS;
  */
 public class Register {
     private ProductCatalog pc;
+    
 }
