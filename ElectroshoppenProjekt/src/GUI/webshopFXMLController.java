@@ -6,9 +6,11 @@
 package GUI;
 
 import Authentication.Authenticateable;
+import Authentication.Create;
 import Authentication.Login;
 import Facade.Facade;
 import Facade.iFacade;
+import WEBSHOP.Address;
 import com.jfoenix.controls.JFXToggleButton;
 import java.io.IOException;
 import java.net.URL;
@@ -25,6 +27,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -78,7 +81,7 @@ public class webshopFXMLController implements Initializable {
     @FXML
     private TextField regPhoneTF;
     @FXML
-    private TextField adressTF;
+    private TextField addressTF;
     @FXML
     private TextField postnrTF;
     @FXML
@@ -104,9 +107,13 @@ public class webshopFXMLController implements Initializable {
     @FXML
     private Button pBTN;
     @FXML
-    private TextField tf;
+    private TextField numberTF;
     @FXML
-    private GridPane regTFGrid;
+    private TextField addressTF2;
+    @FXML
+    private PasswordField regPassField;
+    @FXML
+    private TextField cvrTF;
 
     /**
      * Initializes the controller class.
@@ -132,13 +139,13 @@ public class webshopFXMLController implements Initializable {
 //    }
     
     public void buisnessAccount() {
-        tf = new TextField();
-        this.regTFGrid.add(tf, 3, 1);
+        if (this.registerGrid.getChildren().contains(cvrTF)) {
+            this.registerGrid.getChildren().remove(cvrTF);
+        } else {
+            cvrTF = new TextField();
+            this.registerGrid.add(cvrTF, 3, 1);
+        }
         
-    }
-    
-    public void privateAccount() {
-        this.regTFGrid.getChildren().remove(tf);
         
     }
     
@@ -207,15 +214,25 @@ public class webshopFXMLController implements Initializable {
     
     @FXML
     private void register(ActionEvent event) {
+        Address address;
         this.authen.createUser("customer");
-        String[] s = new String[this.regTFGrid.getChildren().size()];
-        if (this.regTFGrid.getChildren().contains(tf)) {
-            for (int i = 0; i < this.regTFGrid.getChildren().size(); i++) {
-                TextField tf = (TextField) this.regTFGrid.getChildren().get(i);
-                s[i] = tf.getText();
-            }
+        if (!this.registerGrid.getChildren().contains(cvrTF)) {
+            this.registerGrid.add(cvrTF, 0, 0);
+            this.cvrTF.clear();
+            this.cvrTF.setStyle("-fx-background-color: transparent");
         }
-        //this.authen = new Create(s[0], s[1], s[2], s[3], s[4], s[5]);
+        
+        String[] s = new String[this.registerGrid.getChildren().size() - 10];
+            for (int i = 9; i < this.registerGrid.getChildren().size() - 10; i++) {
+                TextField textfield = (TextField) this.registerGrid.getChildren().get(i);
+                s[i] = textfield.getText();
+            }
+        if (this.addressTF2.getText() == null) {
+            address = new Address(s[4], s[5], s[7], s[8]);
+        } else {
+            address = new Address(s[4], s[5], s[6], s[7], s[8]);
+        }
+        this.authen = new Create(s[0], s[1], s[2], s[3], address, s[9], s[10]);
     }
     
     @FXML

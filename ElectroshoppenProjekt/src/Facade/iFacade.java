@@ -8,7 +8,6 @@ package Facade;
 import ProductStuff.Product;
 import ProductStuff.ProductCategory;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  *
@@ -39,6 +38,6 @@ public interface iFacade {
     
     int getProductAmount();
     
-    double getAmountPrice();
+
     double getSubTotal();
 }

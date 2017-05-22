@@ -5,8 +5,8 @@
  */
 package WEBSHOP.Profiles;
 
-import WEBSHOP.Adress;
 import Authentication.Token;
+import WEBSHOP.Address;
 
 /**
  *
@@ -16,7 +16,7 @@ public abstract class Profile {
 
     private String name, eMail;
     protected String phoneNumber;
-    private Adress adress;
+    private Address adress;
     private String password;
 
     /**
@@ -32,7 +32,7 @@ public abstract class Profile {
         
     }
     
-    public Profile(String name, String phoneNumber, String eMail, Adress adress, String password) {
+    public Profile(String name, String phoneNumber, String eMail, Address adress, String password) {
 	this.name = name;
 	this.phoneNumber = phoneNumber;
 	this.eMail = eMail;
@@ -68,14 +68,14 @@ public abstract class Profile {
     /**
      * @return the adress
      */
-    public Adress getAdress() {
+    public Address getAddress() {
 	return adress;
     }
 
     /**
      * @param adress the adress to set
      */
-    public void setAdress(Adress adress) {
+    public void setAddress(Address adress) {
 	this.adress = adress;
     }
 

@@ -8,7 +8,7 @@ package Authentication;
 
 import Facade.Facade;
 import Facade.iFacade;
-import WEBSHOP.Adress;
+import WEBSHOP.Address;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;

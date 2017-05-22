@@ -29,7 +29,7 @@ public class Facade implements iFacade{
     private Product product;
     private ProductCatalog productCatalog;
     private ProductCategory productCategory;
-    private Adress adress;
+    private Address adress;
     private Order order;
     private OrderLine orderLine;
     private Payment payment;
@@ -100,4 +100,5 @@ public class Facade implements iFacade{
     public double getSubTotal(){
 	return orderLine.getSubTotal();
     }
+
 }

@@ -5,10 +5,11 @@
  */
 package WEBSHOP.Profiles;
 
-import WEBSHOP.Adress;
+
 import Authentication.Token;
 import DBManager.DBConnection;
 import ProductStuff.Product;
+import WEBSHOP.Address;
 import WEBSHOP.Order.Order;
 import WEBSHOP.Order.OrderLine;
 import WEBSHOP.Order.Status;
@@ -38,9 +39,9 @@ public class CustomerProfile extends Profile {
         this.viewedProducts = new HashSet();
     }
     
-    public CustomerProfile(String name, String phoneNumber, String eMail, Adress adress, 
+    public CustomerProfile(String name, String phoneNumber, String eMail, Address address, 
 	    String passWord, String cvr) {
-	super(name, phoneNumber, eMail, adress, passWord);
+	super(name, phoneNumber, eMail, address, passWord);
 	this.cvr = cvr;
     }
 
@@ -60,12 +61,12 @@ public class CustomerProfile extends Profile {
     @Override
     public void saveProfileToDB() {
 	
-	Adress adress = this.getAdress();
+	Address address = this.getAddress();
 	String query = "INSERT INTO public.adress(\n"
 		+ "	phone_number, street_name, city, postal, floor, door, street_number)\n"
-		+ "	VALUES ('" + this.getPhoneNumber() + "', '" + adress.getStreetName() + "', '" + adress.getCity() + "', '"
-		+ adress.getZipCode() + "', '" + adress.getFloor() + "', '" + adress.getDoor() + "', '"
-		+ adress.getStreetNumber() + "');\n"
+		+ "	VALUES ('" + this.getPhoneNumber() + "', '" + address.getStreetName() + "', '" + address.getCity() + "', '"
+		+ address.getZipCode() + "', '" + address.getSecAddress() + "', '"
+		+ address.getStreetNumber() + "');\n"
 		+ "\n" 
 		+ "INSERT INTO public.customer(\n"
 		+ "	full_name, password, email, phone_number, cvr)\n"
@@ -97,5 +98,6 @@ public class CustomerProfile extends Profile {
     public void addToViewedProducts(Product product) {
         this.viewedProducts.add(product);
     }
+
     
 }

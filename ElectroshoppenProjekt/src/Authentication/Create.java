@@ -6,7 +6,7 @@
 package Authentication;
 
 import DBManager.DBConnection;
-import WEBSHOP.Adress;
+import WEBSHOP.Address;
 import WEBSHOP.Profiles.CustomerProfile;
 import WEBSHOP.Profiles.EmployeeProfile;
 import WEBSHOP.Profiles.Profile;
@@ -20,19 +20,24 @@ public class Create extends Authentication {
     private Profile profile;
     private String phoneNumber;
     private String eMail;
-    private Adress adress;
+    private Address adress;
     private String cvr;
+    private String firstName;
+    private String lastName;
+    
 
-    public Create(String userName, String phoneNumber, String eMail, Adress adress, String password, String cvr) {
-	super(userName, password);
+    public Create(String firstName, String lastName, String eMail, String phoneNumber, Address adress, String password, String cvr) {
+	super(eMail, password);
+        this.firstName = firstName;
+        this.lastName = lastName;
 	this.phoneNumber = phoneNumber;
 	this.eMail = eMail;
 	this.adress = adress;
 	this.cvr = cvr;
     }
 
-    public Create(String userName, String password) {
-	super(userName, password);
+    public Create(String eMail, String password) {
+	super(eMail, password);
     }
 
     /**

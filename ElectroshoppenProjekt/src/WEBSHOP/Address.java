@@ -9,23 +9,30 @@ package WEBSHOP;
  *
  * @author Jacob
  */
-public class Adress {
-    private String zipCode, city, streetName, streetNumber, floor, door;
+public class Address {
+    private String zipCode, city, streetName, streetNumber, secAddress;
     
-    public Adress(String zipCode, String city, String streetName, String streetNumber,
-	    String floor, String door){
-	this.city = city;
-	this.door = door;
-	this.floor = floor;
+    
+    public Address(String streetName, String streetNumber, String secAddress, String zipCode,
+            String city) {
+        this.city = city;
+	this.secAddress = secAddress;
 	this.streetName = streetName;
 	this.streetNumber = streetNumber;
 	this.zipCode = zipCode;
     }
     
+    public Address(String streetName, String streetNumber, String zipCode, String city) {
+        this.zipCode = zipCode;
+        this.city = city;
+        this.streetName = streetName;
+        this.streetNumber = streetNumber;
+    }
+    
     @Override
     public String toString(){
-	return this.streetName + " " + this.streetNumber + ", " + this.floor 
-		+ " " + this.door + ", " + this.zipCode + " " + this.city;
+	return this.streetName + " " + this.streetNumber + ", " 
+                + this.secAddress + ", " + this.zipCode + " " + this.city;
     }
 
     /**
@@ -85,31 +92,17 @@ public class Adress {
     }
 
     /**
-     * @return the floor
-     */
-    public String getFloor() {
-	return floor;
-    }
-
-    /**
-     * @param floor the floor to set
-     */
-    public void setFloor(String floor) {
-	this.floor = floor;
-    }
-
-    /**
      * @return the door
      */
-    public String getDoor() {
-	return door;
+    public String getSecAddress() {
+	return secAddress;
     }
 
     /**
      * @param door the door to set
      */
-    public void setDoor(String door) {
-	this.door = door;
+    public void setSecAddress(String secAddress) {
+	this.secAddress = secAddress;
     }
     
     

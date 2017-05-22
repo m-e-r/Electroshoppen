@@ -66,7 +66,7 @@ public class Webshop {
         }
     }
     
-    public HashSet<Product> getViewedProducts() {
-        
-    }
+//    public HashSet<Product> getViewedProducts() {
+//        
+//    }
 }
