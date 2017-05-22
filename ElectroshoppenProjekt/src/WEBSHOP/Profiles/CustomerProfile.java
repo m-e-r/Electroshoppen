@@ -37,6 +37,7 @@ public class CustomerProfile extends Profile {
     
     public CustomerProfile() {
         this.viewedProducts = new HashSet();
+        this.currentOrder = new Order();
     }
     
     public CustomerProfile(String name, String phoneNumber, String eMail, Address address, 
@@ -80,19 +81,6 @@ public class CustomerProfile extends Profile {
     
     public Order getOrder() {
         return this.currentOrder;
-    }
-    
-    public void createOrder(OrderLine orderLine) {
-        this.currentOrder = new Order(orderLine);
-    }
-    
-    private void addToOrder(OrderLine orderLine) {
-        if (this.currentOrder == null) {
-            this.currentOrder = new Order(orderLine);
-            
-        } else {
-            this.currentOrder.addOrderline(orderLine);
-        }
     }
     
     public void addToViewedProducts(Product product) {

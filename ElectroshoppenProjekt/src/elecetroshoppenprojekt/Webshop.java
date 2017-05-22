@@ -5,8 +5,13 @@
  */
 package elecetroshoppenprojekt;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> b30de947287bfd84669fab1067130d1617ea4ef1
 import Authentication.Token;
 import ProductStuff.Product;
+import ProductStuff.ProductCategory;
 import WEBSHOP.Order.OrderLine;
 import WEBSHOP.Profiles.CustomerProfile;
 import java.util.HashSet;
@@ -23,7 +28,7 @@ public class Webshop {
     private OrderLine orderLine;
     
     
-    Webshop() {
+    public Webshop() {
         this.customer = new CustomerProfile();
     }
     
@@ -32,46 +37,40 @@ public class Webshop {
         this.customer.setToken(token);
     }
     
-    
+    public String pay() {
+       return this.customer.getOrder().pay();
+    }
     
     //MARK: Customer methods
     public void addToViewedProducts(Product p) {
         this.customer.addToViewedProducts(p);
     }
     
-    /**
-     * Adds product and amount to an orderline with a check to see if the product already exists in the orderline.
-     * @param p represents the product being added to the orderline
-     * @param amount represents the amount of products being added to the product line
-     */ 
     public void addToOrder(Product p, int amount) {
-        this.orderLine = new OrderLine(p, amount);
-        
-        //Check if customer has an Order
-        if (this.customer.getOrder() == null) {
-            this.customer.createOrder(this.orderLine);
-            
-            
-        //Check if the Order has an OrderLine with the product already
-        } else if (!this.customer.getOrder().addToOrderLine(p.getProductNumber(), amount)){
-           
-                         
-            this.customer.getOrder().addOrderline(this.orderLine);  
-        }
-        
-        
-        
-   
+        this.customer.getOrder().addOrderLine(p, amount);
     }
     
-    public void deleteFromOrder(Product p, int amount) {
-        if(!this.customer.getOrder().removeFromOrderLine(p.getProductNumber(), amount)){
-            this.orderLine.removeProductAmount(amount);
-            
-        }
+    public void removeFromOrder(Product p, int amount) {
+        this.customer.getOrder().removeOrderLine(p, amount);
     }
     
 //    public HashSet<Product> getViewedProducts() {
 //        
 //    }
+    
+    public static void main(String[] args) {
+        Webshop webshop = new Webshop();
+        
+        webshop.addToOrder(new Product("testProdukt1", 12, 1500, "Dette er et test produkt nummer 1.", ProductCategory.COMPUTER), 1);
+        webshop.addToOrder(new Product("testProdukt2", 13, 800, "Dette er et test produkt nummer 2.", ProductCategory.COMPUTER), 3);
+        System.out.println(webshop.customer.getOrder().toString());
+        
+        webshop.removeFromOrder(new Product("testProdukt2", 13, 800, "Dette er et test produkt nummer 2.", ProductCategory.COMPUTER), 1);
+        System.out.println(webshop.customer.getOrder().toString());
+        
+        System.out.println(webshop.pay());
+        
+    }
 }
+
+

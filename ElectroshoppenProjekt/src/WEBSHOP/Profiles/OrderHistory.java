@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package WEBSHOP.Profiles;
+import WEBSHOP.Order.Order;
 
 /**
  *
@@ -11,4 +12,8 @@ package WEBSHOP.Profiles;
  */
 public class OrderHistory {
     
+    private Order order;
+    
+    
+
 }

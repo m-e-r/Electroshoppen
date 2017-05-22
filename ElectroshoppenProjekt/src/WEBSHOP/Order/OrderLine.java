@@ -21,6 +21,7 @@ public class OrderLine {
     
     
     public OrderLine(Product product, int amount) {
+        
         this.productName = product.getProductName();
         this.productNumber = product.getProductNumber();
         this.productAmount += amount;
@@ -42,9 +43,13 @@ public class OrderLine {
         return this.productNumber;
     }
     
+    public String getProductName() {
+        return this.productName;
+    }
     
     
-    //Setters and adders
+    
+    //Setters, removers and adders
     public void setProductAmount(int amount) {
         this.productAmount = amount;
     }
@@ -53,16 +58,21 @@ public class OrderLine {
         this.productAmount += amount;
     }
     
-    public void removeProductAmount(int amount) {
-        this.productAmount -= amount;
+    public boolean removeProductAmount(int amount) {
+        if ((this.productAmount - amount) < 1) {
+            return false;
+            
+        } else {
+            this.productAmount -= amount;
+            return true;
+        }
+        
     }
 
-    
-    
     
     @Override
     public String toString() {
         
-        return "Orderline: \t" + getProductAmount() + "\t" + getSubTotal();
+        return "Orderline: \t" + this.getProductName() + "\t" + this.getProductAmount() + "\t" + this.getSubTotal();
     }
 }
