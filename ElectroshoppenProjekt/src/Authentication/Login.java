@@ -38,8 +38,8 @@ public class Login extends Authentication {
 		    + "IF EXISTS (SELECT * FROM token WHERE tok = '" + tokenTok + "') THEN \n"
 		    + "UPDATE token SET millisec = " + token.getCreation() + " WHERE tok = '" + tokenTok + "';\n"
 		    + "ELSE \n"
-		    + "INSERT INTO token (tok, millisec, phone_number) VALUES ('" + tokenTok + "', " 
-		    + token.getCreation() + ", " + Integer.parseInt(super.userName) + ");\n"
+		    + "INSERT INTO token (tok, millisec, email) VALUES ('" + tokenTok + "', " 
+		    + token.getCreation() + ", '" + super.userName + "');\n"
 		    + "END IF;\n"
 		    + "END \n"
 		    + "$$";

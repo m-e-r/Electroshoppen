@@ -24,7 +24,7 @@ public class Create extends Authentication {
     private String cvr;
 
     public Create(String userName, String phoneNumber, String eMail, Adress adress, String password, String cvr) {
-	super(userName, password);
+	super(eMail, password);
 	this.phoneNumber = phoneNumber;
 	this.eMail = eMail;
 	this.adress = adress;
