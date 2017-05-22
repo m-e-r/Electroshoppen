@@ -45,6 +45,11 @@ public class CustomerProfile extends Profile {
 	super(name, phoneNumber, eMail, address, passWord);
 	this.cvr = cvr;
     }
+    
+    public CustomerProfile(String name, String phoneNumber, String eMail, String cvr){
+	super(name, phoneNumber, eMail);
+	this.cvr = cvr;
+    }
 
     @Override
     public void saveProfileToText() {
@@ -64,10 +69,10 @@ public class CustomerProfile extends Profile {
 	
 	Address address = this.getAddress();
 	String query = "INSERT INTO public.adress(\n"
-		+ "	phone_number, street_name, city, postal, floor, door, street_number)\n"
-		+ "	VALUES ('" + this.getPhoneNumber() + "', '" + address.getStreetName() + "', '" + address.getCity() + "', '"
-		+ address.getZipCode() + "', '" + address.getSecAddress() + "', '"
-		+ address.getStreetNumber() + "');\n"
+		+ "	email, street_name, city, postal, street_number, secadress)\n"
+		+ "	VALUES ('" + this.geteMail() + "', '" + address.getStreetName() + "', '" + address.getCity() + "', '"
+		+ Integer.parseInt(address.getZipCode()) + "', '" + Integer.parseInt(address.getStreetNumber()) + "', '"
+		+ address.getSecAddress() + "');\n"
 		+ "\n" 
 		+ "INSERT INTO public.customer(\n"
 		+ "	full_name, password, email, phone_number, cvr)\n"

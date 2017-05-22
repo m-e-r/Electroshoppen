@@ -31,7 +31,7 @@ public class Login extends Authentication {
     public boolean doLogin() {
 	if (super.userExists()) {
 
-	    this.token = new Token(super.userName.toUpperCase());
+	    this.token = new Token(super.email.toUpperCase());
 	    DBConnection dbc = new DBConnection();
 	    String tokenTok = token.getTok();
 
@@ -41,7 +41,7 @@ public class Login extends Authentication {
 		    + "UPDATE token SET millisec = " + token.getCreation() + " WHERE tok = '" + tokenTok + "';\n"
 		    + "ELSE \n"
 		    + "INSERT INTO token (tok, millisec, email) VALUES ('" + tokenTok + "', " 
-		    + token.getCreation() + ", '" + super.userName + "');\n"
+		    + token.getCreation() + ", '" + super.email + "');\n"
 		    + "END IF;\n"
 		    + "END \n"
 		    + "$$";

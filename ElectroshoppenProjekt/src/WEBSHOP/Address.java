@@ -12,6 +12,7 @@ package WEBSHOP;
 public class Address {
     private String zipCode, city, streetName, streetNumber, secAddress;
     
+   
     
     public Address(String streetName, String streetNumber, String secAddress, String zipCode,
             String city) {

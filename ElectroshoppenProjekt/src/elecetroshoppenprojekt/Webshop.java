@@ -5,10 +5,6 @@
  */
 package elecetroshoppenprojekt;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> b30de947287bfd84669fab1067130d1617ea4ef1
 import Authentication.Token;
 import ProductStuff.Product;
 import ProductStuff.ProductCategory;

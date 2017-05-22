@@ -22,15 +22,17 @@ public class Create extends Authentication {
     private String eMail;
     private Address adress;
     private String cvr;
-    private String firstName;
-    private String lastName;
+    private String fullName;
     
 
 
-    public Create(String firstName, String lastName, String eMail, String phoneNumber, Address adress, String password, String cvr) {
+    public Create(String fullName, String eMail, String phoneNumber, Address address, String password, String cvr) {
 	super(eMail, password);
-        this.firstName = firstName;
-        this.lastName = lastName;
+	this.phoneNumber = phoneNumber;
+	this.eMail = eMail;
+        this.fullName = fullName;
+	this.adress = address;
+	this.cvr = cvr;
     }
 
     public Create(String eMail, String password) {
@@ -46,15 +48,14 @@ public class Create extends Authentication {
      * 
      */
     public boolean createUser(String type) {
-
 	//Create new Profile instance based on given type
 	String typeLower = type.toLowerCase();
 	if (typeLower.equals("customer")) {
-	    this.profile = new CustomerProfile(super.userName, this.phoneNumber,
+	    this.profile = new CustomerProfile(this.fullName, this.phoneNumber,
 		    this.eMail, this.adress, super.password, this.cvr);
 
 	} else if (typeLower.equals("employee")) {
-	    this.profile = new EmployeeProfile(super.userName, this.phoneNumber,
+	    this.profile = new EmployeeProfile(this.fullName, this.phoneNumber,
 		    this.eMail, this.adress, super.password);
 
 	} else {
@@ -87,14 +88,14 @@ public class Create extends Authentication {
             //Delete customer profile query
             if (typeLower.equals("customer")){
                 query = "DELETE FROM customer WHERE password = '" 
-                        + super.password + "' AND phone_number = '" 
-                        + super.userName + "';";
+                        + super.password + "' AND email = '" 
+                        + super.email + "';";
                 
             //Delete employee profile query  
             } else if (typeLower.equals("employee")){
                 query = "DELETE FROM customer WHERE password = '" 
-                        + super.password + "' AND phone_number = '" 
-                        + super.userName + "';";
+                        + super.password + "' AND email = '" 
+                        + super.email + "';";
             } else {
                 throw new IllegalArgumentException("Type must be customer or employee");
             }

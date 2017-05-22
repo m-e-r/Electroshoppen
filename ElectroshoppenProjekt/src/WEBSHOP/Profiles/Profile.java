@@ -32,6 +32,13 @@ public abstract class Profile {
         
     }
     
+    public Profile(String name, String phoneNumber, String eMail){
+	this.name = name;
+	this.phoneNumber = phoneNumber;
+	this.eMail = eMail;
+    }
+
+    
     public Profile(String name, String phoneNumber, String eMail, Address adress, String password) {
 	this.name = name;
 	this.phoneNumber = phoneNumber;

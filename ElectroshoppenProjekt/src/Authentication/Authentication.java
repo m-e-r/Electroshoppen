@@ -21,11 +21,11 @@ import java.util.logging.Logger;
  * @author Kasper
  */
 public abstract class Authentication implements Authenticateable {
-    protected String userName;
+    protected String email;
     protected String password;
     protected MessageDigest digest; //for encrypting the password
 
-    public Authentication(String userName, String password) {
+    public Authentication(String email, String password) {
 
 	//This should NEVER throw an exception as the "SHA-256" is a valid parameter
 	try {
@@ -34,7 +34,7 @@ public abstract class Authentication implements Authenticateable {
 	    System.out.println("No such Algorithm");
 	}
 
-	this.userName = userName;
+	this.email = email;
 	this.password = this.encryptPassword(password);
     }
     
@@ -69,8 +69,8 @@ public abstract class Authentication implements Authenticateable {
      */
     protected final boolean userExists() {
 	DBConnection dbc = new DBConnection();
-	String query = "SELECT * FROM customer FULL JOIN employee on customer.phone_number = employee.phone_number\n"
-		+ "WHERE (employee.phone_number = '" + this.userName + "' OR customer.phone_number = '" + this.userName + "')\n"
+	String query = "SELECT * FROM customer FULL JOIN employee on customer.email = employee.email\n"
+		+ "WHERE (employee.phone_number = '" + this.email + "' OR customer.phone_number = '" + this.email + "')\n"
 		+ "AND (employee.password = '" + this.password + "'\n"
 		+ "OR customer.password = '" + this.password + "')";
 	ResultSet user = dbc.runQueryExcecute(query); 
