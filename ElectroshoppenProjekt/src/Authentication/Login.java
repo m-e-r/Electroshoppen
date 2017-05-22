@@ -6,6 +6,7 @@
 package Authentication;
 
 import DBManager.*;
+import elecetroshoppenprojekt.Webshop;
 
 /**
  *
@@ -14,6 +15,7 @@ import DBManager.*;
 public class Login extends Authentication {
 
     private Token token;
+    private Webshop webshop;
 
     public Login(String userName, String password) {
 	super(userName, password);
@@ -44,6 +46,7 @@ public class Login extends Authentication {
 		    + "END \n"
 		    + "$$";
 	    dbc.runQueryUpdate(query);
+            this.webshop.setLoginForCustomer(this.token);
 	    return true;
 	} else {
 	    return false;
@@ -51,16 +54,18 @@ public class Login extends Authentication {
     }
     
     public boolean doLogout(){
-	if (super.userExists()) {
-	    this.token = new Token(super.userName.toUpperCase());
+	if (super.userExists() && this.token != null) {	    
 	    DBConnection dbc = new DBConnection();
 	    String query = "DELETE FROM token WHERE tok = '" + token.getTok() + "';";
 	    dbc.runQueryUpdate(query);
+            this.token = null;
 	    return true;
 	} else {
 	    return false;
 	}
     }
+    
+    
     
     /**
      * Do not use this method.

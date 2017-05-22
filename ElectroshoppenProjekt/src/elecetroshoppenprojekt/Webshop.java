@@ -5,6 +5,8 @@
  */
 package elecetroshoppenprojekt;
 
+import Authentication.Logable;
+import Authentication.Token;
 import ProductStuff.Product;
 import WEBSHOP.Order.OrderLine;
 import WEBSHOP.Profiles.CustomerProfile;
@@ -26,10 +28,14 @@ public class Webshop {
         this.customer = new CustomerProfile();
     }
     
+    //MARK: Login stuff
+    public void setLoginForCustomer(Token token) {
+        this.customer.setToken(token);
+    }
     
     
     
-    //Customer methods
+    //MARK: Customer methods
     public void addToViewedProducts(Product p) {
         this.customer.addToViewedProducts(p);
     }
