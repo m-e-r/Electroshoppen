@@ -1,0 +1,358 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.6.1
+-- Dumped by pg_dump version 9.6.1
+
+-- Started on 2017-05-23 13:14:27
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 2174 (class 1262 OID 16808)
+-- Name: SemesterProjectDB; Type: DATABASE; Schema: -; Owner: postgres
+--
+
+CREATE DATABASE "SemesterProjectDB" WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'Danish_Denmark.1252' LC_CTYPE = 'Danish_Denmark.1252';
+
+
+ALTER DATABASE "SemesterProjectDB" OWNER TO postgres;
+
+\connect "SemesterProjectDB"
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 1 (class 3079 OID 12387)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2176 (class 0 OID 0)
+-- Dependencies: 1
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 186 (class 1259 OID 25025)
+-- Name: adress; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE adress (
+    email character varying NOT NULL,
+    street_name character varying(100),
+    city character varying(50),
+    postal integer,
+    street_number integer,
+    secadress character varying(15)
+);
+
+
+ALTER TABLE adress OWNER TO postgres;
+
+--
+-- TOC entry 185 (class 1259 OID 16809)
+-- Name: customer; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE customer (
+    full_name character varying(25),
+    password character varying(255),
+    email character varying(100),
+    phone_number character varying(8) NOT NULL,
+    cvr character varying(8)
+);
+
+
+ALTER TABLE customer OWNER TO postgres;
+
+--
+-- TOC entry 187 (class 1259 OID 25056)
+-- Name: employee; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE employee (
+    full_name character varying(60),
+    email character varying(100),
+    phone_number character varying(8),
+    password character varying(255)
+);
+
+
+ALTER TABLE employee OWNER TO postgres;
+
+--
+-- TOC entry 191 (class 1259 OID 25204)
+-- Name: order_line; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE order_line (
+    order_line_id integer NOT NULL,
+    order_number integer,
+    product_id integer,
+    amount integer
+);
+
+
+ALTER TABLE order_line OWNER TO postgres;
+
+--
+-- TOC entry 189 (class 1259 OID 25176)
+-- Name: orders; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE orders (
+    order_number integer NOT NULL,
+    email character varying(100)
+);
+
+
+ALTER TABLE orders OWNER TO postgres;
+
+--
+-- TOC entry 190 (class 1259 OID 25184)
+-- Name: products; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE products (
+    product_id integer NOT NULL,
+    amount integer,
+    price real,
+    description text,
+    category character varying(30)
+);
+
+
+ALTER TABLE products OWNER TO postgres;
+
+--
+-- TOC entry 188 (class 1259 OID 25064)
+-- Name: token; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE token (
+    tok character varying(25),
+    millisec bigint,
+    email character varying
+);
+
+
+ALTER TABLE token OWNER TO postgres;
+
+--
+-- TOC entry 2164 (class 0 OID 25025)
+-- Dependencies: 186
+-- Data for Name: adress; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO adress VALUES ('null', 'StreetName', 'city', 1234, 2, 'SecAdress');
+INSERT INTO adress VALUES ('mail2@mail2.dk', 'StreetName1', 'city2', 2234, 3, 'Sec');
+
+
+--
+-- TOC entry 2163 (class 0 OID 16809)
+-- Dependencies: 185
+-- Data for Name: customer; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO customer VALUES ('mail@mail.dk', 'd74ff0ee8da3b9806b18c877dbf29bbde5b5bd8e4dad7a3a7250feb82e8f1', 'null', 'null', 'null');
+INSERT INTO customer VALUES ('TestPerson2', 'd74ff0ee8da3b9806b18c877dbf29bbde5b5bd8e4dad7a3a7250feb82e8f1', 'mail2@mail2.dk', '88888888', '2323232');
+
+
+--
+-- TOC entry 2165 (class 0 OID 25056)
+-- Dependencies: 187
+-- Data for Name: employee; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2169 (class 0 OID 25204)
+-- Dependencies: 191
+-- Data for Name: order_line; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2167 (class 0 OID 25176)
+-- Dependencies: 189
+-- Data for Name: orders; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2168 (class 0 OID 25184)
+-- Dependencies: 190
+-- Data for Name: products; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2166 (class 0 OID 25064)
+-- Dependencies: 188
+-- Data for Name: token; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2030 (class 2606 OID 25133)
+-- Name: adress email_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY adress
+    ADD CONSTRAINT email_pk PRIMARY KEY (email);
+
+
+--
+-- TOC entry 2039 (class 2606 OID 25208)
+-- Name: order_line order_line_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY order_line
+    ADD CONSTRAINT order_line_pkey PRIMARY KEY (order_line_id);
+
+
+--
+-- TOC entry 2035 (class 2606 OID 25203)
+-- Name: orders order_number_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY orders
+    ADD CONSTRAINT order_number_pk PRIMARY KEY (order_number);
+
+
+--
+-- TOC entry 2037 (class 2606 OID 25191)
+-- Name: products products_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY products
+    ADD CONSTRAINT products_pkey PRIMARY KEY (product_id);
+
+
+--
+-- TOC entry 2033 (class 2606 OID 25169)
+-- Name: employee uniphone; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY employee
+    ADD CONSTRAINT uniphone UNIQUE (phone_number);
+
+
+--
+-- TOC entry 2028 (class 2606 OID 25167)
+-- Name: customer uniquephonenumber; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY customer
+    ADD CONSTRAINT uniquephonenumber UNIQUE (phone_number);
+
+
+--
+-- TOC entry 2031 (class 1259 OID 25155)
+-- Name: fki_d; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX fki_d ON employee USING btree (email);
+
+
+--
+-- TOC entry 2026 (class 1259 OID 25144)
+-- Name: fki_email_fk_adress; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX fki_email_fk_adress ON customer USING btree (email);
+
+
+--
+-- TOC entry 2040 (class 2606 OID 25139)
+-- Name: customer email_fk_adress; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY customer
+    ADD CONSTRAINT email_fk_adress FOREIGN KEY (email) REFERENCES adress(email);
+
+
+--
+-- TOC entry 2041 (class 2606 OID 25145)
+-- Name: employee email_fk_adress; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY employee
+    ADD CONSTRAINT email_fk_adress FOREIGN KEY (email) REFERENCES adress(email);
+
+
+--
+-- TOC entry 2042 (class 2606 OID 25161)
+-- Name: token email_fk_adress; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY token
+    ADD CONSTRAINT email_fk_adress FOREIGN KEY (email) REFERENCES adress(email);
+
+
+--
+-- TOC entry 2044 (class 2606 OID 25209)
+-- Name: order_line order_line_order_number_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY order_line
+    ADD CONSTRAINT order_line_order_number_fkey FOREIGN KEY (order_number) REFERENCES orders(order_number);
+
+
+--
+-- TOC entry 2045 (class 2606 OID 25214)
+-- Name: order_line order_line_product_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY order_line
+    ADD CONSTRAINT order_line_product_id_fkey FOREIGN KEY (product_id) REFERENCES products(product_id);
+
+
+--
+-- TOC entry 2043 (class 2606 OID 25179)
+-- Name: orders orders_email_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY orders
+    ADD CONSTRAINT orders_email_fkey FOREIGN KEY (email) REFERENCES adress(email);
+
+
+-- Completed on 2017-05-23 13:14:27
+
+--
+-- PostgreSQL database dump complete
+--
+
