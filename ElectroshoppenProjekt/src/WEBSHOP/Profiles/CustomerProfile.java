@@ -69,8 +69,8 @@ public class CustomerProfile extends Profile {
 	
 	Address address = this.getAddress();
 	String query = "INSERT INTO public.adress(\n"
-		+ "	email, street_name, city, postal, street_number, secadress)\n"
-		+ "	VALUES ('" + this.geteMail() + "', '" + address.getStreetName() + "', '" + address.getCity() + "', '"
+		+ "	phone_number, street_name, city, postal, street_number, secadress)\n"
+		+ "	VALUES ('" + this.getPhoneNumber() + "', '" + address.getStreetName() + "', '" + address.getCity() + "', '"
 		+ Integer.parseInt(address.getZipCode()) + "', '" + Integer.parseInt(address.getStreetNumber()) + "', '"
 		+ address.getSecAddress() + "');\n"
 		+ "\n" 

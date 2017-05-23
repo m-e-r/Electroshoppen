@@ -7,14 +7,20 @@ package GUI;
 
 import Facade.Facade;
 import Facade.iFacade;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -33,6 +39,10 @@ public class ProductFXMLController implements Initializable {
     private Button addBTN;
     @FXML
     private Button gobackBTN;
+    @FXML
+    private AnchorPane mainPane;
+    @FXML
+    private TextField amountTF;
 
     /**
      * Initializes the controller class.
@@ -47,10 +57,23 @@ public class ProductFXMLController implements Initializable {
     
     @FXML
     private void addToBasket(ActionEvent event) {
+        if (this.amountTF == null) {
+            this.facade.addToOrder(this.facade.searchProduct(productId), 1);
+        } else {
+            this.facade.addToOrder(this.facade.searchProduct(productId), Integer.parseInt(this.amountTF.getText()));
+        }
+        
     }
     
     public void goBackToProducts (ActionEvent event) {
-        
+        AnchorPane pane;
+        try {
+            FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("webshopFXML.fxml"));
+            pane = (AnchorPane) fxmlLoader1.load();
+            this.mainPane.getChildren().setAll(pane);
+        } catch (IOException ex) {
+            Logger.getLogger(webshopFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void setProductId(long id) {

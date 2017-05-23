@@ -38,6 +38,8 @@ public interface iFacade {
     
     int getProductAmount();
     
-
+    void addToOrder(Product p, int amount);
+    void removeFromOrder(Product p, int amount);
+    void showBasket();
     double getSubTotal();
 }
