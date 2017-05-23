@@ -72,18 +72,21 @@ public class ProductCatalog {
         this.searchProducts = new ArrayList();
 
             for(Product p : products.values()){
-                String searchPrice = String.valueOf(p.getPiecePrice()); //Price as String
-                
+                /*String searchPrice = String.valueOf(p.getPiecePrice()); //Price as String
+                Double searchPrice2 = Double.parseDouble(in);
+                Double maxPrice = (p.getPiecePrice()+100);
+                Double minPrice = (p.getPiecePrice()+100);
+                */
                 if (p.getProductName().equalsIgnoreCase(in)){ //Equals name
                     this.searchProducts.add(p);
                     
                 } else if(p.getProductCategory().toString().equalsIgnoreCase(in)){ //Equals category
                     this.searchProducts.add(p);
                     
-                } else if (searchPrice.equals(in)) { //Equals price
+                } else if (p.getDescription().toLowerCase().contains(in.toLowerCase())) { //Search String is found in the description
                     this.searchProducts.add(p);
                     
-                } else if(p.getProductName().contains(in)){ //Name contains search word NEEDS TO IGNORE CASE
+                } else if(p.getProductName().toLowerCase().contains(in.toLowerCase())){ //Name contains search word 
                     this.searchProducts.add(p);
                 }
                 
