@@ -66,6 +66,8 @@ public class Webshop {
         
         System.out.println(webshop.pay());
         
+        System.out.println(webshop.customer.getOrder().showBasket());
+        
     }
 }
 

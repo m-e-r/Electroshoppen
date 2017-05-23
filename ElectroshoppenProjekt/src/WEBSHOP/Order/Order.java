@@ -140,6 +140,21 @@ public class Order {
 
         return totalPrice;
     }
+    
+    
+    /**
+     * Returns the OrderLines in this Order seperated by newlines;
+     * @return 
+     */
+    public String showBasket() {
+        StringBuilder str = new StringBuilder();
+        for (OrderLine o : this.orderlines) {
+            str.append(o.toString());
+            str.append("\n");
+        }
+        
+        return new String(str);
+    }
 
     @Override
     public String toString() {

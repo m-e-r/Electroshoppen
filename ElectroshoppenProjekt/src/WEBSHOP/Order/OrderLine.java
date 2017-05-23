@@ -73,6 +73,6 @@ public class OrderLine {
     @Override
     public String toString() {
         
-        return "Orderline: \t" + this.getProductName() + "\t" + this.getProductAmount() + "\t" + this.getSubTotal();
+        return this.getProductName() + "\t" + this.getProductAmount() + "\t" + this.getSubTotal();
     }
 }

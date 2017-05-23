@@ -243,7 +243,7 @@ public class webshopFXMLController implements Initializable {
             address = new Address(tfs[4].getText(), tfs[5].getText(), tfs[6].getText(),
                     tfs[7].getText(), tfs[8].getText());
         }
-        this.authen = new Create(tfs[0].getText(), tfs[1].getText(), tfs[2].getText(),
+        this.authen = new Create(tfs[0].getText(), tfs[2].getText(),
                 tfs[3].getText(), address, tfs[9].getText(), tfs[10].getText());
         this.authen.createUser("customer");
     }
