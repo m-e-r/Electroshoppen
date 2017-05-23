@@ -72,11 +72,7 @@ public class ProductCatalog {
         this.searchProducts = new ArrayList();
 
             for(Product p : products.values()){
-                /*String searchPrice = String.valueOf(p.getPiecePrice()); //Price as String
-                Double searchPrice2 = Double.parseDouble(in);
-                Double maxPrice = (p.getPiecePrice()+100);
-                Double minPrice = (p.getPiecePrice()+100);
-                */
+                
                 if (p.getProductName().equalsIgnoreCase(in)){ //Equals name
                     this.searchProducts.add(p);
                     
