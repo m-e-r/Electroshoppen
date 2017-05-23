@@ -9,7 +9,7 @@ import DBManager.*;
 import elecetroshoppenprojekt.Webshop;
 
 /**
- *
+ * Class responsible for logging users in and out.
  * @author Kasper
  */
 public class Login extends Authentication {

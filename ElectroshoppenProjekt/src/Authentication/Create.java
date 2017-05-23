@@ -12,7 +12,7 @@ import WEBSHOP.Profiles.EmployeeProfile;
 import WEBSHOP.Profiles.Profile;
 
 /**
- *
+ * Class that holds responsibility for creating and removing users fromt the database.
  * @author Kasper
  */
 public class Create extends Authentication {
@@ -25,7 +25,16 @@ public class Create extends Authentication {
     private String fullName;
     
 
-
+    /**
+     * Constructor used when creating a new user in the database, and should 
+     * therefor take in the same parameters as the Profile class.
+     * @param fullName
+     * @param eMail
+     * @param phoneNumber
+     * @param address
+     * @param password
+     * @param cvr 
+     */
     public Create(String fullName, String eMail, String phoneNumber, Address address, String password, String cvr) {
 	super(eMail, password);
 	this.phoneNumber = phoneNumber;
@@ -34,7 +43,13 @@ public class Create extends Authentication {
 	this.adress = address;
 	this.cvr = cvr;
     }
-
+    
+    
+    /**
+     * Constructer used when a user is wished to be deleted.
+     * @param eMail
+     * @param password 
+     */
     public Create(String eMail, String password) {
 	super(eMail, password);
     }
@@ -74,7 +89,8 @@ public class Create extends Authentication {
     
     
     /**
-     * 
+     * Method checks whether or not the user exists in the database, and deletes
+     * it if so.
      * @param type Must be customer or employee, else an IllegalArgumentException is thrown
      * @return True if the user is succesfully deleted from the database.
      * false if the user does not exist in the database.

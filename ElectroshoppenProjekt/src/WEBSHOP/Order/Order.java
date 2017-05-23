@@ -31,7 +31,12 @@ public class Order {
         this.orderlines = new ArrayList();
         this.payment = new Payment();
     }
-
+    
+    
+    /**
+     * Call this method to pay for an Order. This will set its status to STATUS3.
+     * @return It's toString() implementation with some extra stuff.
+     */
     public String pay() {
 
         if (this.payment.Pay(this.getTotalPrice())) {
@@ -44,6 +49,7 @@ public class Order {
     }
 
     //Add and remove methods
+    
     /**
      * Use this method whether or not the product already is in this Order.
      * Creates a new OrderLine and checks if it exists in this Order based on
@@ -117,11 +123,16 @@ public class Order {
 
         return false; //if the orderline was never found on the order
     }
-
+    
+    
+    /**
+     * Set the status for the Order. This should maybe be private?
+     * @param status 
+     */
     public void setStatus(Status status) {
         this.status = status;
     }
-
+    
     public int getOrderNumber() {
         return orderNumber;
     }
@@ -131,7 +142,7 @@ public class Order {
     }
 
     public double getTotalPrice() {
-        this.totalPrice = 0;
+        this.totalPrice = 0; //Reset before calculating
 
         for (OrderLine orderline : orderlines) {
 
@@ -155,7 +166,12 @@ public class Order {
         
         return new String(str);
     }
-
+    
+    /**
+     * Use this method to print the Order with all of its OrderLines, their total,
+     * the overall total, the date and the Status of the Order.
+     * @return 
+     */
     @Override
     public String toString() {
         LocalDateTime time = LocalDateTime.now();

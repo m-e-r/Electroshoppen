@@ -6,7 +6,7 @@
 package Authentication;
 
 /**
- *
+ * Interface used to access methods in the Authentication package.
  * @author Kasper
  */
 public interface Authenticateable {
