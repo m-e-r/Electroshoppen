@@ -18,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import PIM.*;
 
 /**
  * FXML Controller class
@@ -56,6 +57,15 @@ public class startFXMLDocument implements Initializable {
 
     @FXML
     private void goToPIM(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PIMFXMLDoc.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(startFXMLDocument.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML

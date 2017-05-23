@@ -39,7 +39,7 @@ public class ProductCatalog {
      */
     private void fillProducts() {
         DBConnection dbCon = new DBConnection(); //Creates an instance of the databasemanager
-        String query = "SELECT * FROM products"; //The query, which the ResultSet will use
+        String query = "SELECT * FROM product"; //The query, which the ResultSet will use
         ResultSet rs = dbCon.runQueryExcecute(query); //The ResultSet then uses the query to run
         
         try{

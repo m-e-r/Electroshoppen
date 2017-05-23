@@ -8,6 +8,7 @@ package Facade;
 import ProductStuff.Product;
 import ProductStuff.ProductCategory;
 import java.util.ArrayList;
+import PIM.*;
 
 /**
  *
@@ -42,4 +43,12 @@ public interface iFacade {
     void removeFromOrder(Product p, int amount);
     String showBasket();
     double getSubTotal();
+    
+    
+    //PIM
+    void editName(long id, String newName);
+    void editPrice(long id, double newPrice);
+    void editDescription(long id, String newDescription);
+    void editCategory(long id, String newCategory);
+    
 }
