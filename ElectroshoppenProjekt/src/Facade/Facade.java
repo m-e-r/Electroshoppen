@@ -48,10 +48,12 @@ public class Facade implements iFacade{
     public String getToken(){
 	return token.getToken();
     }
+    
     @Override
     public long getProductNumber(){
 	return product.getProductNumber();
     }
+    
     @Override
     public double getPiecePrice() {
         return product.getPiecePrice();
@@ -66,10 +68,12 @@ public class Facade implements iFacade{
     public ProductCategory getProductCategory(){
         return product.getProductCategory();
     }
+    
     @Override
     public Product searchProduct(long prdNum){
 	return productCatalog.searchProduct(prdNum);
     }
+    
     @Override
     public ArrayList<Product> searchProductsFromText (String in) {
         return productCatalog.searchProductsFromText(in);
@@ -99,6 +103,18 @@ public class Facade implements iFacade{
     @Override
     public double getSubTotal(){
 	return orderLine.getSubTotal();
+    }
+    @Override
+    public void addToOrder(Product p, int amount) {
+        this.webshop.addToOrder(p, amount);
+    }
+    @Override
+    public void removeFromOrder(Product p, int amount) {
+        this.webshop.removeFromOrder(p, amount);
+    }
+    @Override
+    public void showBasket() {
+        this.webshop.showBasket();
     }
 
 }
