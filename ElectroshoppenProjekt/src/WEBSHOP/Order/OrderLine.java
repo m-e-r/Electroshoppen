@@ -58,8 +58,14 @@ public class OrderLine {
         this.productAmount += amount;
     }
     
+    /**
+     * Removes the given amount from the OrderLine.
+     * @param amount
+     * @return False if the given amount will result in a negative value.
+     * True if not.
+     */
     public boolean removeProductAmount(int amount) {
-        if ((this.productAmount - amount) < 1) {
+        if ((this.productAmount - amount) < 0) {
             return false;
             
         } else {

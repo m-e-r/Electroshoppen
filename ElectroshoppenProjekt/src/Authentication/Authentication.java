@@ -9,15 +9,13 @@ import DBManager.DBConnection;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import WEBSHOP.Profiles.*;
-import DBManager.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Class that holds the common methods for the Create and Login classes like.
  * @author Kasper
  */
 public abstract class Authentication implements Authenticateable {
@@ -43,10 +41,10 @@ public abstract class Authentication implements Authenticateable {
      * This method is called in the constructor thereby encrypting the password
      * immediately.
      * @param password
-     * @return
+     * @return Encrypted password.
      */
     protected final String encryptPassword(String password) {
-	StringBuilder hexString = new StringBuilder(); //used to create to returnString
+	StringBuilder hexString = new StringBuilder(); //used to create the returnString
 
 	//This is the actual encryption
 	byte[] encrypted = this.digest.digest(password.getBytes(StandardCharsets.UTF_8));
@@ -63,9 +61,10 @@ public abstract class Authentication implements Authenticateable {
     }
 
     /**
-     * Query NEEDED!!
-     *
-     * @return
+     * Runs a query in the database to check if the Login/Create object exists 
+     * in the database.
+     * @return True if the username-password combination is found in the database.
+     * False if not.
      */
     protected final boolean userExists() {
 	DBConnection dbc = new DBConnection();
@@ -76,13 +75,13 @@ public abstract class Authentication implements Authenticateable {
 	ResultSet user = dbc.runQueryExcecute(query); 
 	try {
 	    if (!user.next()) {
-		System.out.println("User does not exist.");
+		System.out.println("User does not exist."); //Should be removed
 		return false;
 	    }
 	} catch (SQLException ex) {
 	    Logger.getLogger(Authentication.class.getName()).log(Level.SEVERE, null, ex);
 	}
-	System.out.println("User already exist.");
+	System.out.println("User already exist."); //Should be removed
 	return true;
     }
 

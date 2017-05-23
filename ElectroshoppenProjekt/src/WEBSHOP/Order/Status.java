@@ -6,7 +6,7 @@
 package WEBSHOP.Order;
 
 /**
- *
+ * Enum used for determining the status of an Order object.
  * @author Kasper
  */
 public enum Status {
