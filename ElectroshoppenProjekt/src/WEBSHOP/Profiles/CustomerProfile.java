@@ -44,11 +44,13 @@ public class CustomerProfile extends Profile {
 	    String passWord, String cvr) {
 	super(name, phoneNumber, eMail, address, passWord);
 	this.cvr = cvr;
+	currentOrder.setEmail(eMail);
     }
     
     public CustomerProfile(String name, String phoneNumber, String eMail, String cvr){
 	super(name, phoneNumber, eMail);
 	this.cvr = cvr;
+	currentOrder.setEmail(eMail);
     }
 
     @Override

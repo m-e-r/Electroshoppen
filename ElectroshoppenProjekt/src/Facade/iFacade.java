@@ -30,7 +30,7 @@ public interface iFacade {
     
     ArrayList<Product> getProductsFromCat(ProductCategory prdCat);   
     
-    int getOrderNumber();
+    Long getOrderNumber();
     
     String getStatus();
     
@@ -38,6 +38,5 @@ public interface iFacade {
     
     int getProductAmount();
     
-
     double getSubTotal();
 }

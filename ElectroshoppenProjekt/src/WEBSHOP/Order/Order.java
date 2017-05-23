@@ -5,10 +5,11 @@
  */
 package WEBSHOP.Order;
 
+import DBManager.DBConnection;
 import ProductStuff.Product;
+import java.sql.Date;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.*;
 
 /**
  *
@@ -17,29 +18,59 @@ import java.util.Date;
 public class Order {
 
     //Attributes
-    private int orderNumber;
     private Status status;
     private double totalPrice;
     private ArrayList<OrderLine> orderlines;
-    private LocalDateTime date;
+    private String date;
     private OrderLine nextOrderLine;
     private Payment payment;
+    private long id;
+    private String email = null;
+    private final DBConnection DBC = new DBConnection();
 
     //Constructor
     public Order() {
-        this.status = Status.STATUS1;
-        this.orderlines = new ArrayList();
-        this.payment = new Payment();
+	this.status = Status.STATUS1;
+	this.orderlines = new ArrayList();
+	this.payment = new Payment();
+	Long currentMillis = System.currentTimeMillis();
+	this.date = new Date(currentMillis).toString();
+
+	/*
+	Creates the order id, using the system time and a random number between 0 and 100.
+	Random number is used, in case to people log on to the system at the exact same time, and
+	therefor getting the same output from currentTimeMillis(). Very unlikely though. 
+	 */
+	int r = new Random().nextInt(100);
+	String random = Integer.toString(r);
+	String n = currentMillis + random;
+	id = Long.parseLong(n);
+
+	addOrderToDB();
+
+    }
+
+    /**
+     * Return the order id
+     *
+     * @return Order id as type Long.
+     */
+    public Long getId() {
+	return id;
+    }
+
+    public String getDate() {
+	return this.date;
     }
 
     public String pay() {
 
-        if (this.payment.Pay(this.getTotalPrice())) {
-            this.setStatus(Status.STATUS3);
-            return this.toString() + "\nTotalpris: " + this.getTotalPrice() + " kr.";
-        } else {
-            return "";
-        }
+	if (this.payment.Pay(this.getTotalPrice())) {
+	    this.setStatus(Status.STATUS3);
+	    return this.toString() + "\nTotalpris: " + this.getTotalPrice() + " kr.";
+	} else {
+	    return "";
+	}
 
     }
 
@@ -54,12 +85,24 @@ public class Order {
      * @param amount
      */
     public void addOrderLine(Product p, int amount) {
-        this.nextOrderLine = new OrderLine(p, amount);
+	this.nextOrderLine = new OrderLine(p, amount);
 
-        if (!this.addToOrderLine(this.nextOrderLine.getProductNumber(), amount)) {
-            this.orderlines.add(this.nextOrderLine);
-        }
+	if (!this.addToOrderLine(this.nextOrderLine.getProductNumber(), amount)) {
+	    this.orderlines.add(this.nextOrderLine);
+	    createNewOrderLineDb(p, amount);
+	}
+    }
 
+    private void createNewOrderLineDb(Product p, int amount) {
+	int r = new Random().nextInt(100);
+	String random = Integer.toString(r);
+	String n = System.currentTimeMillis() + random;
+	Long orderLineNumber = Long.parseLong(n);
+	String query = "INSERT INTO public.order_line(\n"
+		+ "	order_line_id, order_number, product_id, amount)\n"
+		+ "	VALUES (" + orderLineNumber + ", " + this.id + ", " 
+		+ p.getProductNumber() + ", " + amount + ");";
+	DBC.runQueryUpdate(query);
     }
 
     /**
@@ -69,8 +112,8 @@ public class Order {
      * @param amount
      */
     public void removeOrderLine(Product p, int amount) {
-        this.nextOrderLine = new OrderLine(p, amount);
-        this.removeFromOrderLine(this.nextOrderLine.getProductNumber(), amount);
+	this.nextOrderLine = new OrderLine(p, amount);
+	this.removeFromOrderLine(this.nextOrderLine.getProductNumber(), amount);
     }
 
     /**
@@ -81,13 +124,13 @@ public class Order {
      * @return
      */
     private boolean addToOrderLine(long productNumber, int amount) {
-        for (OrderLine o : this.orderlines) {
-            if (o.getProductNumber() == productNumber) {
-                o.addProductAmount(amount);
-                return true;
-            }
-        }
-        return false;
+	for (OrderLine o : this.orderlines) {
+	    if (o.getProductNumber() == productNumber) {
+		o.addProductAmount(amount);
+		return true;
+	    }
+	}
+	return false;
     }
 
     /**
@@ -98,61 +141,74 @@ public class Order {
      * @return
      */
     private boolean removeFromOrderLine(long productNumber, int amount) {
-        for (int i = 0; i < this.orderlines.size(); i++) {
-            if (this.orderlines.get(i).getProductNumber() == productNumber) {
+	for (int i = 0; i < this.orderlines.size(); i++) {
+	    if (this.orderlines.get(i).getProductNumber() == productNumber) {
 
-                if (this.orderlines.get(i).removeProductAmount(amount)) {
+		if (this.orderlines.get(i).removeProductAmount(amount)) {
 
-                    if (this.orderlines.get(i).getProductAmount() == 0) {
-                        this.orderlines.remove(i);
-                    }
+		    if (this.orderlines.get(i).getProductAmount() == 0) {
+			this.orderlines.remove(i);
+		    }
 
-                    return true; //if the wished amount was removed or the orderline was removed entirely
+		    return true; //if the wished amount was removed or the orderline was removed entirely
 
-                } else {
-                    return false; //if the wished amount removed would result in a negative value.
-                }
-            }
-        }
+		} else {
+		    return false; //if the wished amount removed would result in a negative value.
+		}
+	    }
+	}
 
-        return false; //if the orderline was never found on the order
+	return false; //if the orderline was never found on the order
     }
 
     public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public int getOrderNumber() {
-        return orderNumber;
+	this.status = status;
     }
 
     public String getStatus() {
-        return status.toString();
+	return status.toString();
     }
 
     public double getTotalPrice() {
-        this.totalPrice = 0;
+	this.totalPrice = 0;
 
-        for (OrderLine orderline : orderlines) {
+	for (OrderLine orderline : orderlines) {
 
-            this.totalPrice += orderline.getSubTotal();
-        }
+	    this.totalPrice += orderline.getSubTotal();
+	}
 
-        return totalPrice;
+	return totalPrice;
+    }
+
+    /*
+    Method that adds an order to orders table in database.
+     */
+    private void addOrderToDB() {
+	String query = "INSERT INTO public.orders(\n"
+		+ "	order_number, email, date)\n"
+		+ "	VALUES (" + id + ", '" + email + "', '" + date + "');";
+
+	DBC.runQueryUpdate(query);
+    }
+
+    public void setEmail(String email) {
+	this.email = email;
+	String query = "UPDATE public.orders\n"
+		+ "	SET email = '" + this.email + "'\n"
+		+ "	WHERE order_number = '" + this.id + "';";
+	DBC.runQueryUpdate(query);
     }
 
     @Override
     public String toString() {
-        LocalDateTime time = LocalDateTime.now();
-        String printTime = "" + time.getYear() + time.getMonth() + time.getDayOfMonth();
-        StringBuilder str = new StringBuilder();
 
-        this.orderNumber = 4; //Some sql to find the next ordernumber??
-        for (OrderLine o : this.orderlines) {
-            str.append(o.toString());
-            str.append("\n");
-        }
-        return "Order:\t" + this.orderNumber + "\t" + printTime + "\t" + this.getTotalPrice() + "\t" + this.getStatus() + "\n\n" + str;
+	StringBuilder str = new StringBuilder();
+
+	for (OrderLine o : this.orderlines) {
+	    str.append(o.toString());
+	    str.append("\n");
+	}
+	return "Order:\t" + this.id + "\t" + date + "\t" + this.getTotalPrice() + "\t" + this.getStatus() + "\n\n" + str;
     }
 
 }

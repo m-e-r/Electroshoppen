@@ -11,7 +11,8 @@ package ProductStuff;
  * @author Kasper
  */
 public enum ProductCategory {
-    COMPUTER("Computer"), PHONE("Phone"), VACUUM("Vacuum");
+    COMPUTER("Computer"), PHONE("Phone"), VACUUM("Vacuum"), TELEVISION("Television"), 
+    HIFI("hifi"), TABLET("Tablet"), CAMERA("Camera");
     
     private final String text;
     
