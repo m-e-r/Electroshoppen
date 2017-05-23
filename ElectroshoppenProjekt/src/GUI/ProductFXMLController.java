@@ -21,6 +21,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 
 /**
  * FXML Controller class
@@ -43,6 +44,8 @@ public class ProductFXMLController implements Initializable {
     private AnchorPane mainPane;
     @FXML
     private TextField amountTF;
+    @FXML
+    private GridPane mainGrid;
 
     /**
      * Initializes the controller class.
@@ -60,9 +63,16 @@ public class ProductFXMLController implements Initializable {
         if (this.amountTF == null) {
             this.facade.addToOrder(this.facade.searchProduct(productId), 1);
         } else {
+            System.out.println(this.facade.searchProduct(productId));
+            System.out.println(Integer.parseInt(this.amountTF.getText()));
             this.facade.addToOrder(this.facade.searchProduct(productId), Integer.parseInt(this.amountTF.getText()));
         }
-        
+    }
+    
+    public void showBasket(ActionEvent event) {
+        TextArea ta = new TextArea();
+        this.mainGrid.add(ta, 0, 0, 2, 4);
+        ta.appendText(this.facade.showBasket());
     }
     
     public void goBackToProducts (ActionEvent event) {

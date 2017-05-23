@@ -41,6 +41,7 @@ public class Facade implements iFacade{
     
     public Facade() {
         this.productCatalog = new ProductCatalog();
+        this.webshop = new Webshop();
     }
 
 
@@ -113,8 +114,8 @@ public class Facade implements iFacade{
         this.webshop.removeFromOrder(p, amount);
     }
     @Override
-    public void showBasket() {
-        this.webshop.showBasket();
+    public String showBasket() {
+        return this.webshop.showBasket();
     }
 
 }

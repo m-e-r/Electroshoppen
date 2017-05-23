@@ -50,8 +50,8 @@ public class Webshop {
         this.customer.getOrder().removeOrderLine(p, amount);
     }
     
-    public void showBasket() {
-        this.customer.getOrder().showBasket();
+    public String showBasket() {
+        return this.customer.getOrder().showBasket();
     }
             
     
