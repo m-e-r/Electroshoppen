@@ -9,6 +9,9 @@ import ProductStuff.Product;
 import ProductStuff.ProductCategory;
 import java.util.ArrayList;
 import PIM.*;
+import WEBSHOP.Profiles.CustomerProfile;
+import WEBSHOP.Profiles.OrderHistory;
+import WEBSHOP.Profiles.Profile;
 
 /**
  *
@@ -52,5 +55,9 @@ public interface iFacade {
     void editCategory(long id, String newCategory);
     void newProduct(String name, long number, double price, String description, ProductCategory category);
     boolean addProductToDatabase();
+    
+    //POS
+    String[] getCustomerInfo(String email);
+    OrderHistory getOrderHistory(String email);
     
 }

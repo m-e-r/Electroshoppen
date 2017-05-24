@@ -10,7 +10,6 @@ import java.util.*;
 import java.util.logging.*;
 
 /**
- *
  * @author Jacob
  */
 public class DBConnection {
@@ -20,7 +19,7 @@ public class DBConnection {
     public DBConnection() {
 	String url = "jdbc:postgresql://localhost:5432/SemesterProjectDB";
 	String user = "postgres";
-        String password = "admin123";
+        String password = "sejfyr42";
 
 	
 	//CONNECTING

@@ -90,6 +90,10 @@ public class CustomerProfile extends Profile {
 	
     }
     
+    public String getCvr(){
+	return this.cvr;
+    }
+    
     public Order getOrder() {
         return this.currentOrder;
     }
@@ -97,7 +101,7 @@ public class CustomerProfile extends Profile {
     public void addToViewedProducts(Product product) {
         this.viewedProducts.add(product);
     }
-
+    
     
     
     public void setToken(Token token) {

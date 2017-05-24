@@ -9,6 +9,7 @@ import DBManager.DBConnection;
 import WEBSHOP.Profiles.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,8 +29,8 @@ public class POS {
      * @param email Email as string of customer to find.
      * @return Returns a profile as type Profile.
      */
-    public Profile getCustomerInfo(String email) {
-	Profile foundProfile = null;
+    public String[] getCustomerInfo(String email) {
+	String[] foundProfile = new String[4];
 	String query = "SELECT full_name, email, phone_number, cvr\n"
 		+ "	FROM public.customer\n"
 		+ "    WHERE email = '" + email + "';";
@@ -44,7 +45,10 @@ public class POS {
 		String mail = select.getString("email");
 		String phone = select.getString("phone_number");
 		String cvr = select.getString("cvr");
-		foundProfile = new CustomerProfile(name, phone, mail, cvr);
+		foundProfile[0] = name;
+		foundProfile[1] = mail;
+		foundProfile[2] = phone;
+		foundProfile[3] = cvr;
 		} while(select.next());
 		select.close();
 	    

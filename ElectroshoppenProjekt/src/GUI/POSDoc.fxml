@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -117,9 +118,15 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Untitled Tab 2">
+          <Tab text="Se kundeprofil">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <JFXTextField fx:id="inputEmailTextField" layoutX="223.0" layoutY="68.0" prefHeight="25.0" prefWidth="352.0" promptText="Kundes email adresse" />
+                        <JFXButton fx:id="searchButton" layoutX="373.0" layoutY="108.0" onAction="#searchCustomer" text="Søg" />
+                        <JFXTextArea fx:id="customerInfoTextArea" editable="false" layoutX="160.0" layoutY="149.0" prefHeight="372.0" prefWidth="475.0" wrapText="true" />
+                        <Label fx:id="infoLabel" contentDisplay="CENTER" layoutX="312.0" layoutY="30.0" prefHeight="17.0" prefWidth="159.0" textFill="RED" />
+                     </children></AnchorPane>
             </content>
           </Tab>
         </tabs>

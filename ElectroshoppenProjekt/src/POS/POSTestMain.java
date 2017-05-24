@@ -18,10 +18,7 @@ public class POSTestMain {
      */
     public static void main(String[] args) {
 	//finds customer with email mail2@mail2.dk and print name og number. 
-	POS p = new POS();
-	Profile pro = p.getCustomerInfo("mail2@mail2.dk");
-	System.out.println(pro.getName());
-	System.out.println(pro.getPhoneNumber());
+	
 	
     }
     

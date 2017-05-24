@@ -11,6 +11,7 @@ import Authentication.*;
 import DBManager.*;
 import PIM.ProductEditing;
 import PIM.ProductManager;
+import POS.POS;
 import ProductStuff.*;
 import WEBSHOP.*;
 import WEBSHOP.Order.*;
@@ -42,13 +43,16 @@ public class Facade implements iFacade{
     private Webshop webshop;
     private ProductEditing pimEdit;
     private ProductManager pimMan;
+    private POS pos;
     
     public Facade() {
         this.productCatalog = new ProductCatalog();
         this.webshop = new Webshop();
         this.pimEdit = new ProductEditing();
         this.pimMan = new ProductManager();
+	this.pos = new POS();
     }
+    
 
 
     @Override
@@ -154,6 +158,17 @@ public class Facade implements iFacade{
     @Override
     public boolean addProductToDatabase() {
         return this.pimMan.addProductToDatabase();
+    }
+
+    @Override
+    public String[] getCustomerInfo(String email) {
+	return this.pos.getCustomerInfo(email);
+    }
+
+    @Override
+    public OrderHistory getOrderHistory(String email) {
+	this.orderHistory = new OrderHistory(email);
+	return this.orderHistory;
     }
 
 }
