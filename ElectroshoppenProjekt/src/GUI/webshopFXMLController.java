@@ -116,6 +116,8 @@ public class webshopFXMLController implements Initializable {
     private PasswordField regPassField;
     @FXML
     private TextField cvrTF;
+    @FXML
+    private Button basketBTN;
 
     /**
      * Initializes the controller class.
@@ -123,7 +125,7 @@ public class webshopFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.facade = new Facade();
-        
+
     }    
     
 //    private void updateProducts () {
@@ -189,7 +191,21 @@ public class webshopFXMLController implements Initializable {
     private void login(Event event) {
         this.authen = new Login(this.logMailTF.getText(), this.logPF.getText());
         
-        
+        if (this.authen.doLogin()) {
+            this.tabPane.getSelectionModel().select(0);
+            this.loginGrid.getChildren().clear();
+            //this.facade.getProfile().toString();
+//            Button logoutBTN = new Button("Log ud");
+//            logoutBTN.setOnAction(new EventHandler<ActionEvent>() {
+//                @Override
+//                public void handle(ActionEvent event) {
+//                    facade.logout();
+//                }
+//            });
+        } else {
+            Label label = new Label("Den indtastede E-Mail eller kode er forkert. Venligst prøv igen");
+            this.loginGrid.add(label, 2, 4);
+        }
         
     }
     
@@ -233,14 +249,39 @@ public class webshopFXMLController implements Initializable {
             
             this.authen = new Create(tfs[0].getText() + " " + tfs[1].getText(), tfs[2].getText(),
                     tfs[3].getText(), address, tfs[9].getText(), tfs[10].getText());
-            
-            if (!this.authen.createUser("customer")) {
+            if (this.authen.createUser("customer")) {
+                this.authen = new Login(tfs[2].getText(), tfs[9].getText());
+                this.authen.doLogin();
+            } else {
                 Label lbl = new Label("De indtastede oplysninger er ugyldige eller brugeren findes allerede");
                 this.registerGrid.add(lbl, 3, 10, 2, 1);
-            } else {
-                this.authen.createUser("customer");
             }
         }
+    }
+    
+    @FXML
+    private void showBasket(ActionEvent event) {
+        TextArea ta = new TextArea();
+        this.mainPane.getChildren().add(ta);
+        ta.setEditable(false);
+        ta.appendText(this.facade.showBasket());
+        this.basketBTN.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                closeBasket(event, ta);
+            }
+        });
+    }
+    
+    @FXML
+    private void closeBasket(ActionEvent event, TextArea ta) {
+        this.mainPane.getChildren().remove(ta);
+        this.basketBTN.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                showBasket(event);
+            }
+        });
     }
     
     @FXML

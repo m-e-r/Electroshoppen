@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -46,6 +47,8 @@ public class ProductFXMLController implements Initializable {
     private TextField amountTF;
     @FXML
     private GridPane mainGrid;
+    @FXML
+    private Button basketBTN;
 
     /**
      * Initializes the controller class.
@@ -60,11 +63,10 @@ public class ProductFXMLController implements Initializable {
     
     @FXML
     private void addToBasket(ActionEvent event) {
-        if (this.amountTF == null) {
-            this.facade.addToOrder(this.facade.searchProduct(productId), 1);
+        if (this.amountTF == null || "".equals(this.amountTF.getText())) {
+            int i = 1;
+            this.facade.addToOrder(this.facade.searchProduct(productId), i);
         } else {
-            System.out.println(this.facade.searchProduct(productId));
-            System.out.println(Integer.parseInt(this.amountTF.getText()));
             this.facade.addToOrder(this.facade.searchProduct(productId), Integer.parseInt(this.amountTF.getText()));
         }
     }
@@ -73,6 +75,23 @@ public class ProductFXMLController implements Initializable {
         TextArea ta = new TextArea();
         this.mainGrid.add(ta, 0, 0, 2, 4);
         ta.appendText(this.facade.showBasket());
+        this.basketBTN.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                closeBasket(event, ta);
+            }
+        });
+        
+    }
+    
+    public void closeBasket(ActionEvent event, TextArea ta) {
+        this.mainGrid.getChildren().remove(ta);
+        this.basketBTN.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                showBasket(event);
+            }
+        });
     }
     
     public void goBackToProducts (ActionEvent event) {

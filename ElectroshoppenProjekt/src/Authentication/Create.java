@@ -79,7 +79,6 @@ public class Create extends Authentication {
 	
         //Ask the instance to save itself to the database    
 	if (!super.userExists()) {
-	    this.profile.saveProfileToDB();
 	    return true;
 
 	} else {

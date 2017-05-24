@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -45,6 +47,7 @@
                                     </GridPane>
                                     <TextField fx:id="searchTF" layoutX="188.0" layoutY="42.0" prefHeight="27.0" prefWidth="281.0" promptText="Søg efter produkt" />
                                     <Button fx:id="searchBTN" layoutX="521.0" layoutY="41.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#searchProducts" prefHeight="27.0" prefWidth="27.0" />
+                                    <Button fx:id="basketBTN" layoutX="670.0" layoutY="42.0" mnemonicParsing="false" onAction="#showBasket" text="Basket" />
                                  </children>
                               </AnchorPane>
                           </content>
@@ -74,7 +77,6 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <TextField fx:id="logMailTF" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" />
                               <Label fx:id="phoneLabel" text="E-Mail:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="20.0" />
@@ -86,7 +88,8 @@
                                  </font>
                               </Label>
                               <Button fx:id="loginBTN" mnemonicParsing="false" onAction="#login" text="Login" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP" />
-                              <PasswordField fx:id="logPF" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+                              <JFXPasswordField fx:id="logPF" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+                              <JFXTextField fx:id="logMailTF" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
                      </children>
