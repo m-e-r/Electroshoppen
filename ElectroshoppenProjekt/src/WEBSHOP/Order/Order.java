@@ -27,6 +27,7 @@ public class Order {
     private long id;
     private String email = null;
     private final DBConnection DBC = new DBConnection();
+    private String dateAsString;
 
     //Constructor
     public Order() {
@@ -48,6 +49,10 @@ public class Order {
 
 	addOrderToDB();
 
+    }
+    
+    public Order(String date, Long id, String status, ArrayList<OrderLine> orderLines){
+	
     }
 
     /**
