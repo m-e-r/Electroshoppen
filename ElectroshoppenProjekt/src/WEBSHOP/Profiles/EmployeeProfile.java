@@ -51,8 +51,8 @@ public class EmployeeProfile extends Profile {
     public void saveProfileToDB() {
 	Address address = this.getAddress();
 	String query = "INSERT INTO public.adress(\n"
-		+ "	phone_number, street_name, city, postal, floor, door, street_number)\n"
-		+ "	VALUES ('" + this.getPhoneNumber() + "', '" + address.getStreetName() + "', '" + address.getCity() + "', '"
+		+ "	email, street_name, city, postal, floor, door, street_number)\n"
+		+ "	VALUES ('" + this.geteMail() + "', '" + address.getStreetName() + "', '" + address.getCity() + "', '"
 		+ address.getZipCode() + "', '" + address.getSecAddress() + "', '"
 		+ address.getStreetNumber() + "');\n"
 		+ "\n" 
