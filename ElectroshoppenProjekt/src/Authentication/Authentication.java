@@ -69,7 +69,7 @@ public abstract class Authentication implements Authenticateable {
     protected final boolean userExists() {
 	DBConnection dbc = new DBConnection();
 	String query = "SELECT * FROM customer FULL JOIN employee on customer.email = employee.email\n"
-		+ "WHERE (employee.phone_number = '" + this.email + "' OR customer.phone_number = '" + this.email + "')\n"
+		+ "WHERE (employee.email = '" + this.email + "' OR customer.email = '" + this.email + "')\n"
 		+ "AND (employee.password = '" + this.password + "'\n"
 		+ "OR customer.password = '" + this.password + "')";
 	ResultSet user = dbc.runQueryExcecute(query); 

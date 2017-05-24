@@ -95,9 +95,9 @@ public class webshopFXMLController implements Initializable {
     @FXML
     private GridPane registerGrid;
     @FXML
-    private TextField logPhoneTF;
+    private TextField logMailTF;
     @FXML
-    private TextField logPassTF;
+    private PasswordField logPF;
     @FXML
     private JFXToggleButton toggleCustomer;
     @FXML
@@ -187,25 +187,9 @@ public class webshopFXMLController implements Initializable {
 
     @FXML
     private void login(Event event) {
-        this.loginNodes = this.loginGrid.getChildren();
+        this.authen = new Login(this.logMailTF.getText(), this.logPF.getText());
         
-        this.authen = new Login(this.logPhoneTF.getText(), this.logPassTF.getText());
         
-        if (this.authen.doLogin()) {
-            this.tabPane.getSelectionModel().select(0);
-            this.loginGrid.getChildren().clear();
-            //this.facade.getProfile().toString();
-//            Button logoutBTN = new Button("Log ud");
-//            logoutBTN.setOnAction(new EventHandler<ActionEvent>() {
-//                @Override
-//                public void handle(ActionEvent event) {
-//                    facade.logout();
-//                }
-//            });
-        } else {
-            Label label = new Label("Det indtastede telefonnr. eller kode er forkert. Venligst prøv igen");
-            this.loginGrid.add(label, 2, 4);
-        }
         
     }
     
@@ -220,32 +204,43 @@ public class webshopFXMLController implements Initializable {
             this.cvrTF.setStyle("-fx-background-color: transparent");
         }
         
-        tfs[0] = this.fNameTF;
-        tfs[1] = this.lNameTF;
-        tfs[2] = this.mailTF;
-        tfs[3] = this.regPhoneTF;
-        tfs[4] = this.addressTF;
-        tfs[5] = this.numberTF;
-        tfs[6] = this.addressTF2;
-        tfs[7] = this.postnrTF;
-        tfs[8] = this.cityTF;
-        tfs[9] = this.regPassField;
-        tfs[10] = this.cvrTF;
-        
-//            for (int i = 12; i < this.registerGrid.getChildren().size() - 10; i++) {
-//                TextField textfield = (TextField) this.registerGrid.getChildren().get(i);
-//                s[i] = textfield.getText();
-//            }
-        if (this.addressTF2 == null) {
-            address = new Address(tfs[4].getText(), tfs[5].getText(), tfs[7].getText(),
-                    tfs[8].getText());
+        if (!this.mailTF.getText().contains("@") || !this.mailTF.getText().contains(".")) {
+            Label label = new Label("Ugyldig E-Mail");
+            label.setStyle("-fx-text-fill: RED");
+            this.registerGrid.add(label, 3, 3);
         } else {
-            address = new Address(tfs[4].getText(), tfs[5].getText(), tfs[6].getText(),
-                    tfs[7].getText(), tfs[8].getText());
+        
+            tfs[0] = this.fNameTF;
+            tfs[1] = this.lNameTF;
+            tfs[2] = this.mailTF;
+            tfs[3] = this.regPhoneTF;
+            tfs[4] = this.addressTF;
+            tfs[5] = this.numberTF;
+            tfs[6] = this.addressTF2;
+            tfs[7] = this.postnrTF;
+            tfs[8] = this.cityTF;
+            tfs[9] = this.regPassField;
+            tfs[10] = this.cvrTF;
+
+
+            if (this.addressTF2 == null) {
+                address = new Address(tfs[4].getText(), tfs[5].getText(), tfs[7].getText(),
+                        tfs[8].getText());
+            } else {
+                address = new Address(tfs[4].getText(), tfs[5].getText(), tfs[6].getText(),
+                        tfs[7].getText(), tfs[8].getText());
+            }
+            
+            this.authen = new Create(tfs[0].getText() + " " + tfs[1].getText(), tfs[2].getText(),
+                    tfs[3].getText(), address, tfs[9].getText(), tfs[10].getText());
+            
+            if (!this.authen.createUser("customer")) {
+                Label lbl = new Label("De indtastede oplysninger er ugyldige eller brugeren findes allerede");
+                this.registerGrid.add(lbl, 3, 10, 2, 1);
+            } else {
+                this.authen.createUser("customer");
+            }
         }
-        this.authen = new Create(tfs[0].getText() + " " + tfs[1].getText(), tfs[2].getText(),
-                tfs[3].getText(), address, tfs[9].getText(), tfs[10].getText());
-        this.authen.createUser("customer");
     }
     
     @FXML
