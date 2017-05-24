@@ -63,13 +63,18 @@ public class Create extends Authentication {
      * 
      */
     public boolean createUser(String type) {
+        if (super.userExists()) {
+	    return false;
+
+	}
+        
 	//Create new Profile instance based on given type
 	String typeLower = type.toLowerCase();
 	if (typeLower.equals("customer")) {
 	    this.profile = new CustomerProfile(this.fullName, this.phoneNumber,
 		    this.eMail, this.adress, super.password, this.cvr);
 
-	} else if (typeLower.equals("employee")) {
+	} else if (typeLower.equals("employee") ) {
 	    this.profile = new EmployeeProfile(this.fullName, this.phoneNumber,
 		    this.eMail, this.adress, super.password);
 
@@ -77,13 +82,8 @@ public class Create extends Authentication {
 	    throw new IllegalArgumentException("Type must be customer or employee");
 	}
 	
-        //Ask the instance to save itself to the database    
-	if (!super.userExists()) {
-	    return true;
-
-	} else {
-	    return false;
-	}
+           
+        return true;
     }
     
     

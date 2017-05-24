@@ -156,8 +156,7 @@ public class PIMFXMLDocController implements Initializable {
         this.productsFromSearch = new ArrayList(this.facade.searchProductsFromText(this.searchTF.getText()));
         this.productsNameForView = FXCollections.observableArrayList();
 
-        
-        
+                
         for (int i = 0; i < this.productsFromSearch.size(); i++) {
             String[] productInfo = this.productsFromSearch.get(i).toString().split(";");
 

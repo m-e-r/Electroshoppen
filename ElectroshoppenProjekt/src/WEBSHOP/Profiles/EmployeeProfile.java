@@ -22,6 +22,7 @@ public class EmployeeProfile extends Profile {
     public EmployeeProfile(String name, String phoneNumber, String eMail, Address adress,
 	    String passWord) {
 	super(name, phoneNumber, eMail, adress, passWord);
+        this.saveProfileToDB();
     }
 
     public void viewProfile(String id) {
@@ -51,7 +52,7 @@ public class EmployeeProfile extends Profile {
     public void saveProfileToDB() {
 	Address address = this.getAddress();
 	String query = "INSERT INTO public.adress(\n"
-		+ "	email, street_name, city, postal, floor, door, street_number)\n"
+		+ "	email, street_name, city, postal, secAdress, street_number)\n"
 		+ "	VALUES ('" + this.geteMail() + "', '" + address.getStreetName() + "', '" + address.getCity() + "', '"
 		+ address.getZipCode() + "', '" + address.getSecAddress() + "', '"
 		+ address.getStreetNumber() + "');\n"

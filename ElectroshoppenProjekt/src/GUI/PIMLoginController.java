@@ -59,7 +59,9 @@ public class PIMLoginController implements Initializable {
         this.authen = new Login(this.userNameTF.getText(), this.passwordTF.getText());
         
         if (this.authen.doLogin()) {
+
             try {
+                
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PIMFXMLDoc.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();
                 Stage stage = new Stage();
@@ -69,9 +71,9 @@ public class PIMLoginController implements Initializable {
             } catch (IOException ex) {
                 Logger.getLogger(startFXMLDocument.class.getName()).log(Level.SEVERE, null, ex); 
             }
-            
+            Stage stage = (Stage) loginBtn.getScene().getWindow();
+            stage.close();
         } else {
-            this.userNameTF.clear();
             this.passwordTF.clear();
             this.userNameTF.setStyle("-jfx-unfocus-color: red;");
             this.passwordTF.setStyle("-jfx-unfocus-color: red;");

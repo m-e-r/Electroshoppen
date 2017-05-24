@@ -87,6 +87,7 @@ public class POSDocController implements Initializable {
                 this.crEmailTF.clear();
                 this.crStreetNameTF.clear();
                 this.crStreetNumberTF.clear();
+                this.crSecAddressTF.clear();
                 this.crZipCodeTF.clear();
                 this.crCityTF.clear();
                 this.crPasswordTF.clear();

@@ -39,7 +39,6 @@ public class startFXMLDocument implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }    
 
     @FXML
@@ -67,6 +66,7 @@ public class startFXMLDocument implements Initializable {
             Logger.getLogger(startFXMLDocument.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
 
     @FXML
     private void goToPOS(ActionEvent event) {
