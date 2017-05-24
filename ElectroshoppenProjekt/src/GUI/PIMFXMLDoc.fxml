@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,65 +17,161 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PIMFXMLDocController">
-   <children>
-      <GridPane layoutX="2.0" prefHeight="650.0" prefWidth="850.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.0" minWidth="10.0" prefWidth="76.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="356.0" minWidth="10.0" prefWidth="165.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="503.0" minWidth="10.0" prefWidth="254.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="503.0" minWidth="10.0" prefWidth="357.0" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label text="Navn" GridPane.halignment="CENTER" />
-            <Label layoutX="103.0" layoutY="83.0" text="Pris" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <Label layoutX="10.0" layoutY="83.0" text="Beskrivelse" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-            <Label layoutX="10.0" layoutY="83.0" text="Kategori" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-            <TextField fx:id="nameTF" GridPane.columnIndex="1">
-               <GridPane.margin>
-                  <Insets right="20.0" />
-               </GridPane.margin></TextField>
-            <TextField fx:id="priceTF" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets right="20.0" />
-               </GridPane.margin></TextField>
-            <TextField fx:id="descriptionTF" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets right="20.0" />
-               </GridPane.margin></TextField>
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="132.0" text="           Søg:" GridPane.columnIndex="2" />
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+<TabPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PIMFXMLDocController">
+   <tabs>
+      <Tab closable="false" text="Rediger">
+         <content>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="850.0">
                <children>
-                  <TextField fx:id="searchTF" prefHeight="27.0" prefWidth="270.0" />
-                  <JFXButton fx:id="serchBTN" onAction="#handleSearch" ripplerFill="#1ba4ff" text="Søg" />
+                  <GridPane layoutX="2.0" prefHeight="650.0" prefWidth="850.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.0" minWidth="10.0" prefWidth="76.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="356.0" minWidth="10.0" prefWidth="165.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="503.0" minWidth="10.0" prefWidth="254.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="503.0" minWidth="10.0" prefWidth="357.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Navn" GridPane.halignment="CENTER" />
+                        <Label layoutX="103.0" layoutY="83.0" text="Pris" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <Label layoutX="10.0" layoutY="83.0" text="Beskrivelse" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                        <Label layoutX="10.0" layoutY="83.0" text="Kategori" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                        <TextField fx:id="nameTF" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets right="20.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="priceTF" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets right="20.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="132.0" text="           Søg:" GridPane.columnIndex="2" />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <children>
+                              <TextField fx:id="searchTF" prefHeight="27.0" prefWidth="270.0" />
+                              <JFXButton fx:id="serchBTN" onAction="#handleSearch" ripplerFill="#1ba4ff" text="Søg" />
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </HBox>
+                        <ListView fx:id="productsLV" onMouseClicked="#handleShowProduct" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.rowSpan="3">
+                           <padding>
+                              <Insets left="8.0" right="8.0" />
+                           </padding>
+                           <GridPane.margin>
+                              <Insets left="8.0" right="8.0" />
+                           </GridPane.margin>
+                        </ListView>
+                        <TextArea fx:id="productInfoTA" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="8.0" right="8.0" />
+                           </GridPane.margin>
+                        </TextArea>
+                        <JFXButton fx:id="changeBtn" alignment="CENTER" onAction="#handleChangeProduct" ripplerFill="#1cff41" text="Tilføj ændringer" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                        <TextArea fx:id="descriptionTA" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <padding>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </padding>
+                        </TextArea>
+                     </children>
+                  </GridPane>
                </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </HBox>
-            <ListView fx:id="productsLV" onMouseClicked="#handleShowProduct" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.rowSpan="3">
-               <padding>
-                  <Insets left="8.0" right="8.0" />
-               </padding>
-               <GridPane.margin>
-                  <Insets left="8.0" right="8.0" />
-               </GridPane.margin>
-            </ListView>
-            <TextArea fx:id="productInfoTA" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets left="8.0" right="8.0" />
-               </GridPane.margin>
-            </TextArea>
-            <JFXButton fx:id="changeBtn" alignment="CENTER" onAction="#handleChangeProduct" ripplerFill="#1cff41" text="Tilføj ændringer" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-         </children>
-      </GridPane>
-   </children>
-</AnchorPane>
+            </AnchorPane>
+         </content>
+      </Tab>
+      <Tab closable="false" text="Tilføj">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <GridPane prefHeight="650.0" prefWidth="850.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="202.0" minWidth="10.0" prefWidth="142.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="363.0" minWidth="10.0" prefWidth="304.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="363.0" minWidth="10.0" prefWidth="46.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="475.0" minWidth="10.0" prefWidth="255.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <padding>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </padding>
+                     <children>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowSpan="4" GridPane.valignment="CENTER" />
+                        <Label text="Navn" />
+                        <Label text="Pris" GridPane.rowIndex="1" />
+                        <Label text="Beskrivelse" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+                        <Label text="Kategori" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                           <GridPane.margin>
+                              <Insets top="12.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <JFXTextField fx:id="createNameTF" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="220.0" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets right="8.0" />
+                           </GridPane.margin>
+                        </JFXTextField>
+                        <JFXTextField fx:id="createPriceTF" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="120.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets right="8.0" />
+                           </GridPane.margin>
+                        </JFXTextField>
+                        <JFXTextArea fx:id="createDescriptionTA" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="198.0" prefWidth="262.0" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.rowSpan="2">
+                           <GridPane.margin>
+                              <Insets bottom="40.0" top="40.0" />
+                           </GridPane.margin>
+                        </JFXTextArea>
+                        <JFXComboBox fx:id="createCategoryBox" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                           <GridPane.margin>
+                              <Insets top="12.0" />
+                           </GridPane.margin>
+                        </JFXComboBox>
+                        <JFXTextArea fx:id="createShowTA" editable="false" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="40.0" right="40.0" />
+                           </GridPane.margin>
+                        </JFXTextArea>
+                        <Label text="Preview" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                           <padding>
+                              <Insets bottom="8.0" />
+                           </padding>
+                        </Label>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                           <children>
+                              <JFXButton fx:id="createCheckBtn" onAction="#handleCreateCheck" ripplerFill="#005eff" text="Check Produkt" />
+                              <JFXButton fx:id="createAddBtn" onAction="#handleCreateAdd" ripplerFill="#00ff4f" text="Tilføj Produkt" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                           <children>
+                              <JFXTextField fx:id="crIdTF" alignment="CENTER" editable="false" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="120.0" unFocusColor="#30ff79" />
+                              <JFXButton fx:id="crIdGenBtn" onAction="#handleIdGenerate" ripplerFill="#2dff76" text="Generer Id" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab closable="false" text="Fjern">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+        </content>
+      </Tab>
+   </tabs>
+</TabPane>

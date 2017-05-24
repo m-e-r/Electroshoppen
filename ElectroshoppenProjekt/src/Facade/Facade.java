@@ -10,6 +10,7 @@ import ProductStuff.ProductCategory;
 import Authentication.*;
 import DBManager.*;
 import PIM.ProductEditing;
+import PIM.ProductManager;
 import ProductStuff.*;
 import WEBSHOP.*;
 import WEBSHOP.Order.*;
@@ -40,11 +41,13 @@ public class Facade implements iFacade{
     private Profile profile;
     private Webshop webshop;
     private ProductEditing pimEdit;
+    private ProductManager pimMan;
     
     public Facade() {
         this.productCatalog = new ProductCatalog();
         this.webshop = new Webshop();
         this.pimEdit = new ProductEditing();
+        this.pimMan = new ProductManager();
     }
 
 
@@ -141,6 +144,16 @@ public class Facade implements iFacade{
     @Override
     public void editCategory(long id, String newCategory) {
         this.pimEdit.editCategory(id, productCategory);
+    }
+
+    @Override
+    public void newProduct(String name, long number, double price, String description, ProductCategory category) {
+        this.pimMan.newProduct(name, number, price, description, category);
+    }
+
+    @Override
+    public boolean addProductToDatabase() {
+        return this.pimMan.addProductToDatabase();
     }
 
 }
