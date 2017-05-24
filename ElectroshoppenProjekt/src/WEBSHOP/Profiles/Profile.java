@@ -7,6 +7,7 @@ package WEBSHOP.Profiles;
 
 import Authentication.Token;
 import WEBSHOP.Address;
+import WEBSHOP.Order.Order;
 
 /**
  *
@@ -18,6 +19,7 @@ public abstract class Profile {
     protected String phoneNumber;
     private Address adress;
     private String password;
+    private Order currentOrder;
 
     /**
      * Constructor for all kinds of profiles. Creates a profile.
