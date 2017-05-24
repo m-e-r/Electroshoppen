@@ -70,6 +70,15 @@ public class startFXMLDocument implements Initializable {
 
     @FXML
     private void goToPOS(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("POSDoc.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(startFXMLDocument.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }
