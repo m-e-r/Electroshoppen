@@ -145,7 +145,7 @@
                               <Insets left="40.0" right="40.0" />
                            </GridPane.margin>
                         </JFXTextArea>
-                        <Label text="Preview" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                        <Label fx:id="createLabel" text="Preview" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                            <padding>
                               <Insets bottom="8.0" />
                            </padding>

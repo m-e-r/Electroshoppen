@@ -31,6 +31,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -91,6 +92,8 @@ public class PIMFXMLDocController implements Initializable {
     private JFXTextField crIdTF;
     @FXML
     private JFXButton crIdGenBtn;
+    @FXML
+    private Label createLabel;
     
     /**
      * Initializes the controller class.
@@ -223,6 +226,7 @@ public class PIMFXMLDocController implements Initializable {
     //MARK: Create methods
     @FXML
     private boolean handleCreateCheck() {
+        this.createLabel.setText("Preview");
         
         if (this.validateName() & this.validatePrice() & this.validateDescription() & this.validateCategory()) {
             this.createAddBtn.setDisable(false);
@@ -374,8 +378,8 @@ public class PIMFXMLDocController implements Initializable {
             this.createNameTF.clear();
             this.createPriceTF.clear();
             this.createDescriptionTA.clear();
-            this.createCategoryBox.selectionModelProperty().setValue(null);
             this.handleIdGenerate();
+            this.createLabel.setText("Produktet er tilføjet!");
             
         } else {
             System.out.println("nej");
