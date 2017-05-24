@@ -18,12 +18,17 @@ public class tester {
     
     public static void main(String[] args) {
         
-        ArrayList<OrderLine> list = new ArrayList<>();
-        
-        list.add(new OrderLine(new Product("noob", 12, 23.3, "noobies", ProductCategory.PHONE), 1));
-        
-        for(OrderLine n: list) {
-            System.out.println(n);
-        }
+//        ArrayList<OrderLine> list = new ArrayList<>();
+//        
+//        list.add(new OrderLine(new Product("noob", 12, 23.3, "noobies", ProductCategory.PHONE), 1));
+//        
+//        for(OrderLine n: list) {
+//            System.out.println(n);
+//        }
+
+	Order o = new Order();
+	System.out.println("--------------------------");
+	System.out.println(o.getId());
+	System.out.println(o.getDate());
     }
 }

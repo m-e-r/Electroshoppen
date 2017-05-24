@@ -7,13 +7,15 @@ package PIM;
 
 import DBManager.DBConnection;
 import ProductStuff.Product;
+import ProductStuff.ProductCategory;
 
 /**
  * Class used to add and remove products from database.
  * @author Jacob
  */
 public class ProductManager {
-
+    
+    private Product currentProduct;
     private DBConnection dbc = null; //connection to database. Is initialised in constructor.
     
     /**
@@ -23,19 +25,30 @@ public class ProductManager {
 	dbc = new DBConnection();
     }
     
+    public void newProduct(String name, long number, double price, String description, ProductCategory category) {
+        this.currentProduct = new Product(name, number, price, description, category);
+    }
+    
     /**
      * Method to add a product, to the database. Runs an INSERT query,
      * using getters from Product class.
      * @param product Product from Product class, to be inserted into database. 
      */
-    public void addProduct(Product product) {
-	String query = "INSERT INTO public.product(\n"
-		+ "	product_id, name, price, description, category)\n"
-		+ "	VALUES (" + (int) product.getProductNumber() + ", '"
-		+ product.getProductName() + "', " + product.getPiecePrice() + ", '"
-		+ product.getDescription() + "', '" + product.getProductCategory().toString() + "');";
-	DBConnection dbc = new DBConnection();
-	dbc.runQueryUpdate(query);
+    public boolean addProductToDatabase() {
+        
+        if (this.currentProduct != null) {
+            String query = "INSERT INTO public.product(\n"
+                    + "	product_id, name, price, description, category)\n"
+                    + "	VALUES (" + (int) this.currentProduct.getProductNumber() + ", '"
+                    + this.currentProduct.getProductName() + "', " + this.currentProduct.getPiecePrice() + ", '"
+                    + this.currentProduct.getDescription() + "', '" + this.currentProduct.getProductCategory().toString() + "');";
+            DBConnection dbc = new DBConnection();
+            dbc.runQueryUpdate(query);
+            return true;
+            
+        } else {
+            return false;
+        }
     }
 
     /**

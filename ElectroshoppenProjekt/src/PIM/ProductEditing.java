@@ -28,23 +28,23 @@ public class ProductEditing {
      * @param id ID as integer of product to edit
      * @param newName New name as String. 
      */
-    public void editName(int id, String newName) {
+    public void editName(long id, String newName) {
 	dbc.runQueryUpdate(SQLQuery(id, "name", newName));
     }
     
-    public void editPrice(int id, double newPrice){
+    public void editPrice(long id, double newPrice){
 	dbc.runQueryUpdate(SQLQuery(id, "price", Double.toString(newPrice)));
     }
     
-    public void editDescription(int id, String newDescription){
+    public void editDescription(long id, String newDescription){
 	dbc.runQueryUpdate(SQLQuery(id, "description", newDescription));
     }
     
-    public void editCategory(int id, ProductCategory newCategory){
+    public void editCategory(long id, ProductCategory newCategory){
 	dbc.runQueryUpdate(SQLQuery(id, "category", newCategory.toString().toUpperCase()));
     }
     
-    private String SQLQuery(int id, String columnToUpdate, String update){
+    private String SQLQuery(long id, String columnToUpdate, String update){
 	return "UPDATE public.product\n"
 		+ "	SET " + columnToUpdate + " = '" + update + "' \n"
 		+ "	WHERE product_id = " + id + ";";

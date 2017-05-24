@@ -39,7 +39,7 @@ public class ProductCatalog {
      */
     private void fillProducts() {
         DBConnection dbCon = new DBConnection(); //Creates an instance of the databasemanager
-        String query = "SELECT * FROM products"; //The query, which the ResultSet will use
+        String query = "SELECT * FROM product"; //The query, which the ResultSet will use
         ResultSet rs = dbCon.runQueryExcecute(query); //The ResultSet then uses the query to run
         
         try{
@@ -48,12 +48,13 @@ public class ProductCatalog {
                 String productName = rs.getString("name");
                 double price = rs.getDouble("price");
                 String description = rs.getString("description");
-                String productCategory = rs.getString("category");
+                String productCategory = rs.getString("category").toUpperCase();
+		ProductCategory pCategory = (ProductCategory.valueOf(productCategory));
                 
-                if(Arrays.asList(ProductCategory.values()).contains(ProductCategory.valueOf(productCategory))){
-                    this.products.put(productNum, new Product(productName, productNum, price, description, ProductCategory.valueOf(productCategory))); //Adds it to the TreeMap
+                if(Arrays.asList(ProductCategory.values()).contains(pCategory)){
+                    this.products.put(productNum, new Product(productName, productNum, price, description, pCategory)); //Adds it to the TreeMap
                 }else {
-                    System.err.println("'"+productCategory+"" + " is not found in the database");
+                    System.err.println("'" + productCategory + "' is not found in the database");
                 }
                 
             }
