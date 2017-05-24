@@ -115,6 +115,37 @@ public class PIMFXMLDocController implements Initializable {
         
     }    
     
+    
+    /**
+     * Set up the product nicely in text.
+     * @return 
+     */
+    private String displayProduct() {
+        StringBuilder str = new StringBuilder();
+        str.append("Produkt nummer: ")
+            .append(this.crId)
+            .append("\n")
+                
+            .append("Navn: ")
+            .append(this.crName)
+            .append("\n")
+        
+            .append("Pris: ")
+            .append(this.crPrice)
+            .append("kr.")
+            .append("\n")
+        
+            .append("Kategori: ")
+            .append(this.category)
+            .append("\n")
+                        
+            .append("Beskrivelse: ")
+            .append(this.crDescription);
+        
+        String productShow = new String(str);
+        return productShow;
+    }
+    
     //MARK: Edit methods
     /**
      * Fills the lists and shows results in the listview.
@@ -163,31 +194,7 @@ public class PIMFXMLDocController implements Initializable {
      
     }
     
-    private String displayProduct() {
-        StringBuilder str = new StringBuilder();
-        str.append("Produkt nummer: ")
-            .append(this.crId)
-            .append("\n")
-                
-            .append("Navn: ")
-            .append(this.crName)
-            .append("\n")
-        
-            .append("Pris: ")
-            .append(this.crPrice)
-            .append("\n")
-        
-            .append("Kategori: ")
-            .append(this.category)
-            .append("\n")
-                        
-            .append("Beskrivelse: ")
-            .append(this.crDescription);
-        
-        String productShow = new String(str);
-        return productShow;
-    }
-
+    
     @FXML
     private void handleChangeProduct(ActionEvent event) {
         String selectedProduct = this.productsLV.getSelectionModel().getSelectedItem();
@@ -223,6 +230,11 @@ public class PIMFXMLDocController implements Initializable {
     
     
     
+    
+    
+    
+    
+    
     //MARK: Create methods
     @FXML
     private boolean handleCreateCheck() {
@@ -241,7 +253,7 @@ public class PIMFXMLDocController implements Initializable {
     }
     
 
-    
+    //Validator methods used in handleCreateCheck()
     private boolean validateId() {
 //        this.numberValidator = new NumberValidator();
 //        this.textValidator = new
@@ -359,6 +371,10 @@ public class PIMFXMLDocController implements Initializable {
         }
     }
 
+    
+    /**
+     * Generates a new random id and sets it.
+     */
     @FXML
     private void handleIdGenerate() {
         do {
@@ -369,6 +385,10 @@ public class PIMFXMLDocController implements Initializable {
     }
     
     
+    /**
+     * Creates the product and saves it to the database.
+     * @param event 
+     */
     @FXML
     private void handleCreateAdd(ActionEvent event) {
         

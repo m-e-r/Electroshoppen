@@ -58,7 +58,7 @@ public class startFXMLDocument implements Initializable {
     @FXML
     private void goToPIM(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PIMFXMLDoc.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PIMLogin.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
