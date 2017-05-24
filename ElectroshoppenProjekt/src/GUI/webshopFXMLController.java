@@ -193,15 +193,11 @@ public class webshopFXMLController implements Initializable {
         
         if (this.authen.doLogin()) {
             this.tabPane.getSelectionModel().select(0);
+            this.loginTab.setText("Profil");
             this.loginGrid.getChildren().clear();
-            //this.facade.getProfile().toString();
-//            Button logoutBTN = new Button("Log ud");
-//            logoutBTN.setOnAction(new EventHandler<ActionEvent>() {
-//                @Override
-//                public void handle(ActionEvent event) {
-//                    facade.logout();
-//                }
-//            });
+            Button logoutBTN = new Button("Log ud");
+            this.loginGrid.add(logoutBTN, 4, 2);
+            
         } else {
             Label label = new Label("Den indtastede E-Mail eller kode er forkert. Venligst prøv igen");
             this.loginGrid.add(label, 2, 4);

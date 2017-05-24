@@ -10,6 +10,7 @@ import ProductStuff.Product;
 import ProductStuff.ProductCategory;
 import WEBSHOP.Order.OrderLine;
 import WEBSHOP.Profiles.CustomerProfile;
+import WEBSHOP.iWebshopLogin;
 import java.util.HashSet;
 
 
@@ -18,7 +19,7 @@ import java.util.HashSet;
  *
  * @author Kasper
  */
-public class Webshop {
+public class Webshop implements iWebshopLogin{
     private CustomerProfile customer;
     private String customerUserName;
     private OrderLine orderLine;
@@ -29,6 +30,7 @@ public class Webshop {
     }
     
     //MARK: Login stuff
+    @Override
     public void setLoginForCustomer(Token token) {
         this.customer.setToken(token);
     }

@@ -6,6 +6,7 @@
 package Authentication;
 
 import DBManager.*;
+import WEBSHOP.iWebshopLogin;
 import elecetroshoppenprojekt.Webshop;
 
 /**
@@ -15,10 +16,11 @@ import elecetroshoppenprojekt.Webshop;
 public class Login extends Authentication {
 
     private Token token;
-    private Webshop webshop;
+    private iWebshopLogin webshop;
 
     public Login(String userName, String password) {
 	super(userName, password);
+        webshop = new Webshop();
 
     }
 
@@ -28,6 +30,7 @@ public class Login extends Authentication {
      * Else it returns false.
      * @return
      */
+    @Override
     public boolean doLogin() {
 	if (super.userExists()) {
 
@@ -53,6 +56,7 @@ public class Login extends Authentication {
 	}
     }
     
+    @Override
     public boolean doLogout(){
 	if (super.userExists() && this.token != null) {	    
 	    DBConnection dbc = new DBConnection();
