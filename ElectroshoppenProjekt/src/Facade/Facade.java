@@ -89,8 +89,8 @@ public class Facade implements iFacade{
 	return productCatalog.getProductsFromCat(prdCat);
     }
     @Override
-    public int getOrderNumber(){
-	return order.getOrderNumber();
+    public Long getOrderNumber(){
+	return order.getId();
     }
     @Override
     public String getStatus(){
