@@ -171,4 +171,9 @@ public class Facade implements iFacade{
 	return this.orderHistory;
     }
 
+    @Override
+    public void removeProduct(Product p) {
+        this.pimMan.removeProduct(p);
+    }
+
 }

@@ -55,6 +55,7 @@ public interface iFacade {
     void editCategory(long id, String newCategory);
     void newProduct(String name, long number, double price, String description, ProductCategory category);
     boolean addProductToDatabase();
+    void removeProduct(Product p);
     
     //POS
     String[] getCustomerInfo(String email);
