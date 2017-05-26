@@ -5,34 +5,38 @@
  */
 package GUI;
 
+import Authentication.Authenticateable;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  *
  * @author MER
  */
 public class ElecetroshoppenProjekt extends Application {
-    
+
+    Authenticateable authen;
+
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("startFXML.fxml"));
-        
-        Scene scene = new Scene(root);
-        
-        stage.setScene(scene);
-        stage.show();
+	Parent root = FXMLLoader.load(getClass().getResource("startFXML.fxml"));
+	Scene scene = new Scene(root);
+	stage.setScene(scene);
+	stage.show();
     }
-    
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        launch(args);
-	
+	launch(args);
+
 //	DBConnection dbc = new DBConnection();
 //	System.out.println(dbc.toString());
 //	System.out.println(dbc.getClass());
@@ -49,7 +53,6 @@ public class ElecetroshoppenProjekt extends Application {
 //	} catch (SQLException ex) {
 //	    Logger.getLogger(ElecetroshoppenProjekt.class.getName()).log(Level.SEVERE, null, ex);
 //	}
-	
     }
-    
+
 }

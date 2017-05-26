@@ -24,8 +24,9 @@ public class POS {
     }
 
     /**
-     * Method to get info on customer. Takes email as input, and finds profile in
-     * db with matching email. 
+     * Method to get info on customer. Takes email as input, and finds profile
+     * in db with matching email.
+     *
      * @param email Email as string of customer to find.
      * @return Returns a profile as type Profile.
      */
@@ -41,17 +42,17 @@ public class POS {
 		System.out.println("no user");
 	    } else {
 		do {
-		String name = select.getString("full_name");
-		String mail = select.getString("email");
-		String phone = select.getString("phone_number");
-		String cvr = select.getString("cvr");
-		foundProfile[0] = name;
-		foundProfile[1] = mail;
-		foundProfile[2] = phone;
-		foundProfile[3] = cvr;
-		} while(select.next());
+		    String name = select.getString("full_name");
+		    String mail = select.getString("email");
+		    String phone = select.getString("phone_number");
+		    String cvr = select.getString("cvr");
+		    foundProfile[0] = name;
+		    foundProfile[1] = mail;
+		    foundProfile[2] = phone;
+		    foundProfile[3] = cvr;
+		} while (select.next());
 		select.close();
-	    
+
 	    }
 
 	} catch (SQLException ex) {
