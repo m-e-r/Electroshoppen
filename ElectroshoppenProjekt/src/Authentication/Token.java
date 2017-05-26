@@ -23,7 +23,7 @@ public class Token {
         this.date = new Date();
         this.tok = tok;
         this.creation = this.date.getTime();
-        this.goTime = 5000; //abitrary amount..
+        this.goTime = 10000; //abitrary amount..
     }
     
     /**
@@ -35,47 +35,30 @@ public class Token {
     public String getToken() {
         this.date = new Date();
 
-        if ((this.getCreation() + this.getGoTime()) > this.getDate().getTime()) {
-	    this.setCreation(this.getDate().getTime());
-            return this.getTok();
+        if ((this.creation + this.goTime) > this.date.getTime()) {
+	    this.creation = this.date.getTime();
+            return this.tok;
             
         } else {
             return "Expired";
         }
     }
-
+    
+    
     /**
-     * @return the tok
-     */
-    public String getTok() {
-	return tok;
-    }
-
-    /**
-     * @return the creation
+     * Used in Login class for quries.
+     * @return 
      */
     public long getCreation() {
-	return creation;
+        return this.creation;
+    }
+    
+    /**
+     * Used in Login class for queries.
+     * @return 
+     */
+    public String getTok() {
+        return this.tok;
     }
 
-    /**
-     * @param creation the creation to set
-     */
-    public void setCreation(long creation) {
-	this.creation = creation;
-    }
-
-    /**
-     * @return the goTime
-     */
-    public long getGoTime() {
-	return goTime;
-    }
-
-    /**
-     * @return the date
-     */
-    public Date getDate() {
-	return date;
-    }
 }
