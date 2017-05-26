@@ -11,6 +11,8 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -46,7 +48,14 @@
                                       </rowConstraints>
                                     </GridPane>
                                     <TextField fx:id="searchTF" layoutX="188.0" layoutY="42.0" prefHeight="27.0" prefWidth="281.0" promptText="Søg efter produkt" />
-                                    <Button fx:id="searchBTN" layoutX="521.0" layoutY="41.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#searchProducts" prefHeight="27.0" prefWidth="27.0" />
+                                    <Button fx:id="searchBTN" layoutX="521.0" layoutY="41.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#searchProducts" prefHeight="27.0" prefWidth="27.0">
+                                       <graphic>
+                                          <ImageView fitHeight="23.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@search.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></Button>
                                     <Button fx:id="basketBTN" layoutX="670.0" layoutY="42.0" mnemonicParsing="false" onAction="#showBasket" text="Basket" />
                                  </children>
                               </AnchorPane>
