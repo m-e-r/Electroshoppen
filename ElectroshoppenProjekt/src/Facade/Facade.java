@@ -48,12 +48,28 @@ public class Facade implements iFacade{
     public Facade() {
         this.productCatalog = new ProductCatalog();
         this.webshop = new Webshop();
+        System.out.println("Webshop!");
         this.pimEdit = new ProductEditing();
         this.pimMan = new ProductManager();
 	this.pos = new POS();
     }
     
-
+    //Webshop
+    @Override
+    public void addToOrder(Product p, int amount) {
+        this.webshop.addToOrder(p, amount);
+    }
+    @Override
+    public void removeFromOrder(Product p, int amount) {
+        this.webshop.removeFromOrder(p, amount);
+    }
+    @Override
+    public String showBasket() {
+        return this.webshop.showBasket();
+    }
+    
+    
+    
 
     @Override
     public String getToken(){
@@ -115,18 +131,7 @@ public class Facade implements iFacade{
     public double getSubTotal(){
 	return orderLine.getSubTotal();
     }
-    @Override
-    public void addToOrder(Product p, int amount) {
-        this.webshop.addToOrder(p, amount);
-    }
-    @Override
-    public void removeFromOrder(Product p, int amount) {
-        this.webshop.removeFromOrder(p, amount);
-    }
-    @Override
-    public String showBasket() {
-        return this.webshop.showBasket();
-    }
+
     
     
     //PIM
@@ -174,6 +179,11 @@ public class Facade implements iFacade{
     @Override
     public void removeProduct(Product p) {
         this.pimMan.removeProduct(p);
+    }
+
+    @Override
+    public void setLoginForCustomer(Token token) {
+        this.webshop.setLoginForCustomer(token);
     }
 
 }

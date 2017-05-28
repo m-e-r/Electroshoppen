@@ -18,12 +18,14 @@ public class Token {
     private long creation; //time for creation of the object in millisecs since 1970
     private long goTime; //time this token is allowed to be valid in milisecs
     private Date date; //used to generate the millisecs
+    private boolean fistTimeExpired;
     
     public Token(String tok) {
         this.date = new Date();
         this.tok = tok;
         this.creation = this.date.getTime();
         this.goTime = 10000; //abitrary amount..
+        this.fistTimeExpired = true;
     }
     
     /**
@@ -39,8 +41,12 @@ public class Token {
 	    this.creation = this.date.getTime();
             return this.tok;
             
-        } else {
+        } else if (this.fistTimeExpired) {
+            this.fistTimeExpired = false;
             return "Expired";
+            
+        } else {
+            return "Still Expired";
         }
     }
     

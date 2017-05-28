@@ -40,6 +40,7 @@ public class CustomerProfile extends Profile {
     public CustomerProfile() {
 	this.viewedProducts = new HashSet();
 	this.currentOrder = new Order();
+        this.token = new Token("default");
     }
 
     public CustomerProfile(String name, String phoneNumber, String eMail, Address address,
@@ -147,8 +148,13 @@ public class CustomerProfile extends Profile {
 
     //Token stuff
     public String getToken() {
-	System.out.println(this.token);
-	return this.token.getToken();
+        if (this.token != null) {
+            
+            return this.token.getToken();
+            
+        } else {
+            return null;
+        }
     }
 
     public void setToken(Token token) {

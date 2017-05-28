@@ -60,7 +60,7 @@ public class PIMLoginController implements Initializable {
 	String passWord = this.passwordTF.getText();
         this.authen = new Login(userName, passWord);
         
-        if (this.authen.doLogin() || (userName.equals("adm") && passWord.equals("adm"))) {
+        if (this.authen.doLogin() != null || (userName.equals("adm") && passWord.equals("adm"))) {
 
             try {
                 

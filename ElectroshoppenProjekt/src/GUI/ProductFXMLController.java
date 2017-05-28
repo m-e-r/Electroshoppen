@@ -32,8 +32,9 @@ import javafx.scene.layout.GridPane;
  */
 public class ProductFXMLController implements Initializable {
 
-    iFacade facade;
     private long productId;
+    private iFacade facade;
+    
 
     @FXML
     private ImageView productIV;
@@ -59,7 +60,7 @@ public class ProductFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-	this.facade = new Facade();
+        this.facade = WebshopFacade.getInstance().getFacade();
 
     }
 

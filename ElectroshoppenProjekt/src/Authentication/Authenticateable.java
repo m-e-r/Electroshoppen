@@ -10,7 +10,7 @@ package Authentication;
  * @author Kasper
  */
 public interface Authenticateable {
-    public boolean doLogin();
+    public Token doLogin();
     public boolean doLogout();
     
     public boolean createUser(String type);

@@ -16,13 +16,10 @@ import elecetroshoppenprojekt.Webshop;
 public class Login extends Authentication {
 
     private Token token;
-    private iWebshopLogin webshop;
     private boolean isLoggedIn;
 
     public Login(String userName, String password) {
 	super(userName, password);
-        webshop = new Webshop();
-
     }
 
     /**
@@ -32,7 +29,7 @@ public class Login extends Authentication {
      * @return
      */
     @Override
-    public boolean doLogin() {
+    public Token doLogin() {
 	if (super.userExists()) {
 
 	    this.token = new Token(super.email.toUpperCase());
@@ -50,11 +47,10 @@ public class Login extends Authentication {
 		    + "END \n"
 		    + "$$";
 	    dbc.runQueryUpdate(query);
-            this.webshop.setLoginForCustomer(this.token);
 	    isLoggedIn = true;
-	    return true;
+	    return this.token;
 	} else {
-	    return false;
+	    return null;
 	}
     }
     

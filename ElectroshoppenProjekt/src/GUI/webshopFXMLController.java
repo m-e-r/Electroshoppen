@@ -47,7 +47,7 @@ import javafx.scene.layout.GridPane;
 public class webshopFXMLController implements Initializable {
 
     private Authenticateable authen;
-    iFacade facade;
+    public iFacade facade;
 
     iWebshop webshop;
 
@@ -146,15 +146,20 @@ public class webshopFXMLController implements Initializable {
     private Tab profileTab;
     @FXML
     private GridPane profileGrid;
+    @FXML
+    private Label lbl;
             
      /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-	this.facade = new Facade();
+	this.facade = WebshopFacade.getInstance().getFacade();
+        System.out.println("Facade!");
 	logMailTF.setText("mail2@mail2.dk");
 	logPF.setText("pass");
+        this.lbl = new Label();
+        this.registerGrid.add(lbl, 3, 10, 2, 1);
 	
 
     }
@@ -223,15 +228,19 @@ public class webshopFXMLController implements Initializable {
 	//START
         this.authen = new Login(this.logMailTF.getText(), this.logPF.getText());
         
-        if (this.authen.doLogin()) {
+        if (this.authen.doLogin() != null) {
             TextArea ta = new TextArea();
             this.profileGrid.add(ta, 1, 0, 2, 1);
 	    String[] customer = new String[4];
 	    customer = facade.getCustomerInfo(this.logMailTF.getText());
 	    String[] description = {"Navn: ", "Email: ", "Telefon: ", "CVR: "};
+            
 	    for (int i = 0; i < customer.length; i++) {
 		ta.appendText(description[i] + customer[i] + "\n\n");
 	    }
+            
+            this.facade.setLoginForCustomer(this.authen.doLogin());
+            System.out.println("GUI " + this.authen.doLogin());
             this.loginTab.setDisable(true);
             this.profileTab.setDisable(false);
             this.registerTab.setDisable(true);
@@ -290,15 +299,16 @@ public class webshopFXMLController implements Initializable {
 		address = new Address(tfs[4].getText(), tfs[5].getText(), tfs[6].getText(),
 			tfs[7].getText(), tfs[8].getText());
 	    }
-
+            
 	    this.authen = new Create(tfs[0].getText() + " " + tfs[1].getText(), tfs[2].getText(),
 		    tfs[3].getText(), address, tfs[9].getText(), tfs[10].getText());
-	    if (this.getAuthen().createUser("customer")) {
+            
+	    if (this.getAuthen().createUser("customer")) {              
+                lbl.setText("Brugeren er oprettet.");
 		this.authen = new Login(tfs[2].getText(), tfs[9].getText());
 		this.getAuthen().doLogin();
 	    } else {
-		Label lbl = new Label("De indtastede oplysninger er ugyldige eller brugeren findes allerede");
-		this.registerGrid.add(lbl, 3, 10, 2, 1);
+                lbl.setText("De indtastede oplysninger er ugyldige eller brugeren findes allerede");
 	    }
 	}
     }

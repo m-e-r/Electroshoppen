@@ -129,11 +129,11 @@ public class Create extends Authentication {
     /**
      * Do not use this method.
      * Meant for Login class.
-     * @return false
+     * @return null
      */
     @Override
-    public boolean doLogin() {
-        return false;
+    public Token doLogin() {
+        return null;
     }
     
     /**

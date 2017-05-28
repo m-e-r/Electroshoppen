@@ -5,6 +5,7 @@
  */
 package Facade;
 
+import Authentication.Token;
 import ProductStuff.Product;
 import ProductStuff.ProductCategory;
 import java.util.ArrayList;
@@ -46,6 +47,9 @@ public interface iFacade {
     void removeFromOrder(Product p, int amount);
     String showBasket();
     double getSubTotal();
+    
+    //Webshop
+    void setLoginForCustomer(Token token);
     
     
     //PIM
