@@ -10,6 +10,7 @@ import ProductStuff.Product;
 import ProductStuff.ProductCategory;
 import WEBSHOP.Order.OrderLine;
 import WEBSHOP.Profiles.CustomerProfile;
+import WEBSHOP.Profiles.Profile;
 import WEBSHOP.iWebshopLogin;
 import java.util.HashSet;
 
@@ -55,11 +56,15 @@ public class Webshop implements iWebshopLogin{
     public String showBasket() {
         return this.customer.getOrder().showBasket();
     }
-            
     
-//    public HashSet<Product> getViewedProducts() {
-//        
-//    }
+    public void updateProfile(String name, String email, String phone, String cvr) {
+        this.customer.updateProfile(name,email,phone,cvr);
+    }
+    
+    public String[] searchProfile(String email) {
+        return this.customer.searchProfile(email);
+    }
+    
     
     public static void main(String[] args) {
         Webshop webshop = new Webshop();

@@ -48,6 +48,10 @@ public abstract class Profile {
 	this.adress = adress;
 	this.password = password;
     }
+    
+    public abstract String[] searchProfile(String email);
+    
+    public abstract void updateProfile(String name, String email, String phone, String cvr);
 
     public abstract void saveProfileToText();
 

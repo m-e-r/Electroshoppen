@@ -12,6 +12,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import DBManager.*;
+import java.sql.SQLException;
 
 /**
  *
@@ -64,6 +65,22 @@ public class EmployeeProfile extends Profile {
 
 	DBConnection dbc = new DBConnection();
 	dbc.runQueryUpdate(query);
+    }
+    
+    @Override
+    public void updateProfile(String name, String email, String phone, String cvr) {
+        String query = "UPDATE public.customer\n" 
+                + "	SET full_name=" + this.getName() + ", email=" 
+		+ this.geteMail() + ", phone_number=" + this.getPhoneNumber() + "\n" 
+                + "	WHERE email='" + this.geteMail() + "'";
+        
+        DBConnection dbc = new DBConnection();
+	dbc.runQueryUpdate(query);
+    }
+    
+    @Override
+    public String[] searchProfile(String email) {
+        return null;
     }
 
 }

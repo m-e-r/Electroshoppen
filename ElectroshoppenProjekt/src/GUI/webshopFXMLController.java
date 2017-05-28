@@ -11,6 +11,7 @@ import Authentication.Login;
 import Facade.Facade;
 import Facade.iFacade;
 import WEBSHOP.Address;
+import WEBSHOP.iWebshop;
 import com.jfoenix.controls.JFXToggleButton;
 import java.io.IOException;
 import java.net.URL;
@@ -26,6 +27,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -45,11 +47,12 @@ import javafx.scene.layout.GridPane;
 public class webshopFXMLController implements Initializable {
     Authenticateable authen;
     iFacade facade;
+    iWebshop webshop;
     
     
     ObservableList<?> products;
     ObservableList<?> categories;
-    ObservableList<?> loginNodes;
+    ObservableList<Node> loginNodes;
     @FXML
     private AnchorPane mainPane;
     @FXML
@@ -118,8 +121,32 @@ public class webshopFXMLController implements Initializable {
     private TextField cvrTF;
     @FXML
     private Button basketBTN;
-
-    /**
+    @FXML
+    private Button logoutBTN;
+    @FXML
+    private TextField pFnameTF;
+    @FXML
+    private TextField pLnameTF;
+    @FXML
+    private TextField pMailTF;
+    @FXML
+    private TextField pPhoneTF;
+    @FXML
+    private TextField pAddressTF;
+    @FXML
+    private TextField pNumberTF;
+    @FXML
+    private TextField pAdressTF2;
+    @FXML
+    private TextField pPostnrTF;
+    @FXML
+    private TextField pCityTF;
+    @FXML
+    private Tab profileTab;
+    @FXML
+    private GridPane profileGrid;
+            
+     /**
      * Initializes the controller class.
      */
     @Override
@@ -186,23 +213,37 @@ public class webshopFXMLController implements Initializable {
             }
         }
     }
+    
 
     @FXML
     private void login(Event event) {
         this.authen = new Login(this.logMailTF.getText(), this.logPF.getText());
         
         if (this.authen.doLogin()) {
-            this.tabPane.getSelectionModel().select(0);
-            this.loginTab.setText("Profil");
-            this.loginGrid.getChildren().clear();
-            Button logoutBTN = new Button("Log ud");
-            this.loginGrid.add(logoutBTN, 4, 2);
+            TextArea ta = new TextArea();
+            this.profileGrid.add(ta, 1, 0, 2, 1);
+            ta.appendText(Arrays.toString(this.webshop.searchProfile(this.logMailTF.getText())));
+            this.loginTab.setDisable(true);
+            this.profileTab.setDisable(false);
+            this.registerTab.setDisable(true);
+            this.logMailTF.setText("");
+            this.logPF.setText("");
+            
             
         } else {
             Label label = new Label("Den indtastede E-Mail eller kode er forkert. Venligst prøv igen");
-            this.loginGrid.add(label, 2, 4);
+            this.loginGrid.add(label, 2, 4, 2, 1);
+            this.logPF.setText("");
         }
         
+    }
+    
+    @FXML
+    private void logout() {
+        if (this.authen.doLogout()) {
+            this.loginTab.setDisable(false);
+            this.registerTab.setDisable(false);
+        }
     }
     
     @FXML
@@ -278,6 +319,20 @@ public class webshopFXMLController implements Initializable {
                 showBasket(event);
             }
         });
+    }
+    
+    @FXML
+    private void updateProfile(ActionEvent event) {
+        Address address;
+        if (this.addressTF2 == null) {
+                address = new Address(this.pAddressTF.getText(), this.pNumberTF.getText(), this.pPostnrTF.getText(),
+                        this.pCityTF.getText());
+            } else {
+                address = new Address(this.pAddressTF.getText(), this.pNumberTF.getText(), 
+                        this.pAdressTF2.getText(), this.pPostnrTF.getText(), this.pCityTF.getText());
+            }
+        this.webshop.updateProfile(this.pFnameTF.getText() +" "+ this.pLnameTF.getText(), 
+                this.pMailTF.getText(), this.pPhoneTF.getText(), " ");
     }
     
     @FXML

@@ -18,7 +18,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,7 +46,7 @@ public class CustomerProfile extends Profile {
 	    String passWord, String cvr) {
 	super(name, phoneNumber, eMail, address, passWord);
 	this.cvr = cvr;
-        saveProfileToDB();
+        this.saveProfileToDB();
         currentOrder = new Order();
 	currentOrder.setEmail(eMail);
     }
@@ -52,7 +54,7 @@ public class CustomerProfile extends Profile {
     public CustomerProfile(String name, String phoneNumber, String eMail, String cvr){
 	super(name, phoneNumber, eMail);
 	this.cvr = cvr;
-        saveProfileToDB();
+        this.saveProfileToDB();
         this.currentOrder = new Order();
 	this.currentOrder.setEmail(eMail);
     }
@@ -90,6 +92,44 @@ public class CustomerProfile extends Profile {
 	
     }
     
+    @Override
+    public String[] searchProfile(String email) {
+        String query = "SELECT full_name, password, email, phone_number, cvr\n" +
+        "FROM public.customer \n WHERE email='"+email+"';";
+        DBConnection dbc = new DBConnection();
+        String[] sArray = new String[4];
+        try {
+            while(dbc.runQueryExcecute(query).next()) {
+                System.out.println(dbc.runQueryExcecute(query).getString("full_name"));
+                sArray[0] = dbc.runQueryExcecute(query).getString("full_name");
+                sArray[1] = dbc.runQueryExcecute(query).getString("password");
+                sArray[2] = dbc.runQueryExcecute(query).getString("email");
+                sArray[3] = dbc.runQueryExcecute(query).getString("phone_number");
+                System.out.println(Arrays.toString(sArray));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerProfile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sArray;
+    }
+    
+    @Override
+    public void updateProfile(String name, String email, String phone, String cvr) {
+        Address address = this.getAddress();
+        String query = "UPDATE public.customer\n" 
+                + "	SET full_name='" + name + "', email='" 
+		+ email + "', phone_number='" + phone + "', cvr='" + cvr +"'\n" 
+                + "	WHERE email='" + email + "';\n"
+                
+                + "UPDATE public.adress \n"
+                + "SET email='"+email+"', street_name='"+ address.getStreetName() + "', city='" + address.getCity() + "', "
+                + "postal='" + Integer.parseInt(address.getZipCode()) + "', street_number="
+                + "'"+ Integer.parseInt(address.getStreetNumber()) + "', secadress='"
+		+ address.getSecAddress() + "'";
+        DBConnection dbc = new DBConnection();
+	dbc.runQueryUpdate(query);
+    }
+    
     public String getCvr(){
 	return this.cvr;
     }
@@ -101,8 +141,6 @@ public class CustomerProfile extends Profile {
     public void addToViewedProducts(Product product) {
         this.viewedProducts.add(product);
     }
-    
-    
     
     public void setToken(Token token) {
         this.token = token;

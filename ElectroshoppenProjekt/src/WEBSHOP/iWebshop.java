@@ -16,8 +16,10 @@ public interface iWebshop {
     
     Product searchProduct(long productNumber);
     
-    Profile searchProfile(String phoneNumber);
+    String[] searchProfile(String email);
     
     String pay(double totalPrice);
+    
+    void updateProfile(String name, String email, String phone, String cvr);
     
 }
