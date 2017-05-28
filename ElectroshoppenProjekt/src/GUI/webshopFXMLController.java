@@ -48,13 +48,9 @@ public class webshopFXMLController implements Initializable {
 
     private Authenticateable authen;
     iFacade facade;
-<<<<<<< HEAD
-    iWebshop webshop;
-    
-    
-=======
 
->>>>>>> 1aecd81dcd6be83c24a178bfafb084e9657acf75
+    iWebshop webshop;
+
     ObservableList<?> products;
     ObservableList<?> categories;
     ObservableList<Node> loginNodes;
@@ -128,8 +124,6 @@ public class webshopFXMLController implements Initializable {
     private TextField cvrTF;
     @FXML
     private Button basketBTN;
-    @FXML
-    private Button logoutBTN;
     @FXML
     private TextField pFnameTF;
     @FXML
@@ -225,13 +219,19 @@ public class webshopFXMLController implements Initializable {
 
     @FXML
     private void login(Event event) {
-<<<<<<< HEAD
+	
+	//START
         this.authen = new Login(this.logMailTF.getText(), this.logPF.getText());
         
         if (this.authen.doLogin()) {
             TextArea ta = new TextArea();
             this.profileGrid.add(ta, 1, 0, 2, 1);
-            ta.appendText(Arrays.toString(this.webshop.searchProfile(this.logMailTF.getText())));
+	    String[] customer = new String[4];
+	    customer = facade.getCustomerInfo(this.logMailTF.getText());
+	    String[] description = {"Navn: ", "Email: ", "Telefon: ", "CVR: "};
+	    for (int i = 0; i < customer.length; i++) {
+		ta.appendText(description[i] + customer[i] + "\n\n");
+	    }
             this.loginTab.setDisable(true);
             this.profileTab.setDisable(false);
             this.registerTab.setDisable(true);
@@ -244,40 +244,6 @@ public class webshopFXMLController implements Initializable {
             this.loginGrid.add(label, 2, 4, 2, 1);
             this.logPF.setText("");
         }
-        
-=======
-	this.authen = new Login(this.logMailTF.getText(), this.logPF.getText());
-	System.out.println("login");
-	System.out.println(authen);
-	if (this.getAuthen().doLogin()) {
-	    this.tabPane.getSelectionModel().select(0);
-	    this.loginTab.setText("Profil");
-	    this.loginGrid.getChildren().clear();
-	    logoutBTN = new Button("Log ud");
-	    this.loginGrid.add(logoutBTN, 4, 2);
-
-	    logoutBTN.setOnAction(new EventHandler<ActionEvent>() {
-		@Override
-		public void handle(ActionEvent e) {
-		    getAuthen().doLogout();
-
-		}
-	    });
-
-	    TextArea customerInfo = new TextArea();
-	    this.loginGrid.add(customerInfo, 1, 1, 2, 3);
-	    String[] customer = new String[4];
-	    customer = facade.getCustomerInfo(this.logMailTF.getText());
-	    String[] description = {"Navn: ", "Email: ", "Telefon: ", "CVR: "};
-	    for (int i = 0; i < customer.length; i++) {
-		customerInfo.appendText(description[i] + customer[i] + "\n\n");
-	    }
-	} else {
-	    Label label = new Label("Den indtastede E-Mail eller kode er forkert. Venligst prøv igen");
-	    this.loginGrid.add(label, 2, 4);
-	}
-
->>>>>>> 1aecd81dcd6be83c24a178bfafb084e9657acf75
     }
 
     @FXML
