@@ -33,6 +33,7 @@ public class Webshop implements iWebshopLogin{
     //MARK: Login stuff
     @Override
     public void setLoginForCustomer(Token token) {
+        System.out.println(token.getToken());
         this.customer.setToken(token);
     }
     
@@ -46,14 +47,23 @@ public class Webshop implements iWebshopLogin{
     }
     
     public void addToOrder(Product p, int amount) {
+        if (this.customer.getToken().equals("Expired")) {
+            this.customer.getOrder().resetOrder();
+        }
         this.customer.getOrder().addOrderLine(p, amount);
     }
     
     public void removeFromOrder(Product p, int amount) {
+        if (this.customer.getToken().equals("Expired")) {
+            this.customer.getOrder().resetOrder();
+        }
         this.customer.getOrder().removeOrderLine(p, amount);
     }
     
     public String showBasket() {
+        if (this.customer.getToken().equals("Expired")) {
+            this.customer.getOrder().resetOrder();
+        }
         return this.customer.getOrder().showBasket();
     }
     

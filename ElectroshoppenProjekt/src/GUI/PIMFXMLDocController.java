@@ -94,6 +94,16 @@ public class PIMFXMLDocController implements Initializable {
     private JFXButton crIdGenBtn;
     @FXML
     private Label createLabel;
+    @FXML
+    private JFXTextField rmSearchTF;
+    @FXML
+    private JFXButton rmSearchBtn;
+    @FXML
+    private ListView<String> rmProductsLV;
+    @FXML
+    private JFXTextArea rmShowProductTA;
+    @FXML
+    private JFXButton rmRemoveBtn;
     
     /**
      * Initializes the controller class.
@@ -146,7 +156,8 @@ public class PIMFXMLDocController implements Initializable {
         return productShow;
     }
     
-    //MARK: Edit methods
+    
+    //MARK:************************** Edit methods ***************************
     /**
      * Fills the lists and shows results in the listview.
      * @param event 
@@ -234,7 +245,7 @@ public class PIMFXMLDocController implements Initializable {
     
     
     
-    //MARK: Create methods
+    //MARK:*********************** Create methods ****************************
     @FXML
     private boolean handleCreateCheck() {
         this.createLabel.setText("Preview");
@@ -405,6 +416,55 @@ public class PIMFXMLDocController implements Initializable {
         }
 
 
+    }
+    
+    
+    
+    //MARK:*********************** Remove Methods *****************************
+
+    @FXML
+    private void handleRemoveSearch(ActionEvent event) {
+        this.productsFromSearch = new ArrayList(this.facade.searchProductsFromText(this.rmSearchTF.getText()));
+        this.productsNameForView = FXCollections.observableArrayList();
+
+                
+        for (int i = 0; i < this.productsFromSearch.size(); i++) {
+            String[] productInfo = this.productsFromSearch.get(i).toString().split(";");
+
+            this.productsById.put(Long.parseLong(productInfo[4]), productInfo);
+            this.productsNameForView.add(productInfo[4] + "\t" + productInfo[0]);
+        }
+        
+        this.rmProductsLV.setItems(this.productsNameForView);
+        
+    }
+
+    @FXML
+    private void handleRemoveProduct(ActionEvent event) {
+        String selectedProduct = this.rmProductsLV.getSelectionModel().getSelectedItem();
+        long productNumber = Long.parseLong(selectedProduct.split("\t")[0]);
+        
+        this.facade.removeProduct(this.facade.searchProduct(productNumber));
+        this.rmShowProductTA.clear();
+        this.rmShowProductTA.setText("Produktet er fjernet!");
+        this.handleRemoveSearch(event);
+    }
+
+    @FXML
+    private void handleRemoveShowProduct(MouseEvent event) {
+        String selectedProduct = this.rmProductsLV.getSelectionModel().getSelectedItem();
+        long productNumber = Long.parseLong(selectedProduct.split("\t")[0]);
+        
+        String[] productInfo = this.productsById.get(productNumber);
+        this.crName = productInfo[0];
+        this.crId = Long.parseLong(productInfo[4]);
+        this.crPrice = Double.parseDouble(productInfo[1]);
+        this.category = productInfo[3];
+        this.crDescription = productInfo[2];
+        
+        //Set the text up nicely
+
+        this.rmShowProductTA.setText(this.displayProduct());
     }
 
     

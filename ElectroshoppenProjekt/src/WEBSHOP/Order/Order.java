@@ -250,5 +250,12 @@ public class Order {
 	}
 	return "Order:\t" + this.id + "\t" + date + "\t" + this.getTotalPrice() + "\t" + this.getStatus() + "\n\n" + str;
     }
+    
+    /**
+     * Method used when a logged in user with products in his order logs out.
+     */
+    public void resetOrder() {
+        this.orderlines.removeAll(this.orderlines);
+    }
 
 }

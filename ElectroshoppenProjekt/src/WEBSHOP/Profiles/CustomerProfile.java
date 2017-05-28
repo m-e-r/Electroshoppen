@@ -142,6 +142,16 @@ public class CustomerProfile extends Profile {
         this.viewedProducts.add(product);
     }
     
+<<<<<<< HEAD
+=======
+    //Token stuff
+    
+    public String getToken() {
+        System.out.println(this.token);
+        return this.token.getToken();
+    }
+    
+>>>>>>> 1aecd81dcd6be83c24a178bfafb084e9657acf75
     public void setToken(Token token) {
         this.token = token;
     }

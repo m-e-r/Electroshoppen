@@ -20,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -30,9 +31,10 @@ import javafx.scene.layout.GridPane;
  * @author MER
  */
 public class ProductFXMLController implements Initializable {
+
     iFacade facade;
     private long productId;
-    
+
     @FXML
     private ImageView productIV;
     @FXML
@@ -49,69 +51,71 @@ public class ProductFXMLController implements Initializable {
     private GridPane mainGrid;
     @FXML
     private Button basketBTN;
+    @FXML
+    private ImageView gobackIV;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.facade = new Facade();
+	this.facade = new Facade();
 
     }
-    
-    
-    
+
     @FXML
     private void addToBasket(ActionEvent event) {
-        if (this.amountTF == null || "".equals(this.amountTF.getText())) {
-            int i = 1;
-            this.facade.addToOrder(this.facade.searchProduct(productId), i);
-        } else {
-            this.facade.addToOrder(this.facade.searchProduct(productId), Integer.parseInt(this.amountTF.getText()));
-        }
+	if (this.amountTF == null || "".equals(this.amountTF.getText())) {
+	    int i = 1;
+	    this.facade.addToOrder(this.facade.searchProduct(productId), i);
+	} else {
+	    this.facade.addToOrder(this.facade.searchProduct(productId), Integer.parseInt(this.amountTF.getText()));
+	}
     }
-    
+
+    @FXML
     public void showBasket(ActionEvent event) {
-        TextArea ta = new TextArea();
-        this.mainGrid.add(ta, 0, 0, 2, 4);
-        ta.appendText(this.facade.showBasket());
-        this.basketBTN.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                closeBasket(event, ta);
-            }
-        });
-        
+	TextArea ta = new TextArea();
+	this.mainGrid.add(ta, 0, 0, 2, 4);
+	ta.appendText(this.facade.showBasket());
+	this.basketBTN.setOnAction(new EventHandler<ActionEvent>() {
+	    @Override
+	    public void handle(ActionEvent event) {
+		closeBasket(event, ta);
+	    }
+	});
+
     }
-    
+
     public void closeBasket(ActionEvent event, TextArea ta) {
-        this.mainGrid.getChildren().remove(ta);
-        this.basketBTN.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                showBasket(event);
-            }
-        });
+	this.mainGrid.getChildren().remove(ta);
+	this.basketBTN.setOnAction(new EventHandler<ActionEvent>() {
+	    @Override
+	    public void handle(ActionEvent event) {
+		showBasket(event);
+	    }
+	});
     }
-    
-    public void goBackToProducts (ActionEvent event) {
-        AnchorPane pane;
-        try {
-            FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("webshopFXML.fxml"));
-            pane = (AnchorPane) fxmlLoader1.load();
-            this.mainPane.getChildren().setAll(pane);
-        } catch (IOException ex) {
-            Logger.getLogger(webshopFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+    @FXML
+    public void goBackToProducts(ActionEvent event) {
+	AnchorPane pane;
+	try {
+	    FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("webshopFXML.fxml"));
+	    pane = (AnchorPane) fxmlLoader1.load();
+	    this.mainPane.getChildren().setAll(pane);
+	} catch (IOException ex) {
+	    Logger.getLogger(webshopFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+	}
     }
-    
+
     public void setProductId(long id) {
-        this.productId = id;
-        String [] s = facade.searchProduct(productId).toString().split(";");
-        
-        for (int i = 0; i < s.length -1; i++) {
-            this.productTA.appendText(s[i]);
-        }
+	this.productId = id;
+	String[] s = facade.searchProduct(productId).toString().split(";");
+	String[] description = {"Navn: ", "Pris: ", "Beskrivelse: ", "Kategori: "};
+	for (int i = 0; i < s.length - 1; i++) {
+	    this.productTA.appendText(description[i] + s[i] + "\n\n");
+	}
     }
-    
-    }
+
+}
