@@ -8,6 +8,7 @@ package GUI;
 import Authentication.Authenticateable;
 import Authentication.Create;
 import Facade.Facade;
+import Facade.iFacade;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -24,6 +25,13 @@ import WEBSHOP.Address;
 import WEBSHOP.Profiles.CustomerProfile;
 import WEBSHOP.Profiles.Profile;
 import com.jfoenix.controls.JFXTextArea;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -38,7 +46,12 @@ public class POSDocController implements Initializable {
 	    crStreetNumber, crSecAddress, crZipCode, crCity, crPassword;
     private Authenticateable authen;
     private Address crAddress;
-    private Facade facade;
+    private iFacade facade;
+    private ObservableList<String> ordersForView;
+    private ObservableList<String> orderLinesForView;
+    private HashMap<String, ArrayList<String>> orderLinesByOder;
+    private String[] foundProfile;
+    private String email, chosenOrder, chosenOrderLine;
 
     @FXML
     private JFXTextField crStreetNameTF;
@@ -72,13 +85,27 @@ public class POSDocController implements Initializable {
     private JFXTextArea customerInfoTextArea;
     @FXML
     private Label infoLabel;
+    @FXML
+    private ListView<String> ordersLV;
+    @FXML
+    private ListView<String> orderLinesLV;
+    @FXML
+    private JFXTextArea chosenProductTA;
+    @FXML
+    private JFXButton plusBtn;
+    @FXML
+    private JFXButton minusBtn;
+    @FXML
+    private JFXButton removeBtn;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-	this.facade = new Facade();
+	this.facade = WebshopFacade.getInstance().getFacade();
+        this.ordersForView = FXCollections.observableArrayList();
+        this.orderLinesForView = FXCollections.observableArrayList();
     }
 
     @FXML
@@ -305,22 +332,85 @@ public class POSDocController implements Initializable {
 
     @FXML
     private void searchCustomer(ActionEvent event) {
-	String[] foundProfile;
-	String email = inputEmailTextField.getText();
-	if (email.equals("")) {
+	
+	this.email = inputEmailTextField.getText();
+	if (this.email.equals("")) {
 	    infoLabel.setText("Venligst udfyld søgefeltet");
 	} else {
-	    foundProfile = this.facade.getCustomerInfo(email);
+	    this.foundProfile = this.facade.getCustomerInfo(this.email);
 	    if (foundProfile[0] == null) {
-		customerInfoTextArea.setText("Ingen kunde fundet med email: " + email);
+		customerInfoTextArea.setText("Ingen kunde fundet med email: " + this.email);
 	    } else {
-		customerInfoTextArea.setText("Navn: " + foundProfile[0]
+                //System.out.println("MAP " + this.facade.getOrderLinesByOrder(this.email));
+                this.orderLinesByOder = this.facade.getOrderLinesByOrder(this.email);
+              		customerInfoTextArea.setText("Navn: " + foundProfile[0]
 			+ "\nEmail: " + foundProfile[1]
 			+ "\nTelefonnummer: " + foundProfile[2]
 			+ "\nCVR (hvis virksomhed): " + foundProfile[3] 
-			+ "\n\n\n Købshistorik: " 
-			+ facade.getOrderHistory(email).toString());
+			+ "\n\n\n Købshistorik: ");
+                
+                this.loadInfo();
+                        //this.ordersForView.addAll(Arrays.asList(this.facade.getOrderHistory(email).toString().split("\n\n")));
+                        
+                        
 	    }
 	}
+    }
+    
+    private void loadInfo() {
+        
+        this.ordersForView.clear();
+        this.ordersForView.addAll(this.orderLinesByOder.keySet());
+        System.out.println(ordersForView);
+        this.ordersLV.setItems(this.ordersForView);
+        
+    }
+
+    @FXML
+    private void handleOrderChoice() {
+        this.chosenOrder = this.ordersLV.getSelectionModel().getSelectedItem();
+        //System.out.println("ORDER    " + this.orderLinesByOder.get(this.chosenOrder));
+        this.orderLinesForView.clear();
+        //System.out.println("Controller     " + this.orderLinesByOder.get(this.chosenOrder).toString());
+        this.orderLinesForView.addAll(this.orderLinesByOder.get(this.chosenOrder));
+        this.orderLinesLV.setItems(this.orderLinesForView);   
+    }
+
+    @FXML
+    private void handleChosenOrderLine(MouseEvent event) {
+        this.chosenOrderLine = this.orderLinesLV.getSelectionModel().getSelectedItem();   
+        this.chosenProductTA.setText(this.chosenOrderLine.split("#")[1]);
+    }
+
+    @FXML
+    private void handleSingleAmountEdit(ActionEvent event) {
+//        long orderNumber = Long.parseLong(this.chosenOrder.split("\n")[0]);
+//        long productId = Long.parseLong(this.chosenOrderLine.split("#")[0]);
+//        
+//        if (event.getSource().equals(this.plusBtn)) {
+//            this.facade.editAmountForOrderLine(orderNumber, productId, 1);
+//        }
+//        
+        
+        
+//        String order = this.ordersLV.getSelectionModel().getSelectedItem();
+//        String orderLine = this.orderLinesLV.getSelectionModel().getSelectedItem();
+//        if (event.getSource().equals(this.plusBtn)) {
+//            this.facade.editAmountForOrderLine(Long.parseLong(order.split("\n")[0]), Long.parseLong(orderLine.split("#")[0]), 1);
+//            this.loadInfo(this.inputEmailTextField.getText());
+//            
+//      
+//            this.ordersLV.getSelectionModel().select(order);
+//            
+//            this.orderLinesForView.addAll(this.orderLinesByOder.get(order));
+//            this.orderLinesLV.setItems(this.orderLinesForView);
+//            this.orderLinesLV.getSelectionModel().select(orderLine);
+//            
+//            this.chosenProductTA.setText(orderLine.split("#")[1]);
+//        }
+    }
+
+    @FXML
+    private void handleRemoveProduct(ActionEvent event) {
     }
 }

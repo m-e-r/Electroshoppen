@@ -6,6 +6,7 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -122,10 +123,16 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <JFXTextField fx:id="inputEmailTextField" layoutX="223.0" layoutY="68.0" prefHeight="25.0" prefWidth="352.0" promptText="Kundes email adresse" />
+                        <JFXTextField fx:id="inputEmailTextField" layoutX="223.0" layoutY="68.0" prefHeight="25.0" prefWidth="352.0" promptText="Kundes email adresse" text="mail2@mail2.dk" />
                         <JFXButton fx:id="searchButton" layoutX="373.0" layoutY="108.0" onAction="#searchCustomer" text="Søg" />
-                        <JFXTextArea fx:id="customerInfoTextArea" editable="false" layoutX="160.0" layoutY="149.0" prefHeight="372.0" prefWidth="475.0" wrapText="true" />
+                        <JFXTextArea fx:id="customerInfoTextArea" editable="false" layoutX="29.0" layoutY="163.0" prefHeight="211.0" prefWidth="118.0" wrapText="true" />
                         <Label fx:id="infoLabel" contentDisplay="CENTER" layoutX="312.0" layoutY="30.0" prefHeight="17.0" prefWidth="159.0" textFill="RED" />
+                        <ListView fx:id="ordersLV" layoutX="174.0" layoutY="163.0" onMouseClicked="#handleOrderChoice" prefHeight="217.0" prefWidth="190.0" />
+                        <ListView fx:id="orderLinesLV" layoutX="449.0" layoutY="161.0" onMouseClicked="#handleChosenOrderLine" prefHeight="219.0" prefWidth="357.0" />
+                        <JFXTextArea fx:id="chosenProductTA" editable="false" layoutX="449.0" layoutY="420.0" prefHeight="140.0" prefWidth="236.0" wrapText="true" />
+                        <JFXButton fx:id="plusBtn" layoutX="726.0" layoutY="477.0" onAction="#handleSingleAmountEdit" text="+" />
+                        <JFXButton fx:id="minusBtn" layoutX="763.0" layoutY="477.0" onAction="#handleSingleAmountEdit" text="-" />
+                        <JFXButton fx:id="removeBtn" layoutX="731.0" layoutY="524.0" onAction="#handleRemoveProduct" prefHeight="27.0" prefWidth="57.0" text="Fjern" />
                      </children></AnchorPane>
             </content>
           </Tab>

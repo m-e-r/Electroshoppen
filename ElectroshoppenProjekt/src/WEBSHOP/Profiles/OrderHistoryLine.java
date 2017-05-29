@@ -13,13 +13,15 @@ public class OrderHistoryLine {
     private String orderNumber, date, productName;
     private Double productPrice;
     private int amount;
+    private long productId;
     
-    public OrderHistoryLine(String orderNumber, String date, String productName, Double productPrice, int amount){
+    public OrderHistoryLine(String orderNumber, String date, String productName, Double productPrice, int amount, long productId){
 	this.orderNumber = orderNumber;
 	this.date = date;
 	this.productName = productName;
 	this.productPrice = productPrice;
 	this.amount = amount;
+        this.productId = productId;
     }
 
     /**
@@ -55,6 +57,31 @@ public class OrderHistoryLine {
      */
     public int getAmount() {
 	return amount;
+    }
+    
+    /**
+     * Used when presented alongside its full Oder, which must then contain the 
+     * OrderNumber and date.
+     * @return 
+     */
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        
+        str.append(this.productId)
+                .append("#")
+                .append("Produkt:\n")
+                .append(this.productName)
+                .append("\n\n")
+                .append("Pris:\n")
+                .append(this.productPrice)
+                .append("\n\n")
+                .append("Mængde:\n")
+                .append(this.amount)
+                .append("\n");
+        
+        //System.out.println("OrderLine: " + str);
+        return new String(str);
     }
     
 }

@@ -60,4 +60,30 @@ public class POS {
 	}
 	return foundProfile;
     }
+    
+    public int getAmountForOrderLine(long orderNumber) {
+        int amount = 0;
+        String query = "SELECT amount from order_line WHERE order_number = " + orderNumber + ";";
+        
+        DBConnection dbc = new DBConnection();
+	ResultSet select = dbc.runQueryExcecute(query);
+        
+        try {
+            while (select.next()) {
+                amount = select.getInt("amount");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(POS.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return amount;
+    }
+    
+    public void editAmountForOrderLine(long orderNumber, long productId, int amount) {
+        String query = "UPDATE order_line SET amount = amount + " + amount +  " WHERE order_number = " + orderNumber + " AND product_id = " + productId + ";";
+        
+        DBConnection dbc = new DBConnection();
+	dbc.runQueryUpdate(query);
+
+    }
 }
