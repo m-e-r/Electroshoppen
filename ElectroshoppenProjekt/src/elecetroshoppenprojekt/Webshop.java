@@ -8,6 +8,7 @@ package elecetroshoppenprojekt;
 import Authentication.Token;
 import ProductStuff.Product;
 import ProductStuff.ProductCategory;
+import WEBSHOP.Address;
 import WEBSHOP.Order.OrderLine;
 import WEBSHOP.Profiles.CustomerProfile;
 import WEBSHOP.Profiles.Profile;
@@ -78,6 +79,23 @@ public class Webshop implements iWebshopLogin{
     
     public String[] searchProfile(String email) {
         return this.customer.searchProfile(email);
+    }
+    
+    public String[] getAddressArray(String email) {
+        return this.customer.getAddressArray(email);
+    }
+    
+    public Address getAddress() {
+        return this.customer.getAddress();
+    }
+    
+    public void setAddress(String streetName, String streetNumber, String secAddress, String zipCode,
+            String city) {
+        this.customer.setAddress(streetName, streetNumber, secAddress, zipCode, city);
+    }
+    
+    public boolean isValid() {
+        return this.customer.isValid();
     }
     
     

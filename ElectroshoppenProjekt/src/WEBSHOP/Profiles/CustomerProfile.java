@@ -120,18 +120,43 @@ public class CustomerProfile extends Profile {
 
     @Override
     public void updateProfile(String name, String email, String phone, String cvr) {
-	Address address = this.getAddress();
+        Address address = this.getAddress();
 	String query = "UPDATE public.customer\n"
 		+ "	SET full_name='" + name + "', email='"
 		+ email + "', phone_number='" + phone + "', cvr='" + cvr + "'\n"
 		+ "	WHERE email='" + email + "';\n"
 		+ "UPDATE public.adress \n"
-		+ "SET email='" + email + "', street_name='" + address.getStreetName() + "', city='" + address.getCity() + "', "
+		+ "SET email='" + email + "', "
+                + "street_name='" + address.getStreetName() + "', city='" + address.getCity() + "', "
 		+ "postal='" + Integer.parseInt(address.getZipCode()) + "', street_number="
 		+ "'" + Integer.parseInt(address.getStreetNumber()) + "', secadress='"
-		+ address.getSecAddress() + "'";
+                + address.getSecAddress() + "'"
+                + "WHERE email='" + email +"';";
 	DBConnection dbc = new DBConnection();
 	dbc.runQueryUpdate(query);
+    }
+    
+    public String[] getAddressArray(String email) {
+        String[] array = new String[5];
+        String query = "SELECT * FROM public.adress \n"
+                + "WHERE email='"+email+"'";
+        DBConnection dbc = new DBConnection();
+        ResultSet rs = dbc.runQueryExcecute(query);
+        try {
+            while(rs.next()) {
+                array[0] = rs.getString("street_name");
+                array[1] = rs.getString("street_number");
+                array[2] = rs.getString("secadress");
+                array[3] = rs.getString("postal");
+                array[4] = rs.getString("city");
+                
+                
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerProfile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return array;
     }
 
     public String getCvr() {
@@ -155,6 +180,10 @@ public class CustomerProfile extends Profile {
         } else {
             return null;
         }
+    }
+    
+    public boolean isValid() {
+        return this.token.isValid();
     }
 
     public void setToken(Token token) {

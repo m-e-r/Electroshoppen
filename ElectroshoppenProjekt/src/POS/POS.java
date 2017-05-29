@@ -31,7 +31,7 @@ public class POS {
      * @return Returns a profile as type Profile.
      */
     public String[] getCustomerInfo(String email) {
-	String[] foundProfile = new String[4];
+	String[] foundProfile = new String[5];
 	String query = "SELECT full_name, email, phone_number, cvr\n"
 		+ "	FROM public.customer\n"
 		+ "    WHERE email = '" + email + "';";
@@ -46,10 +46,13 @@ public class POS {
 		    String mail = select.getString("email");
 		    String phone = select.getString("phone_number");
 		    String cvr = select.getString("cvr");
-		    foundProfile[0] = name;
-		    foundProfile[1] = mail;
-		    foundProfile[2] = phone;
-		    foundProfile[3] = cvr;
+		    String fName = name.split(";")[0];
+                    String lName = name.split(";")[1];
+                    foundProfile[0] = fName;
+		    foundProfile[1] = lName;
+                    foundProfile[2] = mail;
+		    foundProfile[3] = phone;
+		    foundProfile[4] = cvr;
 		} while (select.next());
 		select.close();
 

@@ -19,7 +19,7 @@ public class DBConnection {
     public DBConnection() {
 	String url = "jdbc:postgresql://localhost:5432/SemesterProjectDB";
 	String user = "postgres";
-        String password = "bonansa";
+        String password = "admin123";
 
 	
 	//CONNECTING

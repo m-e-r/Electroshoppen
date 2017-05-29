@@ -50,6 +50,14 @@ public class Token {
         }
     }
     
+    public boolean isValid() {
+        if ((this.creation + this.goTime) > this.date.getTime()) {
+	    this.creation = this.date.getTime();
+            return true;
+        }
+        return false;
+    }
+    
     
     /**
      * Used in Login class for quries.

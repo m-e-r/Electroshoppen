@@ -10,6 +10,7 @@ import ProductStuff.Product;
 import ProductStuff.ProductCategory;
 import java.util.ArrayList;
 import PIM.*;
+import WEBSHOP.Address;
 import WEBSHOP.Profiles.CustomerProfile;
 import WEBSHOP.Profiles.OrderHistory;
 import WEBSHOP.Profiles.Profile;
@@ -50,7 +51,16 @@ public interface iFacade {
     
     //Webshop
     void setLoginForCustomer(Token token);
+    void updateProfile(String name, String email, String phone, String cvr);
+    String[] searchProfile(String email);
+    String pay();
+    void addToViewedProducts(Product p);
+    String[] getAddressArray(String email);
+    Address getAddress();
+    void setAddress(String streetName, String streetNumber, String secAddress, String zipCode,
+            String city);
     
+    boolean isValid();
     
     //PIM
     void editName(long id, String newName);

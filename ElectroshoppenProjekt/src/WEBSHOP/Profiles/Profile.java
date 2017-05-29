@@ -81,15 +81,17 @@ public abstract class Profile {
     /**
      * @return the adress
      */
-    public Address getAddress() {
-	return adress;
+    public void setAddress(String streetName, String streetNumber, String secAddress, String zipCode,
+            String city) {
+        
+	this.adress = new Address(streetName, streetNumber, secAddress, zipCode, city);
     }
 
     /**
      * @param adress the adress to set
      */
-    public void setAddress(Address adress) {
-	this.adress = adress;
+    public Address getAddress() {
+	return this.adress;
     }
 
     /**

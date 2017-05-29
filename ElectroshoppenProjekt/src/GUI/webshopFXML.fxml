@@ -271,8 +271,13 @@
                               <TextField fx:id="pAdressTF2" promptText="Valgfri" GridPane.columnIndex="2" GridPane.rowIndex="6" />
                               <TextField fx:id="pPostnrTF" GridPane.columnIndex="2" GridPane.rowIndex="7" />
                               <TextField fx:id="pCityTF" GridPane.columnIndex="2" GridPane.rowIndex="8" />
-                              <Button fx:id="updateBTN" mnemonicParsing="false" onAction="#updateProfile" text="Opdater oplysninger" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
+                              <Button fx:id="updateBTN" mnemonicParsing="false" onAction="#updateProfile" text="Opdater oplysninger" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
                               <Button fx:id="logoutBTN" mnemonicParsing="false" onAction="#logout" text="Logud" GridPane.halignment="CENTER" />
+                              <Label fx:id="pCVRl" text="CVR:" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="9">
+                                 <GridPane.margin>
+                                    <Insets right="10.0" />
+                                 </GridPane.margin>
+                              </Label>
                            </children>
                         </GridPane>
                      </children>

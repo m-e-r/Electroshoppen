@@ -67,9 +67,44 @@ public class Facade implements iFacade{
     public String showBasket() {
         return this.webshop.showBasket();
     }
+
+    @Override
+    public void setLoginForCustomer(Token token) {
+        this.webshop.setLoginForCustomer(token);
+    }
     
+    @Override
+    public void updateProfile(String name, String email, String phone, String cvr) {
+        this.webshop.updateProfile(name, email, phone, cvr);
+    }
     
+    @Override 
+    public String[] searchProfile(String email) {
+        return this.webshop.searchProfile(email);
+    }
     
+    @Override
+    public String pay() {
+        return this.webshop.pay();
+    }
+    
+    @Override
+    public void addToViewedProducts(Product p) {
+        this.webshop.addToViewedProducts(p);
+    }
+    @Override
+    public String[] getAddressArray(String email) {
+        return this.webshop.getAddressArray(email);
+    }
+    @Override
+    public Address getAddress(){
+        return this.webshop.getAddress();
+    }
+    
+    @Override
+    public boolean isValid() {
+        return this.webshop.isValid();
+    }
 
     @Override
     public String getToken(){
@@ -182,8 +217,10 @@ public class Facade implements iFacade{
     }
 
     @Override
-    public void setLoginForCustomer(Token token) {
-        this.webshop.setLoginForCustomer(token);
+    public void setAddress(String streetName, String streetNumber, String secAddress, String zipCode, String city) {
+        this.webshop.setAddress(streetName, streetNumber, secAddress, zipCode, city);
     }
+
+    
 
 }
