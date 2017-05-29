@@ -15,9 +15,9 @@ public class OrderHistoryTestMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-	OrderHistory oh = new OrderHistory("mail2@mail2.dk");
-	System.out.println(oh.toString());
-	
+//	OrderHistory oh = new OrderHistory("mail2@mail2.dk");
+//	System.out.println(oh.toString());
+//	
 //	String s = "Tesgkld";
 //	System.out.println(String.format("Navn: %-30s soso: ", s));
 	

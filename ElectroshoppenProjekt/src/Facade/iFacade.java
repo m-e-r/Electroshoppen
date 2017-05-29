@@ -14,6 +14,7 @@ import WEBSHOP.Address;
 import WEBSHOP.Profiles.CustomerProfile;
 import WEBSHOP.Profiles.OrderHistory;
 import WEBSHOP.Profiles.Profile;
+import java.util.HashMap;
 
 /**
  *
@@ -74,5 +75,8 @@ public interface iFacade {
     //POS
     String[] getCustomerInfo(String email);
     OrderHistory getOrderHistory(String email);
+    HashMap<String, ArrayList<String>> getOrderLinesByOrder(String email);
+    int getAmountForOrderLine(long orderNumber);
+    void editAmountForOrderLine(long orderNumber, long productId, int amount);
     
 }

@@ -18,6 +18,7 @@ import WEBSHOP.Order.*;
 import WEBSHOP.Profiles.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 
 
@@ -52,6 +53,7 @@ public class Facade implements iFacade{
         this.pimEdit = new ProductEditing();
         this.pimMan = new ProductManager();
 	this.pos = new POS();
+        this.orderHistory = new OrderHistory();
     }
     
     //Webshop
@@ -207,7 +209,7 @@ public class Facade implements iFacade{
 
     @Override
     public OrderHistory getOrderHistory(String email) {
-	this.orderHistory = new OrderHistory(email);
+	
 	return this.orderHistory;
     }
 
@@ -222,5 +224,19 @@ public class Facade implements iFacade{
     }
 
     
+    @Override
+    public HashMap<String, ArrayList<String>> getOrderLinesByOrder(String email) {
+        return this.orderHistory.getOrderLinesByOrder(email);
+    }
+
+    @Override
+    public int getAmountForOrderLine(long orderNumber) {
+        return this.pos.getAmountForOrderLine(orderNumber);
+    }
+
+    @Override
+    public void editAmountForOrderLine(long orderNumber, long productId, int amount) {
+        this.pos.editAmountForOrderLine(orderNumber, productId, amount);
+    }
 
 }
