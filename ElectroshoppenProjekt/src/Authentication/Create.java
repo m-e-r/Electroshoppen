@@ -16,8 +16,6 @@ import WEBSHOP.Profiles.Profile;
  * @author Kasper
  */
 public class Create extends Authentication {
-
-    private Profile profile;
     private String phoneNumber;
     private String eMail;
     private Address adress;
@@ -71,11 +69,11 @@ public class Create extends Authentication {
 	//Create new Profile instance based on given type
 	String typeLower = type.toLowerCase();
 	if (typeLower.equals("customer")) {
-	    this.profile = new CustomerProfile(this.fullName, this.phoneNumber,
+	    Profile profile = new CustomerProfile(this.fullName, this.phoneNumber,
 		    this.eMail, this.adress, super.password, this.cvr);
 
 	} else if (typeLower.equals("employee") ) {
-	    this.profile = new EmployeeProfile(this.fullName, this.phoneNumber,
+	    Profile profile = new EmployeeProfile(this.fullName, this.phoneNumber,
 		    this.eMail, this.adress, super.password);
 
 	} else {
