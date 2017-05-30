@@ -6,8 +6,8 @@
 package elecetroshoppenprojekt;
 
 import Authentication.Token;
-import ProductStuff.Product;
-import ProductStuff.ProductCategory;
+import WEBSHOP.Product.Product;
+import WEBSHOP.Product.ProductCategory;
 import WEBSHOP.Address;
 import WEBSHOP.Order.OrderLine;
 import WEBSHOP.Profiles.CustomerProfile;

@@ -6,8 +6,8 @@
 package WEBSHOP.Order;
 import WEBSHOP.Order.OrderLine;
 import java.util.ArrayList;
-import ProductStuff.Product;
-import ProductStuff.ProductCategory;
+import WEBSHOP.Product.Product;
+import WEBSHOP.Product.ProductCategory;
 
 /**
  *

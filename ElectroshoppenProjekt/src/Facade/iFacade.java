@@ -6,8 +6,8 @@
 package Facade;
 
 import Authentication.Token;
-import ProductStuff.Product;
-import ProductStuff.ProductCategory;
+import WEBSHOP.Product.Product;
+import WEBSHOP.Product.ProductCategory;
 import java.util.ArrayList;
 import PIM.*;
 import WEBSHOP.Address;

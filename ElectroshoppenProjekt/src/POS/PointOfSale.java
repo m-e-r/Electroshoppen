@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  *
  * @author Jacob
  */
-public class POS {
+public class PointOfSale {
 
     public void pay() {
 
@@ -59,7 +59,7 @@ public class POS {
 	    }
 
 	} catch (SQLException ex) {
-	    Logger.getLogger(POS.class.getName()).log(Level.SEVERE, null, ex);
+	    Logger.getLogger(PointOfSale.class.getName()).log(Level.SEVERE, null, ex);
 	}
 	return foundProfile;
     }
@@ -76,7 +76,7 @@ public class POS {
                 amount = select.getInt("amount");
             }
         } catch (SQLException ex) {
-            Logger.getLogger(POS.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PointOfSale.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return amount;

@@ -5,7 +5,7 @@
  */
 package WEBSHOP;
 
-import ProductStuff.Product;
+import WEBSHOP.Product.Product;
 import WEBSHOP.Profiles.Profile;
 
 /**

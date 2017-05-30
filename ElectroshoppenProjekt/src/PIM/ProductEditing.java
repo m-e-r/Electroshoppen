@@ -6,7 +6,7 @@
 package PIM;
 
 import DBManager.DBConnection;
-import ProductStuff.ProductCategory;
+import WEBSHOP.Product.ProductCategory;
 
 /**
  * Class to edit information in database on products.

@@ -5,8 +5,8 @@
  */
 package PIM;
 
-import ProductStuff.Product;
-import ProductStuff.ProductCategory;
+import WEBSHOP.Product.Product;
+import WEBSHOP.Product.ProductCategory;
 
 /**
  *

@@ -4,15 +4,15 @@
  * and open the template in the editor.
  */
 package Facade;
+import WEBSHOP.Product.ProductCatalog;
 import elecetroshoppenprojekt.*;
-import ProductStuff.Product;
-import ProductStuff.ProductCategory;
+import WEBSHOP.Product.Product;
+import WEBSHOP.Product.ProductCategory;
 import Authentication.*;
 import DBManager.*;
 import PIM.ProductEditing;
 import PIM.ProductManager;
-import POS.POS;
-import ProductStuff.*;
+import POS.PointOfSale;
 import WEBSHOP.*;
 import WEBSHOP.Order.*;
 import WEBSHOP.Profiles.*;
@@ -44,7 +44,7 @@ public class Facade implements iFacade{
     private Webshop webshop;
     private ProductEditing pimEdit;
     private ProductManager pimMan;
-    private POS pos;
+    private PointOfSale pos;
     
     public Facade() {
         this.productCatalog = new ProductCatalog();
@@ -52,7 +52,7 @@ public class Facade implements iFacade{
         System.out.println("Webshop!");
         this.pimEdit = new ProductEditing();
         this.pimMan = new ProductManager();
-	this.pos = new POS();
+	this.pos = new PointOfSale();
         this.orderHistory = new OrderHistory();
     }
     

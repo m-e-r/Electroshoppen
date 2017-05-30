@@ -7,7 +7,7 @@ package GUI;
 
 import Facade.Facade;
 import Facade.iFacade;
-import ProductStuff.ProductCategory;
+import WEBSHOP.Product.ProductCategory;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;

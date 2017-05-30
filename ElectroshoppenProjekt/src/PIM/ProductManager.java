@@ -6,8 +6,8 @@
 package PIM;
 
 import DBManager.DBConnection;
-import ProductStuff.Product;
-import ProductStuff.ProductCategory;
+import WEBSHOP.Product.Product;
+import WEBSHOP.Product.ProductCategory;
 
 /**
  * Class used to add and remove products from database.

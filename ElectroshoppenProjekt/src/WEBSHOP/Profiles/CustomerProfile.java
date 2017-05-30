@@ -7,7 +7,7 @@ package WEBSHOP.Profiles;
 
 import Authentication.Token;
 import DBManager.DBConnection;
-import ProductStuff.Product;
+import WEBSHOP.Product.Product;
 import WEBSHOP.Address;
 import WEBSHOP.Order.Order;
 import WEBSHOP.Order.OrderLine;

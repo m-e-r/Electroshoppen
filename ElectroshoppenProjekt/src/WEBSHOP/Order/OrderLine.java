@@ -5,7 +5,7 @@
  */
 package WEBSHOP.Order;
 
-import ProductStuff.Product;
+import WEBSHOP.Product.Product;
 
 /**
  *

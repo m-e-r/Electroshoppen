@@ -6,7 +6,7 @@
 package WEBSHOP.Order;
 
 import DBManager.DBConnection;
-import ProductStuff.Product;
+import WEBSHOP.Product.Product;
 import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.*;
