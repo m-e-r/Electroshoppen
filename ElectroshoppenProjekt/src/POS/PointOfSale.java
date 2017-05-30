@@ -39,10 +39,11 @@ public class PointOfSale {
 	ResultSet select = dbc.runQueryExcecute(query);
 	try {
 	    if (!select.next()) {
-		System.out.println("no user");
+		 
 	    } else {
 		do {
 		    String name = select.getString("full_name");
+		     
 		    String mail = select.getString("email");
 		    String phone = select.getString("phone_number");
 		    String cvr = select.getString("cvr");

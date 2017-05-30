@@ -80,7 +80,7 @@ public class OrderHistoryLine {
                 .append(this.amount)
                 .append("\n");
         
-        //System.out.println("OrderLine: " + str);
+        // 
         return new String(str);
     }
     

@@ -75,13 +75,13 @@ public abstract class Authentication implements Authenticateable {
 	ResultSet user = dbc.runQueryExcecute(query); 
 	try {
 	    if (!user.next()) {
-		System.out.println("User does not exist."); //Should be removed
+		  //Should be removed
 		return false;
 	    }
 	} catch (SQLException ex) {
 	    Logger.getLogger(Authentication.class.getName()).log(Level.SEVERE, null, ex);
 	}
-	System.out.println("User already exist."); //Should be removed
+	  //Should be removed
 	return true;
     }
 

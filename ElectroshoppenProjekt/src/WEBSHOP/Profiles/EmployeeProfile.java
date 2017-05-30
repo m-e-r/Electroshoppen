@@ -39,7 +39,7 @@ public class EmployeeProfile extends Profile {
     @Override
     public void saveProfileToText() {
 	File file = new File("Employee_Profiles.txt"); //Put .txt file outside src folder.
-	System.out.println(file.getAbsolutePath());
+	 
 	try (FileWriter fileW = new FileWriter(file, true);
 		BufferedWriter bufferedW = new BufferedWriter(fileW);
 		PrintWriter output = new PrintWriter(bufferedW)) {

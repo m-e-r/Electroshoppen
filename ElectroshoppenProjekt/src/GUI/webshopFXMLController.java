@@ -43,8 +43,8 @@ import javafx.scene.layout.GridPane;
  */
 public class webshopFXMLController implements Initializable {
 
-    private Authenticateable authen;
-    public iFacade facade;
+    private static Authenticateable authen;
+    public static iFacade facade;
 
     ObservableList<?> products;
     ObservableList<?> categories;
@@ -100,22 +100,12 @@ public class webshopFXMLController implements Initializable {
     @FXML
     private JFXToggleButton toggleCustomer;
     @FXML
-    private Button productBTN;
-    @FXML
-    private TextArea productTA;
-    @FXML
-    private GridPane pGrid;
-    @FXML
-    private Button pBTN;
-    @FXML
     private TextField numberTF;
     @FXML
     private Button logoutBTN;
-    @FXML
     private TextField addressTF2;
     @FXML
     private PasswordField regPassField;
-    @FXML
     private TextField cvrTF;
     @FXML
     private Button basketBTN;
@@ -141,244 +131,262 @@ public class webshopFXMLController implements Initializable {
     private Tab profileTab;
     @FXML
     private GridPane profileGrid;
-    @FXML
     private Label lbl;
-    @FXML
     private TextField pCVRtf;
     @FXML
     private Label pCVRl;
+    @FXML
+    private Button updateBTN;
+    
+    private static String currentUserEmail = "";
+    @FXML
+    private TextField adressTF2;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.facade = WebshopFacade.getInstance().getFacade();
-        System.out.println("Facade!");
-        logMailTF.setText("mail2@mail2.dk");
-        logPF.setText("pass");
-        this.lbl = new Label();
-        this.registerGrid.add(lbl, 3, 10, 2, 1);
+	this.facade = WebshopFacade.getInstance().getFacade();
+	this.lbl = new Label();
+	this.registerGrid.add(lbl, 3, 10, 2, 1);
+	addressTF2 = new TextField();
+	addressTF2.setText("");
 
     }
 
+    @FXML
     public void buisnessAccount() {
-        if (this.registerGrid.getChildren().contains(cvrTF)) {
-            this.registerGrid.getChildren().remove(cvrTF);
-        } else {
-            this.cvrTF = new TextField();
-            this.cvrTF.setPromptText("CVR Nummer");
-            this.registerGrid.add(cvrTF, 3, 1);
-        }
+	if (this.registerGrid.getChildren().contains(cvrTF)) {
+	    this.registerGrid.getChildren().remove(cvrTF);
+	} else {
+	    this.cvrTF = new TextField();
+	    this.cvrTF.setPromptText("CVR Nummer");
+	    this.registerGrid.add(cvrTF, 3, 1);
+	}
 
     }
 
     @FXML
     private void searchProducts(ActionEvent event) {
-        this.productGrid.getChildren().clear();
-        this.products = FXCollections.observableArrayList(facade.searchProductsFromText(this.searchTF.getText()));
-        int c1 = 0;
-        int c2 = 0;
-        for (int i = 0; i < this.products.size(); i++) {
-            String[] s = this.products.get(i).toString().split(";");
-            GridPane gp = null;
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("pFXML.fxml"));
-                gp = (GridPane) fxmlLoader.load();
+	this.productGrid.getChildren().clear();
+	this.products = FXCollections.observableArrayList(facade.searchProductsFromText(this.searchTF.getText()));
+	int c1 = 0;
+	int c2 = 0;
+	for (int i = 0; i < this.products.size(); i++) {
+	    String[] s = this.products.get(i).toString().split(";");
+	    GridPane gp = null;
+	    try {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("pFXML.fxml"));
+		gp = (GridPane) fxmlLoader.load();
 
-            } catch (IOException ex) {
-                Logger.getLogger(webshopFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+	    } catch (IOException ex) {
+		Logger.getLogger(webshopFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+	    }
 
-            this.productGrid.add(gp, c2, c1);
-            Button b = (Button) gp.getChildren().get(2);
-            b.setUserData(s[4]);
-            b.setStyle("-fx-background-color: transparent");
-            b.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    goToProduct(Long.parseLong((String) b.getUserData()));
-                }
-            });
-            TextArea ta = (TextArea) gp.getChildren().get(0);
-            ta.appendText(s[0]);
-            ta.appendText(s[1]);
+	    this.productGrid.add(gp, c2, c1);
+	    Button b = (Button) gp.getChildren().get(2);
+	    b.setUserData(s[4]);
+	    b.setStyle("-fx-background-color: transparent");
+	    b.setOnAction(new EventHandler<ActionEvent>() {
+		@Override
+		public void handle(ActionEvent event) {
+		    goToProduct(Long.parseLong((String) b.getUserData()));
+		}
+	    });
+	    TextArea ta = (TextArea) gp.getChildren().get(0);
+	    ta.appendText(s[0]);
+	    ta.appendText(s[1]);
 
-            c2++;
-            if (c2 == productGrid.getColumnConstraints().size()) {
-                c1++;
-                c2 = 0;
-            }
-        }
+	    c2++;
+	    if (c2 == productGrid.getColumnConstraints().size()) {
+		c1++;
+		c2 = 0;
+	    }
+	}
     }
 
-    @FXML
-    public void afterLogin(String email) {
-        String[] customer = facade.getCustomerInfo(email);
-        String[] address = facade.getAddressArray(email);
-        String[] fullArray = new String[customer.length + address.length];
-        for (int i = 0, j = customer.length; i < customer.length; i++, j++) {
-            fullArray[i] = customer[i];
-            fullArray[j] = address[i];
-            System.out.println(Arrays.toString(fullArray));
-        }
-        TextField[] tfs = new TextField[10];
-        tfs[0] = this.pFnameTF;
-        tfs[1] = this.pLnameTF;
-        tfs[2] = this.pMailTF;
-        tfs[3] = this.pPhoneTF;
-        tfs[5] = this.pAddressTF;
-        tfs[6] = this.pNumberTF;
-        tfs[7] = this.pAdressTF2;
-        tfs[8] = this.pPostnrTF;
-        tfs[9] = this.pCityTF;
+    public void afterLogin() {
+	 
+	String[] customer = facade.getCustomerInfo(currentUserEmail);
+	String[] address = facade.getAddressArray(currentUserEmail);
+	String[] fullArray = new String[customer.length + address.length];
+	for (int i = 0, j = customer.length; i < customer.length; i++, j++) {
+	     
+	     
+	    fullArray[i] = customer[i];
+	    fullArray[j] = address[i];
+	     
+	}
+	
+	
+	
+	
+	TextField[] tfs = new TextField[10];
+	tfs[0] = this.pFnameTF;
+	tfs[1] = this.pLnameTF;
+	tfs[2] = this.pMailTF;
+	tfs[3] = this.pPhoneTF;
+	tfs[5] = this.pAddressTF;
+	tfs[6] = this.pNumberTF;
+	tfs[7] = this.pAdressTF2;
+	tfs[8] = this.pPostnrTF;
+	tfs[9] = this.pCityTF;
 
-        this.loginTab.setDisable(true);
-        this.profileTab.setDisable(false);
-        this.registerTab.setDisable(true);
+	this.loginTab.setDisable(true);
+	this.profileTab.setDisable(false);
+	this.registerTab.setDisable(true);
 
-        if (customer[4] != null) {
-            pCVRtf = new TextField();
-            tfs[4] = pCVRtf;
-            this.profileGrid.add(pCVRtf, 2, 9);
-            pCVRl.setVisible(true);
-        }
-        int i = 0;
-        for (TextField tf : tfs) {
-            tf.setText(fullArray[i]);
-            i++;
-        }
+	if (customer[4] != null) {
+	    pCVRtf = new TextField();
+	    tfs[4] = pCVRtf;
+	    this.profileGrid.add(pCVRtf, 2, 9);
+	    pCVRl.setVisible(true);
+	}
+	int i = 0;
+	for (TextField tf : tfs) {
+	    tf.setText(fullArray[i]);
+	    i++;
+	}
 
-
-        this.tabPane.getSelectionModel().select(productTab);
-        this.logMailTF.setText("");
-        this.logPF.setText("");
+	this.tabPane.getSelectionModel().select(productTab);
+	this.logMailTF.setText("");
+	this.logPF.setText("");
     }
+    
+//    public String getEmailLogin(){
+//	return currentUserEmail;
+//    }
 
     @FXML
     private void login(Event event) {
 
-        //START
-        this.authen = new Login(this.logMailTF.getText(), this.logPF.getText());
+	//START
+	this.authen = new Login(this.logMailTF.getText(), this.logPF.getText());
+	
+	if (this.authen.doLogin() != null) {
+	    this.currentUserEmail = this.logMailTF.getText();
+	    this.facade.setCustomerEmail(currentUserEmail);
+	    this.afterLogin();
+	    
+	    this.facade.setLoginForCustomer(this.authen.doLogin());
 
-        if (this.authen.doLogin() != null) {
-            this.afterLogin(this.logMailTF.getText());
-            this.facade.setLoginForCustomer(this.authen.doLogin());
-
-        } else {
-            Label label = new Label("Den indtastede E-Mail eller kode er forkert. Venligst prøv igen");
-            this.loginGrid.add(label, 2, 4, 2, 1);
-            this.logPF.setText("");
-        }
+	} else {
+	    Label label = new Label("Den indtastede E-Mail eller kode er forkert. Venligst prøv igen");
+	    this.loginGrid.add(label, 2, 4, 2, 1);
+	    this.logPF.setText("");
+	}
     }
 
     @FXML
     private void logout() {
-        if (this.authen.doLogout()) {
-            this.loginTab.setDisable(false);
-            this.registerTab.setDisable(false);
-            this.tabPane.getSelectionModel().select(productTab);
-            this.profileTab.setDisable(true);
-        }
+	 
+	if (this.authen.doLogout()) {
+	    this.currentUserEmail = "";
+	    this.loginTab.setDisable(false);
+	    this.registerTab.setDisable(false);
+	    this.tabPane.getSelectionModel().select(productTab);
+	    this.profileTab.setDisable(true);
+	    this.facade.setNewCustomer();
+	}
     }
 
     @FXML
     private void register(ActionEvent event) {
 
-        TextField[] tfs = new TextField[11];
-        if (!this.registerGrid.getChildren().contains(cvrTF)) {
-            this.cvrTF = new TextField();
-            this.registerGrid.add(cvrTF, 0, 0);
-            this.cvrTF.clear();
-            this.cvrTF.setStyle("-fx-background-color: transparent");
-        }
+	TextField[] tfs = new TextField[11];
+	if (!this.registerGrid.getChildren().contains(cvrTF)) {
+	    this.cvrTF = new TextField();
+	    this.registerGrid.add(cvrTF, 0, 0);
+	    this.cvrTF.clear();
+	    this.cvrTF.setStyle("-fx-background-color: transparent");
+	}
 
-        if (!this.mailTF.getText().contains("@") || !this.mailTF.getText().contains(".")) {
-            Label label = new Label("Ugyldig E-Mail");
-            label.setStyle("-fx-text-fill: RED");
-            this.registerGrid.add(label, 3, 3);
-        } else {
-            tfs[0] = this.fNameTF;
-            tfs[1] = this.lNameTF;
-            tfs[2] = this.mailTF;
-            tfs[3] = this.regPhoneTF;
-            tfs[4] = this.addressTF;
-            tfs[5] = this.numberTF;
-            tfs[6] = this.addressTF2;
-            tfs[7] = this.postnrTF;
-            tfs[8] = this.cityTF;
-            tfs[9] = this.regPassField;
-            tfs[10] = this.cvrTF;
+	if (!this.mailTF.getText().contains("@") || !this.mailTF.getText().contains(".")) {
+	    Label label = new Label("Ugyldig E-Mail");
+	    label.setStyle("-fx-text-fill: RED");
+	    this.registerGrid.add(label, 3, 3);
+	} else {
 
-            this.facade.setAddress(tfs[4].getText(), tfs[5].getText(), tfs[6].getText(), tfs[7].getText(),
-                    tfs[8].getText());
+	    tfs[0] = this.fNameTF;
+	    tfs[1] = this.lNameTF;
+	    tfs[2] = this.mailTF;
+	    tfs[3] = this.regPhoneTF;
+	    tfs[4] = this.addressTF;
+	    tfs[5] = this.numberTF;
+	    tfs[6] = this.addressTF2;
+	    tfs[7] = this.postnrTF;
+	    tfs[8] = this.cityTF;
+	    tfs[9] = this.regPassField;
+	    tfs[10] = this.cvrTF;
 
-            this.authen = new Create(tfs[0].getText() + ";" + tfs[1].getText(), tfs[2].getText(),
-                    tfs[3].getText(), this.facade.getAddress(), tfs[9].getText(), tfs[10].getText());
+	    this.facade.setAddress(tfs[4].getText(), tfs[5].getText(), tfs[6].getText(), tfs[7].getText(),
+		    tfs[8].getText());
 
-            if (this.getAuthen().createUser("customer")) {
-                lbl.setText("Brugeren er oprettet.");
-                this.authen = new Login(tfs[2].getText(), tfs[9].getText());
-                this.getAuthen().doLogin();
-                this.facade.setLoginForCustomer(this.authen.doLogin());
-            } else {
-                lbl.setText("De indtastede oplysninger er ugyldige eller brugeren findes allerede");
-            }
-        }
+	    this.authen = new Create(tfs[0].getText() + ";" + tfs[1].getText(), tfs[2].getText(),
+		    tfs[3].getText(), this.facade.getAddress(), tfs[9].getText(), tfs[10].getText());
+
+	    if (this.getAuthen().createUser("customer")) {
+		lbl.setText("Brugeren er oprettet.");
+		this.authen = new Login(tfs[2].getText(), tfs[9].getText());
+		this.getAuthen().doLogin();
+		this.facade.setLoginForCustomer(this.authen.doLogin());
+	    } else {
+		lbl.setText("De indtastede oplysninger er ugyldige eller brugeren findes allerede");
+	    }
+	}
     }
 
     @FXML
     private void showBasket(ActionEvent event) {
-        TextArea ta = new TextArea();
-        this.mainPane.getChildren().add(ta);
-        ta.setEditable(false);
-        ta.appendText(this.facade.showBasket());
-        this.basketBTN.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                closeBasket(event, ta);
-            }
-        });
+	TextArea ta = new TextArea();
+	this.mainPane.getChildren().add(ta);
+	ta.setEditable(false);
+	ta.appendText(this.facade.showBasket());
+	this.basketBTN.setOnAction(new EventHandler<ActionEvent>() {
+	    @Override
+	    public void handle(ActionEvent event) {
+		closeBasket(event, ta);
+	    }
+	});
     }
 
-    @FXML
     private void closeBasket(ActionEvent event, TextArea ta) {
-        this.mainPane.getChildren().remove(ta);
-        this.basketBTN.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                showBasket(event);
-            }
-        });
+	this.mainPane.getChildren().remove(ta);
+	this.basketBTN.setOnAction(new EventHandler<ActionEvent>() {
+	    @Override
+	    public void handle(ActionEvent event) {
+		showBasket(event);
+	    }
+	});
     }
 
     @FXML
     private void updateProfile(ActionEvent event) {
-        this.facade.setAddress(this.pAddressTF.getText(), this.pNumberTF.getText(), this.pAdressTF2.getText(), this.pPostnrTF.getText(),
-                this.pCityTF.getText());
-        this.facade.updateProfile(this.pFnameTF.getText() + ";" + this.pLnameTF.getText(),
-                this.pMailTF.getText(), this.pPhoneTF.getText(), this.pCVRtf.getText());
+	this.facade.setAddress(this.pAddressTF.getText(), this.pNumberTF.getText(), this.pAdressTF2.getText(), this.pPostnrTF.getText(),
+		this.pCityTF.getText());
+	this.facade.updateProfile(this.pFnameTF.getText() + ";" + this.pLnameTF.getText(),
+		this.pMailTF.getText(), this.pPhoneTF.getText(), this.pCVRtf.getText());
     }
 
-    @FXML
     public void goToProduct(long productNr) {
-        AnchorPane pane;
-        try {
-            FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("productFXML.fxml"));
-            pane = (AnchorPane) fxmlLoader1.load();
-            ProductFXMLController controller = fxmlLoader1.<ProductFXMLController>getController();
-            controller.setProductId(productNr);
-            this.mainPane.getChildren().setAll(pane);
-        } catch (IOException ex) {
-            Logger.getLogger(webshopFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+	AnchorPane pane;
+	try {
+	    FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("productFXML.fxml"));
+	    pane = (AnchorPane) fxmlLoader1.load();
+	    ProductFXMLController controller = fxmlLoader1.<ProductFXMLController>getController();
+	    controller.setProductId(productNr);
+	    this.mainPane.getChildren().setAll(pane);
+	} catch (IOException ex) {
+	    Logger.getLogger(webshopFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+	}
     }
 
     /**
      * @return the authen
      */
     public Authenticateable getAuthen() {
-        return authen;
+	return authen;
     }
 
 }

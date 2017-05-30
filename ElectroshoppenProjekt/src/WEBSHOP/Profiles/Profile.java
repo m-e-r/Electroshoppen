@@ -100,6 +100,10 @@ public abstract class Profile {
     public String getPassword() {
 	return password;
     }
+    
+    public void setEmail(String email){
+	this.eMail = email;
+    }
 
     @Override
     public String toString() {

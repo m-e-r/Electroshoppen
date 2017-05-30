@@ -38,8 +38,8 @@ public class ElecetroshoppenProjekt extends Application {
 	launch(args);
 
 //	DBConnection dbc = new DBConnection();
-//	System.out.println(dbc.toString());
-//	System.out.println(dbc.getClass());
+//	 
+//	 
 //	
 	//Code to run query for database, should probably be chance, because the while loop should be
 	//different for each function in the program. The execute should maybe be in the webshop package
@@ -47,7 +47,7 @@ public class ElecetroshoppenProjekt extends Application {
 //	ResultSet select = dbc.runQuery("SELECT * FROM Component");
 //	try {
 //	    while (select.next()){
-//		System.out.println(select.next());
+//		 
 //		
 //	    }
 //	} catch (SQLException ex) {

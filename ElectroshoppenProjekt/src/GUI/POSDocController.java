@@ -341,7 +341,7 @@ public class POSDocController implements Initializable {
 	    if (foundProfile[0] == null) {
 		customerInfoTextArea.setText("Ingen kunde fundet med email: " + this.email);
 	    } else {
-                //System.out.println("MAP " + this.facade.getOrderLinesByOrder(this.email));
+                // 
                 this.orderLinesByOder = this.facade.getOrderLinesByOrder(this.email);
               		customerInfoTextArea.setText("Navn: " + foundProfile[0]
 			+ "\nEmail: " + foundProfile[1]
@@ -361,7 +361,7 @@ public class POSDocController implements Initializable {
         
         this.ordersForView.clear();
         this.ordersForView.addAll(this.orderLinesByOder.keySet());
-        System.out.println(ordersForView);
+         
         this.ordersLV.setItems(this.ordersForView);
         
     }
@@ -369,9 +369,9 @@ public class POSDocController implements Initializable {
     @FXML
     private void handleOrderChoice() {
         this.chosenOrder = this.ordersLV.getSelectionModel().getSelectedItem();
-        //System.out.println("ORDER    " + this.orderLinesByOder.get(this.chosenOrder));
+        // 
         this.orderLinesForView.clear();
-        //System.out.println("Controller     " + this.orderLinesByOder.get(this.chosenOrder).toString());
+        // 
         this.orderLinesForView.addAll(this.orderLinesByOder.get(this.chosenOrder));
         this.orderLinesLV.setItems(this.orderLinesForView);   
     }

@@ -30,22 +30,22 @@ public class ProductMainTester {
 //        //Search products through the console!  
 //        String searchWord;
 //        do {
-//            System.out.println("Type a search word!");
+//             
 //            searchWord = sc.next();
 //            products = prdCat.searchProductsFromText(searchWord); 
 //            
 //            if (products.isEmpty()) {
-//                System.out.println("\nNo results found. Type 0 to exit.");
+//                 
 //                
 //            } else {
-//                System.out.println("\n" + products.size() + " Results found:");
+//                 
 //            }
 //            
 //            for (Product p : products) {
-//                System.out.println(p.getProductName());
+//                 
 //            }
 //            
-//            System.out.println("\n");
+//             
 //            
 //            
 //        } while (!searchWord.equals("0"));

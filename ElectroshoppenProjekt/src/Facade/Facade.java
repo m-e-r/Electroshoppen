@@ -49,7 +49,7 @@ public class Facade implements iFacade{
     public Facade() {
         this.productCatalog = new ProductCatalog();
         this.webshop = new Webshop();
-        System.out.println("Webshop!");
+         
         this.pimEdit = new ProductEditing();
         this.pimMan = new ProductManager();
 	this.pos = new PointOfSale();
@@ -69,6 +69,8 @@ public class Facade implements iFacade{
     public String showBasket() {
         return this.webshop.showBasket();
     }
+    
+    
 
     @Override
     public void setLoginForCustomer(Token token) {
@@ -237,6 +239,16 @@ public class Facade implements iFacade{
     @Override
     public void editAmountForOrderLine(long orderNumber, long productId, int amount) {
         this.pos.editAmountForOrderLine(orderNumber, productId, amount);
+    }
+
+    @Override
+    public void setNewCustomer() {
+	this.webshop.setNewCustomer();
+    }
+
+    @Override
+    public void setCustomerEmail(String newEmail) {
+	this.webshop.getCustomerProfile().setEmail(newEmail);
     }
 
 }

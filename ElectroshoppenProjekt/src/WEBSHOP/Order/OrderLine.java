@@ -6,6 +6,7 @@
 package WEBSHOP.Order;
 
 import WEBSHOP.Product.Product;
+import WEBSHOP.Product.ProductCategory;
 
 /**
  *
@@ -17,6 +18,7 @@ public class OrderLine {
     private double amountPrice;
     private String productName;
     private long productNumber;
+    private Product existingProduct;
     
     
     
@@ -28,11 +30,20 @@ public class OrderLine {
         this.amountPrice = product.getPiecePrice();
     }
     
+    public OrderLine(String productName, Long productNumber, double price, String productDescription, String category){
+	existingProduct = new Product(productName, productNumber, price, productDescription, ProductCategory.valueOf(category));
+	
+    }
+    
     
 
     //Getters
     public int getProductAmount() {
         return productAmount;
+    }
+    
+    public Product getExistingProduct(){
+	return this.existingProduct;
     }
 
     public double getSubTotal() {

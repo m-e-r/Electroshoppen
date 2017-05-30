@@ -27,7 +27,7 @@ public class OrderHistory {
     private HashMap<String, ArrayList<String>> orderLinesByOrder;
 
     public OrderHistory() {
-        System.out.println("cunt");
+         
         allOrders = new ArrayList();
         this.orderLinesByOrder = new HashMap();
 
@@ -56,18 +56,18 @@ public class OrderHistory {
 
                 //Kasper stuff
                 String orderCred = orderNumber + "\n" + date;
-                //System.out.println("count: " + count + " ......\n " + orderLineCred );
+                // 
                 count++;
 
                     if (!orderNumber.equals(currentOrderNumber)) {
-                        System.out.println("######## " + orderCred + "#########");
+                         
                         ArrayList<String> orderLineCred = new ArrayList();
                         orderLineCred.add(nextLine.toString());
                         this.orderLinesByOrder.put(orderCred, orderLineCred);
                         currentOrderNumber = orderNumber;
 
                     } else {
-                       System.out.println("######## " + orderCred + "#########");
+                        
                         this.orderLinesByOrder.get(orderCred).add(nextLine.toString());
                     }
 
@@ -79,7 +79,7 @@ public class OrderHistory {
     }
 
     public HashMap<String, ArrayList<String>> getOrderLinesByOrder(String customerId) {
-        System.out.println("getorderslinebyorder");
+         
         getOrders(customerId);
         return this.orderLinesByOrder;
     }

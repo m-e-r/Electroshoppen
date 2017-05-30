@@ -33,7 +33,7 @@ import javafx.scene.layout.GridPane;
 public class ProductFXMLController implements Initializable {
 
     private long productId;
-    private iFacade facade;
+    private static iFacade facade;
     
 
     @FXML
@@ -104,10 +104,10 @@ public class ProductFXMLController implements Initializable {
 	try {
 	    FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("webshopFXML.fxml"));
 	    pane = (AnchorPane) fxmlLoader1.load();
-//            if (this.facade.isValid()) {
-//            webshopFXMLController controller = fxmlLoader1.<webshopFXMLController>getController();
-//            controller.afterLogin(controller.);
-//            }
+            if (this.facade.isValid()) {
+            webshopFXMLController controller = fxmlLoader1.<webshopFXMLController>getController();
+            controller.afterLogin();
+            }
 	    this.mainPane.getChildren().setAll(pane);
 	} catch (IOException ex) {
 	    Logger.getLogger(webshopFXMLController.class.getName()).log(Level.SEVERE, null, ex);

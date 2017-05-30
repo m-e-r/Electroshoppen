@@ -23,12 +23,12 @@ public class tester {
 //        list.add(new OrderLine(new Product("noob", 12, 23.3, "noobies", ProductCategory.PHONE), 1));
 //        
 //        for(OrderLine n: list) {
-//            System.out.println(n);
+//             
 //        }
 
 	Order o = new Order();
-	System.out.println("--------------------------");
-	System.out.println(o.getId());
-	System.out.println(o.getDate());
+	 
+	 
+	 
     }
 }

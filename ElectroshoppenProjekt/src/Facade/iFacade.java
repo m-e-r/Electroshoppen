@@ -41,6 +41,8 @@ public interface iFacade {
     
     String getStatus();
     
+    void setNewCustomer();
+    
     double getTotalPrice();
     
     int getProductAmount();
@@ -49,6 +51,8 @@ public interface iFacade {
     void removeFromOrder(Product p, int amount);
     String showBasket();
     double getSubTotal();
+    
+  
     
     //Webshop
     void setLoginForCustomer(Token token);
@@ -62,6 +66,7 @@ public interface iFacade {
             String city);
     
     boolean isValid();
+    void setCustomerEmail(String newEmail);
     
     //PIM
     void editName(long id, String newName);

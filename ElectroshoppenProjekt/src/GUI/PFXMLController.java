@@ -24,8 +24,6 @@ public class PFXMLController implements Initializable {
     private TextArea pTA;
     @FXML
     private ImageView pIV;
-    @FXML
-    private Button b;
 
     /**
      * Initializes the controller class.

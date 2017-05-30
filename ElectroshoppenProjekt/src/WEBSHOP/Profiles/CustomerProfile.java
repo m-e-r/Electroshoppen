@@ -63,7 +63,7 @@ public class CustomerProfile extends Profile {
     @Override
     public void saveProfileToText() {
 	File file = new File("Customer_Profiles.txt"); //Put .txt file outside src folder.
-	System.out.println(file.getAbsolutePath());
+	 
 	try (FileWriter fileW = new FileWriter(file, true);
 		BufferedWriter bufferedW = new BufferedWriter(fileW);
 		PrintWriter output = new PrintWriter(bufferedW)) {
@@ -91,7 +91,7 @@ public class CustomerProfile extends Profile {
 	DBConnection dbc = new DBConnection();
 	dbc.runQueryUpdate(query);
 
-    }
+    } 
 
     @Override
     public String[] searchProfile(String email) {
@@ -99,18 +99,18 @@ public class CustomerProfile extends Profile {
 		+ "FROM public.customer WHERE email = '" + email + "';";
 	DBConnection dbc = new DBConnection();
 	String[] sArray = new String[4];
-	System.out.println("TEST");
+	 
 
 	try {
 	    ResultSet rs = dbc.runQueryExcecute(query);
-	    System.out.println("RS " + rs.next());
+	     
 	    while (dbc.runQueryExcecute(query).next()) {
-		System.out.println(dbc.runQueryExcecute(query).getString("full_name"));
+		 
 		sArray[0] = dbc.runQueryExcecute(query).getString("full_name");
 		sArray[1] = dbc.runQueryExcecute(query).getString("password");
 		sArray[2] = dbc.runQueryExcecute(query).getString("email");
 		sArray[3] = dbc.runQueryExcecute(query).getString("phone_number");
-		System.out.println(Arrays.toString(sArray));
+		 
 	    }
 	} catch (SQLException ex) {
 	    Logger.getLogger(CustomerProfile.class.getName()).log(Level.SEVERE, null, ex);

@@ -177,7 +177,7 @@ public class PIMFXMLDocController implements Initializable {
         
         this.productsLV.setItems(this.productsNameForView);
         
-        System.out.println(this.productsFromSearch);
+         
     }
     
     
@@ -272,13 +272,13 @@ public class PIMFXMLDocController implements Initializable {
 
 //        try {
 //            this.crId = Long.parseLong(this.createIdTF.getText());
-//            System.out.println(this.createIdTF.getText());
+//             
 //        } catch (NumberFormatException e) {
 //            this.createIdTF.clear();
 //            this.createIdTF.setStyle("-jfx-unfocus-color: red;");
 //            this.createIdTF.validate();
 //            this.createIdTF.getActiveValidator().setMessage("Skal være et tal!");            
-//            System.out.println("Could NOT parse");
+//             
 //            return false;
 //        }
         
@@ -289,13 +289,13 @@ public class PIMFXMLDocController implements Initializable {
 //                this.createIdTF.setStyle("-jfx-unfocus-color: red;");
 //                this.createIdTF.validate();
 //                this.createIdTF.getActiveValidator().setMessage("Produktnummer " + this.crId + " findes allerede");
-//                System.out.println("Did find product");
+//                 
 //                return false;
 //
 //            } else {
 //                this.createIdTF.setStyle("-jfx-unfocus-color: ;");
 //                this.createIdTF.validate();
-//                System.out.println("Did NOT find product");
+//                 
 //                return true;
 //            }   
 //            
@@ -412,7 +412,7 @@ public class PIMFXMLDocController implements Initializable {
             this.createLabel.setText("Produktet er tilføjet!");
             
         } else {
-            System.out.println("nej");
+             
         }
 
 

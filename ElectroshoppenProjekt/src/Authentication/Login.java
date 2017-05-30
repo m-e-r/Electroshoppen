@@ -60,7 +60,6 @@ public class Login extends Authentication {
 	    DBConnection dbc = new DBConnection();
 	    String query = "DELETE FROM token WHERE tok = '" + token.getTok() + "';";
 	    dbc.runQueryUpdate(query);
-	    System.out.println("ldkf");
             this.token = null;
 	    return true;
 	} else {

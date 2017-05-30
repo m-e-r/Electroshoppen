@@ -24,7 +24,7 @@ public class Token {
         this.date = new Date();
         this.tok = tok;
         this.creation = this.date.getTime();
-        this.goTime = 10000; //abitrary amount..
+        this.goTime = 3600000; //abitrary amount..
         this.fistTimeExpired = true;
     }
     

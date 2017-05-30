@@ -28,7 +28,7 @@ public class MainTester {
 //        products = facade.searchProductsFromText("o");
 //        
 //        for (int i = 0; i < products.size(); i++) {
-//            System.out.println(products.get(i).toString());
+//             
 //        }
 
 	    Address ad = new Address("StreetName1", "3", "Sec", "2234", "city2");
