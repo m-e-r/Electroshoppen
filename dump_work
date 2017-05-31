@@ -5,7 +5,7 @@
 -- Dumped from database version 9.6.1
 -- Dumped by pg_dump version 9.6.1
 
--- Started on 2017-05-23 13:14:27
+-- Started on 2017-05-31 11:05:46
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -114,9 +114,9 @@ ALTER TABLE employee OWNER TO postgres;
 --
 
 CREATE TABLE order_line (
-    order_line_id integer NOT NULL,
-    order_number integer,
-    product_id integer,
+    order_line_id bigint NOT NULL,
+    order_number bigint,
+    product_id bigint,
     amount integer
 );
 
@@ -129,8 +129,9 @@ ALTER TABLE order_line OWNER TO postgres;
 --
 
 CREATE TABLE orders (
-    order_number integer NOT NULL,
-    email character varying(100)
+    order_number bigint NOT NULL,
+    email character varying(100),
+    date character varying(10)
 );
 
 
@@ -138,19 +139,20 @@ ALTER TABLE orders OWNER TO postgres;
 
 --
 -- TOC entry 190 (class 1259 OID 25184)
--- Name: products; Type: TABLE; Schema: public; Owner: postgres
+-- Name: product; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE products (
-    product_id integer NOT NULL,
+CREATE TABLE product (
+    product_id bigint NOT NULL,
     amount integer,
     price real,
     description text,
-    category character varying(30)
+    category character varying(30),
+    name character varying(90)
 );
 
 
-ALTER TABLE products OWNER TO postgres;
+ALTER TABLE product OWNER TO postgres;
 
 --
 -- TOC entry 188 (class 1259 OID 25064)
@@ -172,8 +174,9 @@ ALTER TABLE token OWNER TO postgres;
 -- Data for Name: adress; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO adress VALUES ('null', 'StreetName', 'city', 1234, 2, 'SecAdress');
-INSERT INTO adress VALUES ('mail2@mail2.dk', 'StreetName1', 'city2', 2234, 3, 'Sec');
+INSERT INTO adress VALUES ('null', 'street', 'city', 1234, 1, 'secadress');
+INSERT INTO adress VALUES ('adm@adm.dk', 'admin', 'admin', 1234, 2, '');
+INSERT INTO adress VALUES ('foo@bar.com', 'Adressevej', 'Odense C', 5000, 10, '');
 
 
 --
@@ -182,8 +185,9 @@ INSERT INTO adress VALUES ('mail2@mail2.dk', 'StreetName1', 'city2', 2234, 3, 'S
 -- Data for Name: customer; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO customer VALUES ('mail@mail.dk', 'd74ff0ee8da3b9806b18c877dbf29bbde5b5bd8e4dad7a3a7250feb82e8f1', 'null', 'null', 'null');
-INSERT INTO customer VALUES ('TestPerson2', 'd74ff0ee8da3b9806b18c877dbf29bbde5b5bd8e4dad7a3a7250feb82e8f1', 'mail2@mail2.dk', '88888888', '2323232');
+INSERT INTO customer VALUES (NULL, NULL, NULL, '9', NULL);
+INSERT INTO customer VALUES ('adm;adm', '86f65e28a754e1a71b2df9403615a6c436c32c42a75a10d02813961b86f1e428', 'adm@adm.dk', '12345678', '');
+INSERT INTO customer VALUES ('Jacob;Søgaard', '5e884898da2847151d0e56f8dc6292773603dd6aabbdd62a11ef721d1542d8', 'foo@bar.com', '88888888', '');
 
 
 --
@@ -200,6 +204,10 @@ INSERT INTO customer VALUES ('TestPerson2', 'd74ff0ee8da3b9806b18c877dbf29bbde5b
 -- Data for Name: order_line; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO order_line VALUES (149621628285355, 149621624853567, 7, 1);
+INSERT INTO order_line VALUES (149621637685112, 14962163124025, 9, 3);
+INSERT INTO order_line VALUES (149621641821999, 149621640079939, 7, 4);
+INSERT INTO order_line VALUES (149621679820391, 149621676291185, 4, 1);
 
 
 --
@@ -208,14 +216,31 @@ INSERT INTO customer VALUES ('TestPerson2', 'd74ff0ee8da3b9806b18c877dbf29bbde5b
 -- Data for Name: orders; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO orders VALUES (149621624853567, 'foo@bar.com', '2017-05-31');
+INSERT INTO orders VALUES (14962163124025, 'adm@adm.dk', '2017-05-31');
+INSERT INTO orders VALUES (149621640079939, 'null', '2017-05-31');
+INSERT INTO orders VALUES (149621676291185, 'foo@bar.com', '2017-05-31');
+INSERT INTO orders VALUES (149622130780571, 'adm@adm.dk', '2017-05-31');
 
 
 --
 -- TOC entry 2168 (class 0 OID 25184)
 -- Dependencies: 190
--- Data for Name: products; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: product; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO product VALUES (1, 10, 9000, 'Tynd bærbar fra Apple.', 'COMPUTER', 'MacBook Air');
+INSERT INTO product VALUES (2, 5, 11000, 'Proffesionel bærbar fra Apple.', 'COMPUTER', 'MacBook Pro');
+INSERT INTO product VALUES (3, 12, 3500, 'Fin Windows Computer', 'COMPUTER', 'Dell pg800xD');
+INSERT INTO product VALUES (4, 25, 6000, 'Smartphone fra Apple', 'PHONE', 'iPhone 7');
+INSERT INTO product VALUES (5, 2, 5500, 'Android smartphone fra Samsung. (Risiko for eksplosioner).', 'PHONE', 'Samsung Note 7');
+INSERT INTO product VALUES (6, 8, 1800, 'Verdens bedste støvsuger.', 'VACUUM', 'DustBeGone5000');
+INSERT INTO product VALUES (7, 10, 3000, 'Apples nyeste iPad tablet. ', 'TABLET', 'iPad 32 GB');
+INSERT INTO product VALUES (8, 5, 2999, 'Android tablet lavet af Lenovo.', 'TABLET', 'Lenovo Yoga Tab 3');
+INSERT INTO product VALUES (9, 12, 5000, 'Smart tv fra Samsung, med 4k UHD skærm.', 'TELEVISION', 'Samsung 55" 4K UHD Smart TV UE55KU6075');
+INSERT INTO product VALUES (10, 1, 199000, 'Eksklusiv OLED TV fra LG.', 'TELEVISION', 'LG 77" 4K UHD OLED Smart TV OLED77G6V');
+INSERT INTO product VALUES (11, 8, 3000, 'Små højttallere til bordet med bluetooth forbindelse.', 'HIFI', 'Audio Pro Addon T14 aktive højttalere - sort');
+INSERT INTO product VALUES (12, 10, 3100, 'Lille 4k kamera, der kan holde til næsten alt', 'CAMERA', 'GoPro HERO5 Black action-kamera');
 
 
 --
@@ -224,6 +249,8 @@ INSERT INTO customer VALUES ('TestPerson2', 'd74ff0ee8da3b9806b18c877dbf29bbde5b
 -- Data for Name: token; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO token VALUES ('ADM@ADM.DK', 1496221327814, 'adm@adm.dk');
+INSERT INTO token VALUES ('FOO@BAR.COM', 1496216823819, 'foo@bar.com');
 
 
 --
@@ -236,7 +263,7 @@ ALTER TABLE ONLY adress
 
 
 --
--- TOC entry 2039 (class 2606 OID 25208)
+-- TOC entry 2039 (class 2606 OID 25231)
 -- Name: order_line order_line_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -245,7 +272,7 @@ ALTER TABLE ONLY order_line
 
 
 --
--- TOC entry 2035 (class 2606 OID 25203)
+-- TOC entry 2035 (class 2606 OID 25220)
 -- Name: orders order_number_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -254,11 +281,11 @@ ALTER TABLE ONLY orders
 
 
 --
--- TOC entry 2037 (class 2606 OID 25191)
--- Name: products products_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2037 (class 2606 OID 25240)
+-- Name: product products_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY products
+ALTER TABLE ONLY product
     ADD CONSTRAINT products_pkey PRIMARY KEY (product_id);
 
 
@@ -324,7 +351,7 @@ ALTER TABLE ONLY token
 
 
 --
--- TOC entry 2044 (class 2606 OID 25209)
+-- TOC entry 2045 (class 2606 OID 25262)
 -- Name: order_line order_line_order_number_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -333,12 +360,12 @@ ALTER TABLE ONLY order_line
 
 
 --
--- TOC entry 2045 (class 2606 OID 25214)
+-- TOC entry 2044 (class 2606 OID 25253)
 -- Name: order_line order_line_product_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY order_line
-    ADD CONSTRAINT order_line_product_id_fkey FOREIGN KEY (product_id) REFERENCES products(product_id);
+    ADD CONSTRAINT order_line_product_id_fkey FOREIGN KEY (product_id) REFERENCES product(product_id);
 
 
 --
@@ -350,7 +377,7 @@ ALTER TABLE ONLY orders
     ADD CONSTRAINT orders_email_fkey FOREIGN KEY (email) REFERENCES adress(email);
 
 
--- Completed on 2017-05-23 13:14:27
+-- Completed on 2017-05-31 11:05:46
 
 --
 -- PostgreSQL database dump complete
