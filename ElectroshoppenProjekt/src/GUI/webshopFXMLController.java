@@ -12,7 +12,9 @@ import Facade.iFacade;
 import com.jfoenix.controls.JFXToggleButton;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,12 +29,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
@@ -45,10 +49,15 @@ public class webshopFXMLController implements Initializable {
 
     private static Authenticateable authen;
     public static iFacade facade;
-
+    
+    
     ObservableList<?> products;
     ObservableList<?> categories;
     ObservableList<Node> loginNodes;
+    private ObservableList<String> orderLinesForView;
+    private ObservableList<String> ordersForView;
+    private HashMap<String, ArrayList<String>> orderLinesByOrder;
+    
     @FXML
     private AnchorPane mainPane;
     @FXML
@@ -143,6 +152,10 @@ public class webshopFXMLController implements Initializable {
     private TextField adressTF2;
 
     private boolean isLoggedIn;
+    @FXML
+    private ListView<String> ordersLV;
+    @FXML
+    private ListView<String> orderLinesLV;
 
     /**
      * Initializes the controller class.
@@ -154,6 +167,8 @@ public class webshopFXMLController implements Initializable {
 	this.registerGrid.add(lbl, 3, 10, 2, 1);
 	addressTF2 = new TextField();
 	addressTF2.setText("");
+        this.orderLinesForView = FXCollections.observableArrayList();
+        this.ordersForView = FXCollections.observableArrayList();
 
     }
 
@@ -235,10 +250,11 @@ public class webshopFXMLController implements Initializable {
 	    this.profileTab.setDisable(false);
 	    this.registerTab.setDisable(true);
 
-	    if (customer[4] != null) {
+	    if (!customer[4].equals("") || customer[4] != null)  {
+                System.out.println("Her: " + customer[4] + "..");
 		pCVRtf = new TextField();
 		tfs[4] = pCVRtf;
-		this.profileGrid.add(pCVRtf, 2, 9);
+		this.profileGrid.add(pCVRtf, 1, 9);
 		pCVRl.setVisible(true);
 	    }
 	    int i = 0;
@@ -250,6 +266,13 @@ public class webshopFXMLController implements Initializable {
 	    this.tabPane.getSelectionModel().select(productTab);
 	    this.logMailTF.setText("");
 	    this.logPF.setText("");
+            
+            
+            //Orders
+            this.orderLinesByOrder = facade.getOrderLinesByOrder(currentUserEmail);
+            this.ordersForView.addAll(this.orderLinesByOrder.keySet());
+            this.ordersLV.setItems(this.ordersForView);
+            
 	}
     }
 
@@ -387,6 +410,15 @@ public class webshopFXMLController implements Initializable {
      */
     public Authenticateable getAuthen() {
 	return authen;
+    }
+
+    @FXML
+    private void handleOrderChoice(MouseEvent event) {
+        String chosenOrder = this.ordersLV.getSelectionModel().getSelectedItem();
+
+        this.orderLinesForView.clear();
+        this.orderLinesForView.addAll(this.orderLinesByOrder.get(chosenOrder));
+        this.orderLinesLV.setItems(this.orderLinesForView); 
     }
 
 }

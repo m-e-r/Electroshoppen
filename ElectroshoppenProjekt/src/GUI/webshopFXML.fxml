@@ -6,8 +6,10 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
@@ -16,6 +18,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
@@ -199,87 +202,102 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <GridPane fx:id="profileGrid" prefHeight="617.0" prefWidth="850.0">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                           <children>
-                              <Label text="Fornavn:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets right="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="Efternavn:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                                 <GridPane.margin>
-                                    <Insets right="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="Telefon Nr:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-                                 <GridPane.margin>
-                                    <Insets right="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="Adresse:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-                                 <GridPane.margin>
-                                    <Insets right="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="2. Adresse:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
-                                 <GridPane.margin>
-                                    <Insets right="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="Postnr:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
-                                 <GridPane.margin>
-                                    <Insets right="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="By:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="8" GridPane.valignment="CENTER">
-                                 <GridPane.margin>
-                                    <Insets right="10.0" top="3.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <TextField fx:id="pFnameTF" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                              <TextField fx:id="pLnameTF" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                              <TextField fx:id="pPhoneTF" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                              <TextField fx:id="pAddressTF" promptText="Vejnavn" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                              <TextField fx:id="pNumberTF" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="91.0" promptText="Husnummer" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                              <TextField fx:id="pAdressTF2" promptText="Valgfri" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                              <TextField fx:id="pPostnrTF" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-                              <TextField fx:id="pCityTF" GridPane.columnIndex="2" GridPane.rowIndex="8" />
-                              <Button fx:id="updateBTN" mnemonicParsing="false" onAction="#updateProfile" text="Opdater oplysninger" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
-                              <Button fx:id="logoutBTN" mnemonicParsing="false" onAction="#logout" text="Logud" GridPane.halignment="CENTER" />
-                              <Label fx:id="pCVRl" text="CVR:" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="9">
-                                 <GridPane.margin>
-                                    <Insets right="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label alignment="CENTER_RIGHT" text="Email:" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
-                                 <GridPane.margin>
-                                    <Insets right="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <TextField fx:id="pMailTF" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                           </children>
-                        </GridPane>
+                        <SplitPane dividerPositions="0.5" prefHeight="617.0" prefWidth="850.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <items>
+                              <GridPane fx:id="profileGrid" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="400.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="226.0" minWidth="10.0" prefWidth="84.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="414.0" minWidth="10.0" prefWidth="166.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label text="Fornavn:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label text="Efternavn:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                       <GridPane.margin>
+                                          <Insets right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label text="Telefon Nr:" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                                       <GridPane.margin>
+                                          <Insets right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label text="Adresse:" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                                       <GridPane.margin>
+                                          <Insets right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label text="2. Adresse:" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+                                       <GridPane.margin>
+                                          <Insets right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label text="Postnr:" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
+                                       <GridPane.margin>
+                                          <Insets right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label text="By:" GridPane.halignment="RIGHT" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                                       <GridPane.margin>
+                                          <Insets right="10.0" top="3.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <TextField fx:id="pFnameTF" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="pLnameTF" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField fx:id="pPhoneTF" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <TextField fx:id="pAdressTF2" promptText="Valgfri" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    <TextField fx:id="pPostnrTF" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                    <TextField fx:id="pCityTF" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                    <Button fx:id="updateBTN" mnemonicParsing="false" onAction="#updateProfile" text="Opdater oplysninger" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                                    <Button fx:id="logoutBTN" mnemonicParsing="false" onAction="#logout" text="Logud" GridPane.halignment="CENTER" />
+                                    <Label fx:id="pCVRl" text="CVR:" visible="false" GridPane.halignment="RIGHT" GridPane.rowIndex="9">
+                                       <GridPane.margin>
+                                          <Insets right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" text="Email:" textAlignment="RIGHT" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                                       <GridPane.margin>
+                                          <Insets right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <TextField fx:id="pMailTF" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                       <children>
+                                          <TextField fx:id="pAddressTF" prefHeight="27.0" prefWidth="179.0" promptText="Vejnavn" />
+                                          <TextField fx:id="pNumberTF" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="56.0" promptText="HusNr" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <padding>
+                                    <Insets right="8.0" />
+                                 </padding>
+                              </GridPane>
+                              <AnchorPane prefHeight="615.0" prefWidth="472.0">
+                                 <children>
+                                    <ListView fx:id="ordersLV" layoutX="47.0" layoutY="87.0" onMouseClicked="#handleOrderChoice" prefHeight="124.0" prefWidth="352.0" />
+                                    <ListView fx:id="orderLinesLV" layoutX="64.0" layoutY="260.0" prefHeight="292.0" prefWidth="318.0" />
+                                    <Label layoutX="205.0" layoutY="56.0" text="Ordre" />
+                                 </children>
+                              </AnchorPane>
+                           </items>
+                        </SplitPane>
                      </children>
                   </AnchorPane>
               </content>

@@ -340,8 +340,8 @@ public class POSDocController implements Initializable {
 	    this.foundProfile = this.facade.getCustomerInfo(this.email);
 	    if (foundProfile[0] == null) {
 		customerInfoTextArea.setText("Ingen kunde fundet med email: " + this.email);
+                
 	    } else {
-                // 
                 this.orderLinesByOder = this.facade.getOrderLinesByOrder(this.email);
               		customerInfoTextArea.setText("Navn: " + foundProfile[0]
 			+ "\nEmail: " + foundProfile[1]
@@ -349,10 +349,7 @@ public class POSDocController implements Initializable {
 			+ "\nCVR (hvis virksomhed): " + foundProfile[3] 
 			+ "\n\n\n Købshistorik: ");
                 
-                this.loadInfo();
-                        //this.ordersForView.addAll(Arrays.asList(this.facade.getOrderHistory(email).toString().split("\n\n")));
-                        
-                        
+                this.loadInfo();        
 	    }
 	}
     }
