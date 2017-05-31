@@ -343,10 +343,10 @@ public class POSDocController implements Initializable {
                 
 	    } else {
                 this.orderLinesByOder = this.facade.getOrderLinesByOrder(this.email);
-              		customerInfoTextArea.setText("Navn: " + foundProfile[0]
-			+ "\nEmail: " + foundProfile[1]
-			+ "\nTelefonnummer: " + foundProfile[2]
-			+ "\nCVR (hvis virksomhed): " + foundProfile[3] 
+              		customerInfoTextArea.setText("Navn: " + foundProfile[0] + " " + foundProfile[1]
+			+ "\nEmail: " + foundProfile[2]
+			+ "\nTelefonnummer: " + foundProfile[3]
+			+ "\nCVR (hvis virksomhed): " + foundProfile[4] 
 			+ "\n\n\n Købshistorik: ");
                 
                 this.loadInfo();        

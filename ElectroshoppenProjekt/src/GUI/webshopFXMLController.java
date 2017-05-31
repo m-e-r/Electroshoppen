@@ -224,7 +224,7 @@ public class webshopFXMLController implements Initializable {
     }
 
     public void afterLogin() {
-	if (isLoggedIn) {
+	if (!isLoggedIn) {
 	    String[] customer = facade.getCustomerInfo(currentUserEmail);
 	    String[] address = facade.getAddressArray(currentUserEmail);
 	    String[] fullArray = new String[customer.length + address.length];
@@ -420,5 +420,4 @@ public class webshopFXMLController implements Initializable {
         this.orderLinesForView.addAll(this.orderLinesByOrder.get(chosenOrder));
         this.orderLinesLV.setItems(this.orderLinesForView); 
     }
-
 }
