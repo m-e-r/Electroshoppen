@@ -17,13 +17,15 @@ import WEBSHOP.*;
 import WEBSHOP.Order.*;
 import WEBSHOP.Profiles.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 
 
 
 /**
- *
+ * Class holds instances of all the classes in the domain layer which methods
+ * will be called during the event-driven run of the program.
+ * Should only really hold one controller class for each package; PIM, POS
+ * and WEBSHOP....
  * @author rune_
  */
 public class Facade implements iFacade{
@@ -112,7 +114,7 @@ public class Facade implements iFacade{
 
     @Override
     public String getToken(){
-	return token.getToken();
+	return this.webshop.getToken();
     }
     
     @Override

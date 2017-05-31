@@ -21,6 +21,17 @@ public abstract class Profile {
     private String password;
     private Order currentOrder;
 
+
+    public Profile() {        
+    }
+    
+
+    public Profile(String name, String phoneNumber, String eMail){
+	this.name = name;
+	this.phoneNumber = phoneNumber;
+	this.eMail = eMail;
+    }
+
     /**
      * Constructor for all kinds of profiles. Creates a profile.
      * @param name Full name of profile user
@@ -28,19 +39,7 @@ public abstract class Profile {
      * @param eMail E-mail adress
      * @param adress Full adress of user from Adress class in WEBSHOP package
      * @param password Chosen password.
-     */
-    
-    public Profile() {
-        
-    }
-    
-    public Profile(String name, String phoneNumber, String eMail){
-	this.name = name;
-	this.phoneNumber = phoneNumber;
-	this.eMail = eMail;
-    }
-
-    
+     */    
     public Profile(String name, String phoneNumber, String eMail, Address adress, String password) {
 	this.name = name;
 	this.phoneNumber = phoneNumber;
@@ -53,8 +52,9 @@ public abstract class Profile {
     
     public abstract void updateProfile(String name, String email, String phone, String cvr);
 
-    public abstract void saveProfileToText();
-
+    /**
+     * Saves the profile to the database.
+     */    
     public abstract void saveProfileToDB();
 
     /**
@@ -78,25 +78,19 @@ public abstract class Profile {
 	return eMail;
     }
 
-    /**
-     * @return the adress
-     */
+
     public void setAddress(String streetName, String streetNumber, String secAddress, String zipCode,
             String city) {
         
 	this.adress = new Address(streetName, streetNumber, secAddress, zipCode, city);
     }
 
-    /**
-     * @param adress the adress to set
-     */
+
     public Address getAddress() {
 	return this.adress;
     }
 
-    /**
-     * @return the token
-     */
+
     public String getPassword() {
 	return password;
     }
@@ -105,10 +99,5 @@ public abstract class Profile {
 	this.eMail = email;
     }
 
-    @Override
-    public String toString() {
-	return this.name + "\t" + this.eMail + "\t" + this.phoneNumber + "\t"
-		+ this.adress.toString() + "\t" + this.password;
-    }
 
 }

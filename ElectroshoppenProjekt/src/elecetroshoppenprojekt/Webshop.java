@@ -6,56 +6,62 @@
 package elecetroshoppenprojekt;
 
 import Authentication.Token;
-import DBManager.DBConnection;
 import WEBSHOP.Product.Product;
-import WEBSHOP.Product.ProductCategory;
 import WEBSHOP.Address;
 import WEBSHOP.Order.OrderLine;
 import WEBSHOP.Profiles.CustomerProfile;
 import WEBSHOP.Profiles.Profile;
-import WEBSHOP.iWebshopLogin;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.HashSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
- *
+ * Class functions as a controller for the WEBSHOP package, and its methods
+ * are called from the GUI package through the Facade package.
  * @author Kasper
  */
-public class Webshop implements iWebshopLogin {
-
+public class Webshop {
     private CustomerProfile customer;
-    private String customerUserName;
     private OrderLine orderLine;
 
     public Webshop() {
 	this.customer = new CustomerProfile();
-
     }
-
-    //MARK: Login stuff
     
     /**
-     * THIS IS WHERE THE PROBLEM IS!!!
-     * @param token 
+     * Method sets the customer's Token.
+     * Should be called when when the user logs in.
+     * @param token should be the return value from doLogin() in Login class.
      */
-    @Override
     public void setLoginForCustomer(Token token) {
 	this.customer.setToken(token);
 	this.customer.getOrder().setEmail(this.customer.geteMail());
     }
-
+    
+    public String getToken() {
+        return this.customer.getToken();
+    }
+    
+    /**
+     * Calls the pay method on the customer's Order.
+     * @return See pay() method in Order class.
+     */
     public String pay() {
 	return this.customer.getOrder().pay();
     }
 
-    //MARK: Customer methods
+    /**
+     * Method should be removed as the requirements for the system has changed
+     * due to new law regulations.
+     * @param p 
+     */
     public void addToViewedProducts(Product p) {
 	this.customer.addToViewedProducts(p);
     }
-
+    
+    /**
+     * Calls the addOrderLine(...) method on the Customer's Order.
+     * Also checks if the customer has been logged out to then reset the Order.
+     * @param p Product wished to be added
+     * @param amount Amount wished to be added
+     */
     public void addToOrder(Product p, int amount) {
 
 	if ("Expired".equals(this.customer.getToken())) {
@@ -63,8 +69,14 @@ public class Webshop implements iWebshopLogin {
 	}
 
 	this.customer.getOrder().addOrderLine(p, amount);
-    }
-
+    }    
+    
+    /**
+     * Calls the removeOrderLine(...) method on the Customer's Order.
+     * Also checks if the customer has been logged out to then reset the Order.
+     * @param p Product wished to be removed
+     * @param amount Amount wished to be removed
+     */
     public void removeFromOrder(Product p, int amount) {
 	if (this.customer.getToken().equals("Expired")) {
 	    this.customer.getOrder().resetOrder();
@@ -72,7 +84,12 @@ public class Webshop implements iWebshopLogin {
 
 	this.customer.getOrder().removeOrderLine(p, amount);
     }
-
+    
+    /**
+     * Calls the showBasket() method on the Customer's Order.
+     * Also checks if the customer has been logged out to then reset the Order.
+     * @return See showBasket() method in Order class.
+     */
     public String showBasket() {
 	if (this.customer.getToken().equals("Expired")) {
 	    this.customer.getOrder().resetOrder();
@@ -80,11 +97,12 @@ public class Webshop implements iWebshopLogin {
 
 	return this.customer.getOrder().showBasket();
     }
-
+    
+    
     public void updateProfile(String name, String email, String phone, String cvr) {
 	this.customer.updateProfile(name, email, phone, cvr);
     }
-
+    
     public String[] searchProfile(String email) {
 	return this.customer.searchProfile(email);
     }
@@ -105,7 +123,10 @@ public class Webshop implements iWebshopLogin {
     public boolean isValid() {
 	return this.customer.isValid();
     }
-
+    
+    /**
+     * Sets a new CustomerProfile object after resetting the current Order.
+     */
     public void setNewCustomer() {
 	this.customer.getOrder().resetOrder();
 	this.customer = new CustomerProfile();
@@ -115,13 +136,4 @@ public class Webshop implements iWebshopLogin {
 	return this.customer;
     }
 
-    public static void main(String[] args) {
-	Webshop webshop = new Webshop();
-
-	webshop.addToOrder(new Product("testProdukt1", 12, 1500, "Dette er et test produkt nummer 1.", ProductCategory.COMPUTER), 1);
-	webshop.addToOrder(new Product("testProdukt2", 13, 800, "Dette er et test produkt nummer 2.", ProductCategory.COMPUTER), 3);
-
-	webshop.removeFromOrder(new Product("testProdukt2", 13, 800, "Dette er et test produkt nummer 2.", ProductCategory.COMPUTER), 1);
-
-    }
 }

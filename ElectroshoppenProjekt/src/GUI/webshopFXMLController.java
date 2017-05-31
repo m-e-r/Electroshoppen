@@ -150,8 +150,6 @@ public class webshopFXMLController implements Initializable {
     private static String currentUserEmail = "";
     @FXML
     private TextField adressTF2;
-
-    private boolean isLoggedIn;
     @FXML
     private ListView<String> ordersLV;
     @FXML
@@ -224,7 +222,7 @@ public class webshopFXMLController implements Initializable {
     }
 
     public void afterLogin() {
-	if (isLoggedIn) {
+	if (facade.isValid()) {
 	    String[] customer = facade.getCustomerInfo(currentUserEmail);
 	    String[] address = facade.getAddressArray(currentUserEmail);
 	    String[] fullArray = new String[customer.length + address.length];
@@ -286,7 +284,6 @@ public class webshopFXMLController implements Initializable {
 	this.authen = new Login(this.logMailTF.getText(), this.logPF.getText());
 
 	if (this.authen.doLogin() != null) {
-	    this.isLoggedIn = true;
 	    this.currentUserEmail = this.logMailTF.getText();
 	    this.facade.setCustomerEmail(currentUserEmail);
 	    this.afterLogin();
@@ -304,7 +301,6 @@ public class webshopFXMLController implements Initializable {
     private void logout() {
 
 	if (this.authen.doLogout()) {
-	    this.isLoggedIn = false;
 	    this.currentUserEmail = "";
 	    this.loginTab.setDisable(false);
 	    this.registerTab.setDisable(false);

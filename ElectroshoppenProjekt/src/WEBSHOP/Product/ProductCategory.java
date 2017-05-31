@@ -7,7 +7,7 @@ package WEBSHOP.Product;
 
 
 /**
- *
+ * Enum defining the legal categories a product can have.
  * @author Kasper
  */
 public enum ProductCategory {

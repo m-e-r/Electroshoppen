@@ -9,15 +9,13 @@ import Authentication.Token;
 import WEBSHOP.Product.Product;
 import WEBSHOP.Product.ProductCategory;
 import java.util.ArrayList;
-import PIM.*;
 import WEBSHOP.Address;
-import WEBSHOP.Profiles.CustomerProfile;
 import WEBSHOP.Profiles.OrderHistory;
-import WEBSHOP.Profiles.Profile;
 import java.util.HashMap;
 
 /**
- *
+ * Interface to link the domain layer of all three packages, PIM, POS, and 
+ * WEBSHOP, to the GUI.
  * @author rune_
  */
 public interface iFacade {

@@ -56,7 +56,7 @@ public class Create extends Authentication {
      * Method checks whether or not the user exists in the database, and saves it
      * there if not.
      * @param type Must be customer or employee, else an IllegalArgumentException is thrown
-     * @return True if user succesfullt created and saved to the database.
+     * @return True if user succesfully created and saved to the database.
      * false if user already exists in the database.
      * 
      */
@@ -79,8 +79,7 @@ public class Create extends Authentication {
 	} else {
 	    throw new IllegalArgumentException("Type must be customer or employee");
 	}
-	
-           
+	         
         return true;
     }
     

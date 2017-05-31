@@ -26,23 +26,35 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Class represents a customer on the webshop.
  * @author Jacob
  */
 public class CustomerProfile extends Profile {
-
     private String cvr;
     private Token token;
     private Order currentOrder;
     private OrderHistory orderHistory;
     private HashSet<Product> viewedProducts;
-
+    
+    /**
+     * Constructor used to initialize the initial object on the Webshop class.
+     */
     public CustomerProfile() {
 	this.viewedProducts = new HashSet();
 	this.currentOrder = new Order();
         this.token = new Token("default");
     }
-
+    
+    /**
+     * Constructor used when creating a new customer.
+     * Also saves the profile to the database through saveProfileToDB().
+     * @param name
+     * @param phoneNumber
+     * @param eMail
+     * @param address
+     * @param passWord
+     * @param cvr 
+     */
     public CustomerProfile(String name, String phoneNumber, String eMail, Address address,
 	    String passWord, String cvr) {
 	super(name, phoneNumber, eMail, address, passWord);
@@ -51,6 +63,7 @@ public class CustomerProfile extends Profile {
 	currentOrder = new Order();
 	currentOrder.setEmail(eMail);
     }
+    
 
     public CustomerProfile(String name, String phoneNumber, String eMail, String cvr) {
 	super(name, phoneNumber, eMail);
@@ -60,18 +73,6 @@ public class CustomerProfile extends Profile {
 	this.currentOrder.setEmail(eMail);
     }
 
-    @Override
-    public void saveProfileToText() {
-	File file = new File("Customer_Profiles.txt"); //Put .txt file outside src folder.
-	 
-	try (FileWriter fileW = new FileWriter(file, true);
-		BufferedWriter bufferedW = new BufferedWriter(fileW);
-		PrintWriter output = new PrintWriter(bufferedW)) {
-	    output.println(this.toString() + "\n"); //write here what should be inserted
-	} catch (IOException ex) {
-	    Logger.getLogger(EmployeeProfile.class.getName()).log(Level.SEVERE, null, ex);
-	}
-    }
 
     @Override
     public void saveProfileToDB() {
@@ -92,7 +93,13 @@ public class CustomerProfile extends Profile {
 	dbc.runQueryUpdate(query);
 
     } 
-
+    
+    /**
+     * Finds a profile in the database based on the given email and returns
+     * the information as a String array.
+     * @param email Email for the wished profile
+     * @return full name, password, email and phone number 
+     */
     @Override
     public String[] searchProfile(String email) {
 	String query = "SELECT full_name, password, email, phone_number, cvr\n"
@@ -167,11 +174,19 @@ public class CustomerProfile extends Profile {
 	return this.currentOrder;
     }
 
+    /**
+     * Method should be removed as the requirements for the system has changed
+     * due to new law regulations.
+     * @param product 
+     */    
     public void addToViewedProducts(Product product) {
 	this.viewedProducts.add(product);
     }
 
-    //Token stuff
+    /**
+     * Calls the method on the Token and checks if it is null before returning.
+     * @return null if the token is null, else see getToken() in Token class.
+     */
     public String getToken() {
         if (this.token != null) {
             
@@ -182,6 +197,7 @@ public class CustomerProfile extends Profile {
         }
     }
     
+
     public boolean isValid() {
         return this.token.isValid();
     }
