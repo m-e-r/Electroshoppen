@@ -222,11 +222,7 @@ public class webshopFXMLController implements Initializable {
     }
 
     public void afterLogin() {
-<<<<<<< HEAD
-	if (!isLoggedIn) {
-=======
 	if (facade.isValid()) {
->>>>>>> 555fcdcf174004dd3f01e576338e13e2c141c084
 	    String[] customer = facade.getCustomerInfo(currentUserEmail);
 	    String[] address = facade.getAddressArray(currentUserEmail);
 	    String[] fullArray = new String[customer.length + address.length];
