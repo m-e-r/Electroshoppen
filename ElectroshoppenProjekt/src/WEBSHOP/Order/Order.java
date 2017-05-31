@@ -8,7 +8,6 @@ package WEBSHOP.Order;
 import DBManager.DBConnection;
 import WEBSHOP.Product.Product;
 import java.sql.Date;
-import java.time.LocalDateTime;
 import java.util.*;
 
 /**
@@ -51,6 +50,13 @@ public class Order {
 
     }
     
+    /**
+     * Remove?
+     * @param date
+     * @param id
+     * @param status
+     * @param orderLines 
+     */
     public Order(String date, Long id, String status, ArrayList<OrderLine> orderLines){
 	
     }
@@ -71,7 +77,7 @@ public class Order {
     
     /**
      * Call this method to pay for an Order. This will set its status to STATUS3.
-     * @return It's toString() implementation with some extra stuff.
+     * @return Its toString() implementation along with the total price.
      */
     public String pay() {
 
@@ -84,7 +90,6 @@ public class Order {
 
     }
 
-    //Add and remove methods
     
     /**
      * Use this method whether or not the product already is in this Order.
@@ -103,7 +108,12 @@ public class Order {
 	    createNewOrderLineDb(p, amount);
 	}
     }
-
+    
+    /**
+     * Saves the new OrderLine to the database.
+     * @param p
+     * @param amount 
+     */
     private void createNewOrderLineDb(Product p, int amount) {
 	int r = new Random().nextInt(100);
 	String random = Integer.toString(r);
@@ -118,7 +128,6 @@ public class Order {
 
     /**
      * Use this method to remove an amount or the orderline entirely.
-     *
      * @param p
      * @param amount
      */
@@ -129,10 +138,11 @@ public class Order {
 
     /**
      * Helper method for addOrderLine.
-     *
+     * Checks if the product exists on the Order and adds the amount to the 
+     * OrderLine if so.
      * @param productNumber
      * @param amount
-     * @return
+     * @return true if the product exists, false if not
      */
     private boolean addToOrderLine(long productNumber, int amount) {
 	for (OrderLine o : this.orderlines) {
@@ -146,10 +156,12 @@ public class Order {
 
     /**
      * Helper method for removeOrderLine.
-     *
+     * Removes the wished amount from the OrderLine, or the OrderLine entirly
+     * if the wished amount results in a 0 sum.
      * @param productNumber
      * @param amount
-     * @return
+     * @return true if the wished amount was removed or the OrderLine was removed entirely.
+     * False if the wished amount would result in a negative value, or if the OrderLine was never found.
      */
     private boolean removeFromOrderLine(long productNumber, int amount) {
 	for (int i = 0; i < this.orderlines.size(); i++) {
@@ -188,7 +200,11 @@ public class Order {
     public String getStatus() {
 	return status.toString();
     }
-
+    
+    /**
+     * Calculates the total price for the Order.
+     * @return The total price
+     */
     public double getTotalPrice() {
         this.totalPrice = 0; //Reset before calculating
 
@@ -200,8 +216,8 @@ public class Order {
 	return totalPrice;
     }
 
-    /*
-    Method that adds an order to orders table in database.
+    /**
+     * Method that adds an order to orders table in database.
      */
     private void addOrderToDB() {
 	String query = "INSERT INTO public.orders(\n"
@@ -210,7 +226,11 @@ public class Order {
 
 	DBC.runQueryUpdate(query);
     }
-
+    
+    /**
+     * Sets the email for the Order in the database.
+     * @param email 
+     */
     public void setEmail(String email) {
 	this.email = email;
 	String query = "UPDATE public.orders\n"
@@ -221,7 +241,7 @@ public class Order {
     
     
     /**
-     * Returns the OrderLines in this Order seperated by newlines;
+     * Returns the OrderLines in this Order seperated by newlines as one String.
      * @return 
      */
     public String showBasket() {

@@ -16,9 +16,7 @@ public class Product {
     private String description;
     private ProductCategory prdCat;
     
-    
-  
-    
+
     public Product(String productName, long productNumber, 
             double piecePrice, String description, ProductCategory prdCat) {
         
@@ -51,6 +49,11 @@ public class Product {
         return this.prdCat;
     }
     
+    /**
+     * Used to send product information to the GUI without it knowing about the
+     * Product class.
+     * @return 
+     */
     @Override
     public String toString() {
         return this.productName + ";" + this.piecePrice + ";" + this.description + ";" + this.prdCat + ";" + this.productNumber;

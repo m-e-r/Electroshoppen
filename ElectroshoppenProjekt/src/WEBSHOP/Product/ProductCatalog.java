@@ -10,15 +10,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.TreeMap;
-import javafx.beans.Observable;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
-import javafx.collections.ObservableList;
 
 /**
- *
+ * Class responsible for fetching all products from the database and provide
+ * search functions to find these.
  * @author Kasper
  */
 public class ProductCatalog {
@@ -27,6 +23,9 @@ public class ProductCatalog {
     public ArrayList<Product> searchProducts;
 
     
+    /**
+     * Loads in the products when instantiated.
+     */
     public ProductCatalog() {
         this.products = new TreeMap();
         this.fillProducts();
@@ -35,7 +34,8 @@ public class ProductCatalog {
     
     
     /**
-     * Takes a query from the database, returning all the the products in the database and puts them into the TreeMap "products"
+     * Takes a query from the database, returning all the the products in the 
+     * database and puts them into the TreeMap "products".
      */
     private void fillProducts() {
         DBConnection dbCon = new DBConnection(); //Creates an instance of the databasemanager
@@ -59,13 +59,14 @@ public class ProductCatalog {
                 
             }
         } catch (SQLException exception){
-            exception.printStackTrace();
         }
             
         
     }
     /**
-     * Iterates through the list of products, checks if any of the attributes of the products in that list match with the search text and adds these to a new arrayList. The list is then returned.
+     * Iterates through the list of products, checks if any of the attributes 
+     * of the products in that list match with the search text and adds 
+     * these to a new arrayList.
      * @param in Takes the search text as an input in the form of a String
      * @return returns a list of products matching the search text
      */
@@ -83,7 +84,7 @@ public class ProductCatalog {
                 } else if (p.getDescription().toLowerCase().contains(in.toLowerCase())) { //Search String is found in the description
                     this.searchProducts.add(p);
                     
-                } else if(p.getProductName().toLowerCase().contains(in.toLowerCase())){ //Name contains search word 
+                } else if(p.getProductName().toLowerCase().contains(in.toLowerCase())){ //Name contains search String
                     this.searchProducts.add(p);
                 }
                 
@@ -92,20 +93,25 @@ public class ProductCatalog {
        return this.searchProducts;
     }
     
-
+    /**
+     * Quickly finds a product based on its product id.
+     * @param prdNum
+     * @return 
+     */
     public Product searchProduct(long prdNum) {
         return this.products.get(prdNum);
     }
     
     /**
-     * Used when?
+     * Should be used when sorting products based on their category. 
+     * Might not be implemented yet..
      * @param prdCat
      * @return 
      */
     public ArrayList<Product> getProductsFromCat(ProductCategory prdCat) {
         
         for (Product product : this.products.values()) {
-            if (product.getProductCategory().equals(prdCat)) {
+            if (product.getProductCategory().equals(prdCat)) { //Replace with switch case
                 this.categoryProducts.add(product);
             }
         }        

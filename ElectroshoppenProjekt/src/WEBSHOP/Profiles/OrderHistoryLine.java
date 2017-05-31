@@ -6,7 +6,7 @@
 package WEBSHOP.Profiles;
 
 /**
- *
+ * Class used when loading orders from the database.
  * @author Jacob
  */
 public class OrderHistoryLine {

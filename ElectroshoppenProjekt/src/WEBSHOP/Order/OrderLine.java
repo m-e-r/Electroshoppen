@@ -19,8 +19,7 @@ public class OrderLine {
     private String productName;
     private long productNumber;
     private Product existingProduct;
-    
-    
+        
     
     public OrderLine(Product product, int amount) {
         

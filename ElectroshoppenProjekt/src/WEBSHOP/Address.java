@@ -12,8 +12,14 @@ package WEBSHOP;
 public class Address {
     private String zipCode, city, streetName, streetNumber, secAddress;
     
-   
-    
+   /**
+    * Constructor used when a secAddress is present.
+    * @param streetName
+    * @param streetNumber
+    * @param secAddress
+    * @param zipCode
+    * @param city 
+    */
     public Address(String streetName, String streetNumber, String secAddress, String zipCode,
             String city) {
         this.city = city;
@@ -23,6 +29,13 @@ public class Address {
 	this.zipCode = zipCode;
     }
     
+    /**
+     * Constructor used when a secAddress is not given.
+     * @param streetName
+     * @param streetNumber
+     * @param zipCode
+     * @param city 
+     */
     public Address(String streetName, String streetNumber, String zipCode, String city) {
         this.zipCode = zipCode;
         this.city = city;
@@ -93,14 +106,14 @@ public class Address {
     }
 
     /**
-     * @return the door
+     * @return the secAddress
      */
     public String getSecAddress() {
 	return secAddress;
     }
 
     /**
-     * @param door the door to set
+     * @param secAddress the secAddress to be set
      */
     public void setSecAddress(String secAddress) {
 	this.secAddress = secAddress;

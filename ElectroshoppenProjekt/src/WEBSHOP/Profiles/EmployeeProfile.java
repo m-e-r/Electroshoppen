@@ -6,16 +6,10 @@
 package WEBSHOP.Profiles;
 
 import WEBSHOP.Address;
-import Authentication.Token;
-import java.io.*;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import DBManager.*;
-import java.sql.SQLException;
 
 /**
- *
+ * Class represents an employee in the POS and PIM systems.
  * @author Jacob
  */
 public class EmployeeProfile extends Profile {
@@ -24,29 +18,6 @@ public class EmployeeProfile extends Profile {
 	    String passWord) {
 	super(name, phoneNumber, eMail, adress, passWord);
         this.saveProfileToDB();
-    }
-
-    public void viewProfile(String id) {
-	try (Scanner console = new Scanner(new File("Employee_Profiles.txt"))) {
-	    while (console.hasNextLine()) {
-
-	    }
-	} catch (FileNotFoundException ex) {
-	    Logger.getLogger(EmployeeProfile.class.getName()).log(Level.SEVERE, null, ex);
-	}
-    }
-
-    @Override
-    public void saveProfileToText() {
-	File file = new File("Employee_Profiles.txt"); //Put .txt file outside src folder.
-	 
-	try (FileWriter fileW = new FileWriter(file, true);
-		BufferedWriter bufferedW = new BufferedWriter(fileW);
-		PrintWriter output = new PrintWriter(bufferedW)) {
-	    output.println(this.toString() + "\n"); //write here what should be inserted
-	} catch (IOException ex) {
-	    Logger.getLogger(EmployeeProfile.class.getName()).log(Level.SEVERE, null, ex);
-	}
     }
 
     @Override

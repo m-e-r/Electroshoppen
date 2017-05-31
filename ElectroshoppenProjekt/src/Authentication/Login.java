@@ -6,8 +6,6 @@
 package Authentication;
 
 import DBManager.*;
-import WEBSHOP.iWebshopLogin;
-import elecetroshoppenprojekt.Webshop;
 
 /**
  * Class responsible for logging users in and out.

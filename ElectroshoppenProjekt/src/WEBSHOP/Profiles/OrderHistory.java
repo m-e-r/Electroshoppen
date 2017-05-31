@@ -6,37 +6,38 @@
 package WEBSHOP.Profiles;
 
 import DBManager.DBConnection;
-import WEBSHOP.Order.Order;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Class responsible for fetching orders from the database and collecting them
+ * as an OrderHistory.
  * @author Jacob
  */
 public class OrderHistory {
-
+    
     private DBConnection DBC = new DBConnection();
-    private String customerId;
     private ArrayList<OrderHistoryLine> allOrders;
     private HashMap<String, ArrayList<String>> orderLinesByOrder;
 
-    public OrderHistory() {
-         
+    public OrderHistory() {         
         allOrders = new ArrayList();
         this.orderLinesByOrder = new HashMap();
 
     }
-
+    
+    /**
+     * Finds all orders in the database connected to the given customer email
+     * and loads them into the HashMap orderLinesByOrder.
+     * @param customerId email
+     */
     private void getOrders(String customerId) {
-        int count = 0;
         OrderHistoryLine nextLine;
-        String currentOrderNumber = ""; //Kasper stuff
+        String currentOrderNumber = "";
         try {
             String query = "select o.order_number, o.date, p.name, p.price, ol.amount, p.product_id\n"
                     + "from product p inner join order_line ol on p.product_id = ol.product_id\n"
@@ -54,10 +55,7 @@ public class OrderHistory {
                 nextLine = new OrderHistoryLine(orderNumber, date, name, price, amount, product_id);
                 allOrders.add(nextLine);
 
-                //Kasper stuff
                 String orderCred = orderNumber + "\n" + date;
-                // 
-                count++;
 
                     if (!orderNumber.equals(currentOrderNumber)) {
                          
@@ -77,13 +75,22 @@ public class OrderHistory {
             Logger.getLogger(OrderHistory.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    public HashMap<String, ArrayList<String>> getOrderLinesByOrder(String customerId) {
-         
+    
+    /**
+     * 
+     * @param customerId email
+     * @return All orderLines for the given customer grouped by their Order.
+     */
+    public HashMap<String, ArrayList<String>> getOrderLinesByOrder(String customerId) {         
         getOrders(customerId);
         return this.orderLinesByOrder;
     }
-
+    
+    /**
+     * Should have been overtaken by the getOrderLinesByOrder(...) method.
+     * Formats information for each Order into one String.
+     * @return 
+     */
     @Override
     public String toString() {
         String fullOrder = "";

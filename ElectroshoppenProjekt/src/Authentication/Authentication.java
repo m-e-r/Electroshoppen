@@ -75,13 +75,11 @@ public abstract class Authentication implements Authenticateable {
 	ResultSet user = dbc.runQueryExcecute(query); 
 	try {
 	    if (!user.next()) {
-		  //Should be removed
 		return false;
 	    }
 	} catch (SQLException ex) {
 	    Logger.getLogger(Authentication.class.getName()).log(Level.SEVERE, null, ex);
 	}
-	  //Should be removed
 	return true;
     }
 
