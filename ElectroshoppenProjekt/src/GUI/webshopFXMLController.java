@@ -137,10 +137,12 @@ public class webshopFXMLController implements Initializable {
     private Label pCVRl;
     @FXML
     private Button updateBTN;
-    
+
     private static String currentUserEmail = "";
     @FXML
     private TextField adressTF2;
+
+    private boolean isLoggedIn;
 
     /**
      * Initializes the controller class.
@@ -207,68 +209,65 @@ public class webshopFXMLController implements Initializable {
     }
 
     public void afterLogin() {
-	 
-	String[] customer = facade.getCustomerInfo(currentUserEmail);
-	String[] address = facade.getAddressArray(currentUserEmail);
-	String[] fullArray = new String[customer.length + address.length];
-	for (int i = 0, j = customer.length; i < customer.length; i++, j++) {
-	     
-	     
-	    fullArray[i] = customer[i];
-	    fullArray[j] = address[i];
-	     
-	}
-	
-	
-	
-	
-	TextField[] tfs = new TextField[10];
-	tfs[0] = this.pFnameTF;
-	tfs[1] = this.pLnameTF;
-	tfs[2] = this.pMailTF;
-	tfs[3] = this.pPhoneTF;
-	tfs[5] = this.pAddressTF;
-	tfs[6] = this.pNumberTF;
-	tfs[7] = this.pAdressTF2;
-	tfs[8] = this.pPostnrTF;
-	tfs[9] = this.pCityTF;
+	if (isLoggedIn) {
+	    String[] customer = facade.getCustomerInfo(currentUserEmail);
+	    String[] address = facade.getAddressArray(currentUserEmail);
+	    String[] fullArray = new String[customer.length + address.length];
+	    for (int i = 0, j = customer.length; i < customer.length; i++, j++) {
 
-	this.loginTab.setDisable(true);
-	this.profileTab.setDisable(false);
-	this.registerTab.setDisable(true);
+		fullArray[i] = customer[i];
+		fullArray[j] = address[i];
 
-	if (customer[4] != null) {
-	    pCVRtf = new TextField();
-	    tfs[4] = pCVRtf;
-	    this.profileGrid.add(pCVRtf, 2, 9);
-	    pCVRl.setVisible(true);
-	}
-	int i = 0;
-	for (TextField tf : tfs) {
-	    tf.setText(fullArray[i]);
-	    i++;
-	}
+	    }
 
-	this.tabPane.getSelectionModel().select(productTab);
-	this.logMailTF.setText("");
-	this.logPF.setText("");
+	    TextField[] tfs = new TextField[10];
+	    tfs[0] = this.pFnameTF;
+	    tfs[1] = this.pLnameTF;
+	    tfs[2] = this.pMailTF;
+	    tfs[3] = this.pPhoneTF;
+	    tfs[5] = this.pAddressTF;
+	    tfs[6] = this.pNumberTF;
+	    tfs[7] = this.pAdressTF2;
+	    tfs[8] = this.pPostnrTF;
+	    tfs[9] = this.pCityTF;
+
+	    this.loginTab.setDisable(true);
+	    this.profileTab.setDisable(false);
+	    this.registerTab.setDisable(true);
+
+	    if (customer[4] != null) {
+		pCVRtf = new TextField();
+		tfs[4] = pCVRtf;
+		this.profileGrid.add(pCVRtf, 2, 9);
+		pCVRl.setVisible(true);
+	    }
+	    int i = 0;
+	    for (TextField tf : tfs) {
+		tf.setText(fullArray[i]);
+		i++;
+	    }
+
+	    this.tabPane.getSelectionModel().select(productTab);
+	    this.logMailTF.setText("");
+	    this.logPF.setText("");
+	}
     }
-    
+
 //    public String getEmailLogin(){
 //	return currentUserEmail;
 //    }
-
     @FXML
     private void login(Event event) {
 
 	//START
 	this.authen = new Login(this.logMailTF.getText(), this.logPF.getText());
-	
+
 	if (this.authen.doLogin() != null) {
+	    this.isLoggedIn = true;
 	    this.currentUserEmail = this.logMailTF.getText();
 	    this.facade.setCustomerEmail(currentUserEmail);
 	    this.afterLogin();
-	    
+
 	    this.facade.setLoginForCustomer(this.authen.doLogin());
 
 	} else {
@@ -280,8 +279,9 @@ public class webshopFXMLController implements Initializable {
 
     @FXML
     private void logout() {
-	 
+
 	if (this.authen.doLogout()) {
+	    this.isLoggedIn = false;
 	    this.currentUserEmail = "";
 	    this.loginTab.setDisable(false);
 	    this.registerTab.setDisable(false);

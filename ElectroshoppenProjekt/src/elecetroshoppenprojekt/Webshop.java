@@ -44,30 +44,7 @@ public class Webshop implements iWebshopLogin {
     @Override
     public void setLoginForCustomer(Token token) {
 	this.customer.setToken(token);
-	
 	this.customer.getOrder().setEmail(this.customer.geteMail());
-	System.out.println(this.customer.geteMail());
-	String query = "SELECT p.product_id, p.name, p.category, p.description, p.price, p.amount \n"
-		+ "FROM product p INNER JOIN order_line ol ON p.product_id = ol.product_id\n"
-		+ "INNER JOIN orders o ON ol.order_number = o.order_number AND o.email = '" 
-		+ this.customer.geteMail() + "';";
-	DBConnection dbc = new DBConnection();
-	try (ResultSet select = dbc.runQueryExcecute(query);) {
-	    while (select.next()) {
-		String name = select.getString("name");
-		String category = select.getString("category");
-		int amount = select.getInt("amount");
-		String description = select.getString("description");
-		double price = select.getDouble("price");
-		Long productId = select.getLong("product_id");
-		System.out.println("amount " + amount);
-		OrderLine n = new OrderLine(name, productId, price, description, category);
-		this.customer.getOrder().addOrderLine(n.getExistingProduct(), amount);
-
-	    }
-	} catch (SQLException ex) {
-	    Logger.getLogger(Webshop.class.getName()).log(Level.SEVERE, null, ex);
-	}
     }
 
     public String pay() {
