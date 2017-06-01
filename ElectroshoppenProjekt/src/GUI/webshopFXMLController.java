@@ -222,6 +222,7 @@ public class webshopFXMLController implements Initializable {
     }
 
     public void afterLogin() {
+        System.out.println(facade.isValid());
 	if (facade.isValid()) {
 	    String[] customer = facade.getCustomerInfo(currentUserEmail);
 	    String[] address = facade.getAddressArray(currentUserEmail);
@@ -284,11 +285,10 @@ public class webshopFXMLController implements Initializable {
 	this.authen = new Login(this.logMailTF.getText(), this.logPF.getText());
 
 	if (this.authen.doLogin() != null) {
+            this.facade.setLoginForCustomer(this.authen.doLogin());
 	    this.currentUserEmail = this.logMailTF.getText();
 	    this.facade.setCustomerEmail(currentUserEmail);
 	    this.afterLogin();
-
-	    this.facade.setLoginForCustomer(this.authen.doLogin());
 
 	} else {
 	    Label label = new Label("Den indtastede E-Mail eller kode er forkert. Venligst prøv igen");

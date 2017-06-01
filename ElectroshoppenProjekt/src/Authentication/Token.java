@@ -51,7 +51,10 @@ public class Token {
     }
     
     public boolean isValid() {
-        if ((this.creation + this.goTime) > this.date.getTime()) {
+        if (this.tok.equals("default")) {
+            return false;
+            
+        } else if ((this.creation + this.goTime) > this.date.getTime()) {
 	    this.creation = this.date.getTime();
             return true;
         }

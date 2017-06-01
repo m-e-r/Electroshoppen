@@ -9,8 +9,11 @@ import Authentication.Token;
 import WEBSHOP.Product.Product;
 import WEBSHOP.Address;
 import WEBSHOP.Order.OrderLine;
+import WEBSHOP.Product.ProductCatalog;
+import WEBSHOP.Product.ProductCategory;
 import WEBSHOP.Profiles.CustomerProfile;
 import WEBSHOP.Profiles.Profile;
+import java.util.ArrayList;
 
 /**
  * Class functions as a controller for the WEBSHOP package, and its methods
@@ -20,9 +23,11 @@ import WEBSHOP.Profiles.Profile;
 public class Webshop {
     private CustomerProfile customer;
     private OrderLine orderLine;
+    private ProductCatalog pc;
 
     public Webshop() {
 	this.customer = new CustomerProfile();
+        this.pc = new ProductCatalog();
     }
     
     /**
@@ -134,6 +139,18 @@ public class Webshop {
     
     public Profile getCustomerProfile(){
 	return this.customer;
+    }
+    
+    public Product searchProduct(long prdNum) {
+        return this.pc.searchProduct(prdNum);
+    }
+    
+    public ArrayList<Product> searchProductsFromText(String in) {
+        return this.pc.searchProductsFromText(in);
+    }
+    
+    public ArrayList<Product> getProductsFromCat(ProductCategory prdCat) {
+        return this.pc.getProductsFromCat(prdCat);
     }
 
 }

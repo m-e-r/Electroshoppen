@@ -139,18 +139,18 @@ public class Facade implements iFacade{
     
     @Override
     public Product searchProduct(long prdNum){
-	return productCatalog.searchProduct(prdNum);
+	return this.webshop.searchProduct(prdNum);
     }
     
     @Override
     public ArrayList<Product> searchProductsFromText (String in) {
-        return productCatalog.searchProductsFromText(in);
+        return this.webshop.searchProductsFromText(in);
     }
     
     
     @Override
     public ArrayList<Product> getProductsFromCat(ProductCategory prdCat){
-	return productCatalog.getProductsFromCat(prdCat);
+	return this.webshop.getProductsFromCat(prdCat);
     }
     @Override
     public Long getOrderNumber(){
