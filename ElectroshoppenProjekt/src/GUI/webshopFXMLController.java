@@ -416,5 +416,4 @@ public class webshopFXMLController implements Initializable {
         this.orderLinesForView.addAll(this.orderLinesByOrder.get(chosenOrder));
         this.orderLinesLV.setItems(this.orderLinesForView); 
     }
-
 }
