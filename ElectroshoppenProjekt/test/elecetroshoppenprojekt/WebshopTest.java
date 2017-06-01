@@ -242,16 +242,4 @@ public class WebshopTest {
 	fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of main method, of class Webshop.
-     */
-    @Test
-    public void testMain() {
-	System.out.println("main");
-	String[] args = null;
-	Webshop.main(args);
-	// TODO review the generated test code and remove the default call to fail.
-	fail("The test case is a prototype.");
-    }
-    
 }
