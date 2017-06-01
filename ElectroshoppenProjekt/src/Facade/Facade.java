@@ -29,27 +29,17 @@ import java.util.HashMap;
  * @author rune_
  */
 public class Facade implements iFacade{
-    private Authentication authentication;
-    private Token token;
-    private DBConnection dbConnection;
     private Product product;
-    private ProductCatalog productCatalog;
     private ProductCategory productCategory;
-    private Address adress;
     private Order order;
     private OrderLine orderLine;
-    private Payment payment;
-    private CustomerProfile customerProfile;
-    private EmployeeProfile employeeProfile;
     private OrderHistory orderHistory;
-    private Profile profile;
     private Webshop webshop;
     private ProductEditing pimEdit;
     private ProductManager pimMan;
     private PointOfSale pos;
     
     public Facade() {
-        this.productCatalog = new ProductCatalog();
         this.webshop = new Webshop();
          
         this.pimEdit = new ProductEditing();

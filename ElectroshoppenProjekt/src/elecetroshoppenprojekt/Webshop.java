@@ -21,6 +21,10 @@ import java.util.ArrayList;
  * @author Kasper
  */
 public class Webshop {
+
+    static void main(String[] args) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     private CustomerProfile customer;
     private OrderLine orderLine;
     private ProductCatalog pc;
