@@ -8,7 +8,6 @@ package elecetroshoppenprojekt;
 import Authentication.Token;
 import WEBSHOP.Product.Product;
 import WEBSHOP.Address;
-import WEBSHOP.Order.OrderLine;
 import WEBSHOP.Product.ProductCatalog;
 import WEBSHOP.Product.ProductCategory;
 import WEBSHOP.Profiles.CustomerProfile;
