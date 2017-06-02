@@ -13,7 +13,6 @@ import com.jfoenix.controls.JFXToggleButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -422,7 +421,7 @@ public class webshopFXMLController implements Initializable {
     
     /**
      * Method used when the cutomer want to go to a products productpage.
-     * @param productNr 
+     * @param productNr sets product number in productFXMLcontroller
      */
     public void goToProduct(long productNr) {
 	AnchorPane pane;

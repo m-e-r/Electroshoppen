@@ -4,12 +4,10 @@
  * and open the template in the editor.
  */
 package Facade;
-import WEBSHOP.Product.ProductCatalog;
 import elecetroshoppenprojekt.*;
 import WEBSHOP.Product.Product;
 import WEBSHOP.Product.ProductCategory;
 import Authentication.*;
-import DBManager.*;
 import PIM.ProductEditing;
 import PIM.ProductManager;
 import POS.PointOfSale;

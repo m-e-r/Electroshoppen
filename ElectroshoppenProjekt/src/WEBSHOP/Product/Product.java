@@ -52,7 +52,7 @@ public class Product {
     /**
      * Used to send product information to the GUI without it knowing about the
      * Product class.
-     * @return 
+     * @return Product as a String description.
      */
     @Override
     public String toString() {

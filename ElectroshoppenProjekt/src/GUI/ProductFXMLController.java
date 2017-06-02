@@ -5,7 +5,6 @@
  */
 package GUI;
 
-import Facade.Facade;
 import Facade.iFacade;
 import java.io.IOException;
 import java.net.URL;
@@ -20,7 +19,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -66,7 +64,7 @@ public class ProductFXMLController implements Initializable {
     
     /**
      * Method used for adding a product with an amount to the customers basket.
-     * @param event 
+     * @param event button
      */
     @FXML
     private void addToBasket(ActionEvent event) {
@@ -79,7 +77,7 @@ public class ProductFXMLController implements Initializable {
     }
     /**
      * Used when the customer wants to access the basket to see which products, that have been chosen.
-     * @param event 
+     * @param event button
      */
     @FXML
     public void showBasket(ActionEvent event) {
@@ -97,8 +95,8 @@ public class ProductFXMLController implements Initializable {
     
     /**
      * Used when the customer has opened the basket and want to close it again.
-     * @param event
-     * @param ta 
+     * @param event button
+     * @param ta TextArea
      */
     public void closeBasket(ActionEvent event, TextArea ta) {
 	this.mainGrid.getChildren().remove(ta);
@@ -112,7 +110,7 @@ public class ProductFXMLController implements Initializable {
     
     /**
      * Method for returning to the main webshop pages.
-     * @param event 
+     * @param event button
      */
     @FXML
     public void goBackToProducts(ActionEvent event) {
@@ -132,7 +130,7 @@ public class ProductFXMLController implements Initializable {
     
     /**
      * Method for setting the productid, this is called from another controller.
-     * @param id 
+     * @param id id attribute
      */
     public void setProductId(long id) {
 	this.productId = id;

@@ -31,15 +31,27 @@ public class ProductEditing {
     public void editName(long id, String newName) {
 	dbc.runQueryUpdate(SQLQuery(id, "name", newName));
     }
-    
+    /**
+     * Method for editing the price of a product.
+     * @param id
+     * @param newPrice 
+     */
     public void editPrice(long id, double newPrice){
 	dbc.runQueryUpdate(SQLQuery(id, "price", Double.toString(newPrice)));
     }
-    
+    /**
+     * Method for editing the description of a product.
+     * @param id
+     * @param newDescription 
+     */
     public void editDescription(long id, String newDescription){
 	dbc.runQueryUpdate(SQLQuery(id, "description", newDescription));
     }
-    
+    /**
+     * Method for editing a products category.
+     * @param id
+     * @param newCategory 
+     */
     public void editCategory(long id, ProductCategory newCategory){
 	dbc.runQueryUpdate(SQLQuery(id, "category", newCategory.toString().toUpperCase()));
     }

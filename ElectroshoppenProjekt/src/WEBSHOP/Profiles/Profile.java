@@ -5,7 +5,6 @@
  */
 package WEBSHOP.Profiles;
 
-import Authentication.Token;
 import WEBSHOP.Address;
 import WEBSHOP.Order.Order;
 

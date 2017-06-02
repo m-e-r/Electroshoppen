@@ -32,7 +32,6 @@ public class ProductManager {
     /**
      * Method to add a product, to the database. Runs an INSERT query,
      * using getters from Product class.
-     * @param product Product from Product class, to be inserted into database. 
      */
     public boolean addProductToDatabase() {
         
