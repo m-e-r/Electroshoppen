@@ -14,7 +14,6 @@ import DBManager.*;
 public class Login extends Authentication {
 
     private Token token;
-    private boolean isLoggedIn;
 
     public Login(String userName, String password) {
 	super(userName, password);
@@ -45,7 +44,6 @@ public class Login extends Authentication {
 		    + "END \n"
 		    + "$$";
 	    dbc.runQueryUpdate(query);
-	    isLoggedIn = true;
 	    return this.token;
 	} else {
 	    return null;

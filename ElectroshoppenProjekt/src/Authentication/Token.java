@@ -32,6 +32,7 @@ public class Token {
      * If token is still valid, this methoad returns the string for comparison
      * and updates the tokens creation time.
      * If not valid, it returns the String "Expired".
+     * Might be overtaken by isValid() in the future.
      * @return 
      */
     public String getToken() {
@@ -50,6 +51,11 @@ public class Token {
         }
     }
     
+    /**
+     * Same as getToken(), only it returns a boolean and checks if the user
+     * has never logged in. Might overtake getToken() in the future.
+     * @return true if the token is valid. False if not.
+     */
     public boolean isValid() {
         if (this.tok.equals("default")) {
             return false;

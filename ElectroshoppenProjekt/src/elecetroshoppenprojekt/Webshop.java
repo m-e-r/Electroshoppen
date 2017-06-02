@@ -8,7 +8,6 @@ package elecetroshoppenprojekt;
 import Authentication.Token;
 import WEBSHOP.Product.Product;
 import WEBSHOP.Address;
-import WEBSHOP.Order.OrderLine;
 import WEBSHOP.Product.ProductCatalog;
 import WEBSHOP.Product.ProductCategory;
 import WEBSHOP.Profiles.CustomerProfile;
@@ -26,7 +25,6 @@ public class Webshop {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     private CustomerProfile customer;
-    private OrderLine orderLine;
     private ProductCatalog pc;
 
     public Webshop() {
