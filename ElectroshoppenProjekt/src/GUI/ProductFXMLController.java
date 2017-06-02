@@ -63,7 +63,11 @@ public class ProductFXMLController implements Initializable {
         this.facade = WebshopFacade.getInstance().getFacade();
 
     }
-
+    
+    /**
+     * Method used for adding a product with an amount to the customers basket.
+     * @param event 
+     */
     @FXML
     private void addToBasket(ActionEvent event) {
 	if (this.amountTF == null || "".equals(this.amountTF.getText())) {
@@ -73,7 +77,10 @@ public class ProductFXMLController implements Initializable {
 	    this.facade.addToOrder(this.facade.searchProduct(productId), Integer.parseInt(this.amountTF.getText()));
 	}
     }
-
+    /**
+     * Used when the customer wants to access the basket to see which products, that have been chosen.
+     * @param event 
+     */
     @FXML
     public void showBasket(ActionEvent event) {
 	TextArea ta = new TextArea();
@@ -87,7 +94,12 @@ public class ProductFXMLController implements Initializable {
 	});
 
     }
-
+    
+    /**
+     * Used when the customer has opened the basket and want to close it again.
+     * @param event
+     * @param ta 
+     */
     public void closeBasket(ActionEvent event, TextArea ta) {
 	this.mainGrid.getChildren().remove(ta);
 	this.basketBTN.setOnAction(new EventHandler<ActionEvent>() {
@@ -97,7 +109,11 @@ public class ProductFXMLController implements Initializable {
 	    }
 	});
     }
-
+    
+    /**
+     * Method for returning to the main webshop pages.
+     * @param event 
+     */
     @FXML
     public void goBackToProducts(ActionEvent event) {
 	AnchorPane pane;
@@ -113,7 +129,11 @@ public class ProductFXMLController implements Initializable {
 	    Logger.getLogger(webshopFXMLController.class.getName()).log(Level.SEVERE, null, ex);
 	}
     }
-
+    
+    /**
+     * Method for setting the productid, this is called from another controller.
+     * @param id 
+     */
     public void setProductId(long id) {
 	this.productId = id;
 	String[] s = facade.searchProduct(productId).toString().split(";");

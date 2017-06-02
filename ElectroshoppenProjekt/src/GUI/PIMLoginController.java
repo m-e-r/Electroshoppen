@@ -50,7 +50,7 @@ public class PIMLoginController implements Initializable {
     }    
     
     /**
-     * REMEMBER TO FIND A WAY TO CLOSE THIS WINDOW AFTER SUCCESFULL LOGIN.
+     * Method for handling login to the PIM.
      * @param event
      * @throws IOException 
      */

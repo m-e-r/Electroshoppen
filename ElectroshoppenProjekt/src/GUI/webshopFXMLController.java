@@ -169,7 +169,11 @@ public class webshopFXMLController implements Initializable {
         this.ordersForView = FXCollections.observableArrayList();
 
     }
-
+    
+    /**
+     * Method connected to toggle, so a textfield appears for cvr number, 
+     * if the customer is a buisness customer.
+     */
     @FXML
     public void buisnessAccount() {
 	if (this.registerGrid.getChildren().contains(cvrTF)) {
@@ -181,7 +185,11 @@ public class webshopFXMLController implements Initializable {
 	}
 
     }
-
+    
+    /**
+     * Method for searching and showing the searched products.
+     * @param event 
+     */
     @FXML
     private void searchProducts(ActionEvent event) {
 	this.productGrid.getChildren().clear();
@@ -220,7 +228,10 @@ public class webshopFXMLController implements Initializable {
 	    }
 	}
     }
-
+    
+    /**
+     * Method used to handle the user interface after a user has been logged in.
+     */
     public void afterLogin() {
         System.out.println(facade.isValid());
 	if (facade.isValid()) {
@@ -275,9 +286,10 @@ public class webshopFXMLController implements Initializable {
 	}
     }
 
-//    public String getEmailLogin(){
-//	return currentUserEmail;
-//    }
+    /**
+     * Method used for a customer to login.
+     * @param event 
+     */
     @FXML
     private void login(Event event) {
 
@@ -296,7 +308,10 @@ public class webshopFXMLController implements Initializable {
 	    this.logPF.setText("");
 	}
     }
-
+    
+    /**
+     * Method for logging out a customer.
+     */
     @FXML
     private void logout() {
 
@@ -309,7 +324,11 @@ public class webshopFXMLController implements Initializable {
 	    this.facade.setNewCustomer();
 	}
     }
-
+    
+    /**
+     * Method used to register a customer.
+     * @param event 
+     */
     @FXML
     private void register(ActionEvent event) {
 
@@ -355,7 +374,11 @@ public class webshopFXMLController implements Initializable {
 	    }
 	}
     }
-
+    
+    /**
+     * Method used for showing the customers basket.
+     * @param event 
+     */
     @FXML
     private void showBasket(ActionEvent event) {
 	TextArea ta = new TextArea();
@@ -369,7 +392,12 @@ public class webshopFXMLController implements Initializable {
 	    }
 	});
     }
-
+    
+    /**
+     * Method used to close the customers basket.
+     * @param event
+     * @param ta 
+     */
     private void closeBasket(ActionEvent event, TextArea ta) {
 	this.mainPane.getChildren().remove(ta);
 	this.basketBTN.setOnAction(new EventHandler<ActionEvent>() {
@@ -379,7 +407,11 @@ public class webshopFXMLController implements Initializable {
 	    }
 	});
     }
-
+    
+    /**
+     * Method for updating a customer profile.
+     * @param event 
+     */
     @FXML
     private void updateProfile(ActionEvent event) {
 	this.facade.setAddress(this.pAddressTF.getText(), this.pNumberTF.getText(), this.pAdressTF2.getText(), this.pPostnrTF.getText(),
@@ -387,7 +419,11 @@ public class webshopFXMLController implements Initializable {
 	this.facade.updateProfile(this.pFnameTF.getText() + ";" + this.pLnameTF.getText(),
 		this.pMailTF.getText(), this.pPhoneTF.getText(), this.pCVRtf.getText());
     }
-
+    
+    /**
+     * Method used when the cutomer want to go to a products productpage.
+     * @param productNr 
+     */
     public void goToProduct(long productNr) {
 	AnchorPane pane;
 	try {
@@ -400,14 +436,18 @@ public class webshopFXMLController implements Initializable {
 	    Logger.getLogger(webshopFXMLController.class.getName()).log(Level.SEVERE, null, ex);
 	}
     }
-
+    
     /**
      * @return the authen
      */
     public Authenticateable getAuthen() {
 	return authen;
     }
-
+    
+    /**
+     * Method used to handle orderchoice.
+     * @param event 
+     */
     @FXML
     private void handleOrderChoice(MouseEvent event) {
         String chosenOrder = this.ordersLV.getSelectionModel().getSelectedItem();

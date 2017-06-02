@@ -107,7 +107,11 @@ public class POSDocController implements Initializable {
         this.ordersForView = FXCollections.observableArrayList();
         this.orderLinesForView = FXCollections.observableArrayList();
     }
-
+    
+    /**
+     * Method used to register a new employee.
+     * @param event 
+     */
     @FXML
     private void handleRegister(ActionEvent event) {
 	if (this.validateFirstName() & this.validateLastName() & this.validatePhoneNumber()
@@ -139,7 +143,8 @@ public class POSDocController implements Initializable {
 	    }
 	}
     }
-
+    
+    //Method for validating first name.
     private boolean validateFirstName() {
 	this.textValidator = new RequiredFieldValidator();
 	this.textValidator.setStyle("-jfx-text-inner-color: red;");
@@ -159,7 +164,8 @@ public class POSDocController implements Initializable {
 	    return true;
 	}
     }
-
+    
+    // Method for validating last name.
     private boolean validateLastName() {
 	this.textValidator = new RequiredFieldValidator();
 	this.textValidator.setStyle("-jfx-text-inner-color: red;");
@@ -179,7 +185,9 @@ public class POSDocController implements Initializable {
 	    return true;
 	}
     }
-
+    
+    
+    // Method for validating phone number.
     private boolean validatePhoneNumber() {
 	this.numberValidator = new NumberValidator();
 	this.numberValidator.setStyle("-jfx-text-inner-color: red;");
@@ -204,7 +212,8 @@ public class POSDocController implements Initializable {
 	    return true;
 	}
     }
-
+    
+    // Method for validating email.
     private boolean validateEmail() {
 	this.textValidator = new RequiredFieldValidator();
 	this.textValidator.setStyle("-jfx-text-inner-color: red;");
@@ -224,7 +233,8 @@ public class POSDocController implements Initializable {
 	    return true;
 	}
     }
-
+    
+    // Method for validating street name.
     private boolean validateStreetName() {
 	this.textValidator = new RequiredFieldValidator();
 	this.textValidator.setStyle("-jfx-text-inner-color: red;");
@@ -244,7 +254,8 @@ public class POSDocController implements Initializable {
 	    return true;
 	}
     }
-
+    
+    //Method for validating street number.
     private boolean validateStreetNumber() {
 	this.numberValidator = new NumberValidator();
 	this.numberValidator.setStyle("-jfx-text-inner-color: red;");
@@ -264,7 +275,8 @@ public class POSDocController implements Initializable {
 	    return true;
 	}
     }
-
+    
+    // Method for validating zipcode.
     private boolean validateZipCode() {
 	this.numberValidator = new NumberValidator();
 	this.numberValidator.setStyle("-jfx-text-inner-color: red;");
@@ -289,7 +301,8 @@ public class POSDocController implements Initializable {
 	    return true;
 	}
     }
-
+    
+    //Method for validating city.
     private boolean validateCity() {
 	this.textValidator = new RequiredFieldValidator();
 	this.textValidator.setStyle("-jfx-text-inner-color: red;");
@@ -309,7 +322,8 @@ public class POSDocController implements Initializable {
 	    return true;
 	}
     }
-
+    
+    //Method for validating password.
     private boolean validatePassword() {
 	this.textValidator = new RequiredFieldValidator();
 	this.textValidator.setStyle("-jfx-text-inner-color: red;");
@@ -329,8 +343,12 @@ public class POSDocController implements Initializable {
 	    return true;
 	}
     }
-
-    @FXML
+    
+    /**
+     * Method for searching for a customer.
+     * @param event 
+     */
+    @FXML   
     private void searchCustomer(ActionEvent event) {
 	
 	this.email = inputEmailTextField.getText();
@@ -354,6 +372,7 @@ public class POSDocController implements Initializable {
 	}
     }
     
+    // Used to load information about orders to listview.
     private void loadInfo() {
         
         this.ordersForView.clear();
@@ -362,7 +381,10 @@ public class POSDocController implements Initializable {
         this.ordersLV.setItems(this.ordersForView);
         
     }
-
+    
+    /**
+     * Method for choosing an order in the listview.
+     */
     @FXML
     private void handleOrderChoice() {
         this.chosenOrder = this.ordersLV.getSelectionModel().getSelectedItem();
@@ -372,13 +394,18 @@ public class POSDocController implements Initializable {
         this.orderLinesForView.addAll(this.orderLinesByOder.get(this.chosenOrder));
         this.orderLinesLV.setItems(this.orderLinesForView);   
     }
-
+    
+    /**
+     * Method for choosing an orderline.
+     * @param event 
+     */
     @FXML
     private void handleChosenOrderLine(MouseEvent event) {
         this.chosenOrderLine = this.orderLinesLV.getSelectionModel().getSelectedItem();   
         this.chosenProductTA.setText(this.chosenOrderLine.split("#")[1]);
     }
-
+    
+    //Not yet implemented, one of the things that needs to be done in the next iteration.
     @FXML
     private void handleSingleAmountEdit(ActionEvent event) {
 //        long orderNumber = Long.parseLong(this.chosenOrder.split("\n")[0]);
@@ -406,7 +433,8 @@ public class POSDocController implements Initializable {
 //            this.chosenProductTA.setText(orderLine.split("#")[1]);
 //        }
     }
-
+    
+    //Not yet implemented
     @FXML
     private void handleRemoveProduct(ActionEvent event) {
     }

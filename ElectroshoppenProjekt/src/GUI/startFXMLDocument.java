@@ -40,7 +40,12 @@ public class startFXMLDocument implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }    
-
+    
+    /**
+     * Methods used when you run the system, and your at the first screen,
+     * you choose which system you want to access.
+     * @param event 
+     */
     @FXML
     private void goToWebshop(ActionEvent event) {
         try {

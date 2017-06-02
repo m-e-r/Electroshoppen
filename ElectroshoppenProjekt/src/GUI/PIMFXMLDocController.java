@@ -204,7 +204,10 @@ public class PIMFXMLDocController implements Initializable {
      
     }
     
-    
+    /**
+     * Method for changing informaton about a product.
+     * @param event 
+     */
     @FXML
     private void handleChangeProduct(ActionEvent event) {
         String selectedProduct = this.productsLV.getSelectionModel().getSelectedItem();
@@ -438,7 +441,11 @@ public class PIMFXMLDocController implements Initializable {
         this.rmProductsLV.setItems(this.productsNameForView);
         
     }
-
+    
+    /**
+     * Method for removing a product from the webshop.
+     * @param event 
+     */
     @FXML
     private void handleRemoveProduct(ActionEvent event) {
         String selectedProduct = this.rmProductsLV.getSelectionModel().getSelectedItem();
@@ -449,7 +456,11 @@ public class PIMFXMLDocController implements Initializable {
         this.rmShowProductTA.setText("Produktet er fjernet!");
         this.handleRemoveSearch(event);
     }
-
+    
+    /**
+     * Method for showing the product the user wants to remove.
+     * @param event 
+     */
     @FXML
     private void handleRemoveShowProduct(MouseEvent event) {
         String selectedProduct = this.rmProductsLV.getSelectionModel().getSelectedItem();
